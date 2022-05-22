@@ -1,4 +1,4 @@
-package ru.ineri.ineri_lk;
+package com.ineri.ineri_lk;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

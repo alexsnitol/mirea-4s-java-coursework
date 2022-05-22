@@ -1,4 +1,4 @@
-package ru.ineri.ineri_lk;
+package com.ineri.ineri_lk;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
