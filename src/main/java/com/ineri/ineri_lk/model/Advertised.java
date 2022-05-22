@@ -20,7 +20,7 @@ public class Advertised extends AbstractModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "estate_objects_id")
+    @JoinColumn(name = "estate_object_id")
     private EstateObject estateObject;
     @ManyToOne
     @JoinColumn(name = "admin_id")

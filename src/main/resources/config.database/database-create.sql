@@ -116,12 +116,12 @@ CREATE TABLE advertiseds (
       datetime_created     TIMESTAMP NULL,
        
       advertised_status_id BIGINT UNSIGNED NOT NULL,
-      estate_objects_id    BIGINT UNSIGNED NOT NULL,
+      estate_object_id    BIGINT UNSIGNED NOT NULL,
       admin_id             BIGINT UNSIGNED NOT NULL,
       user_id              BIGINT UNSIGNED NOT NULL,
 
       FOREIGN KEY (advertised_status_id) REFERENCES advertised_statuses (id),
-      FOREIGN KEY (estate_objects_id) REFERENCES estate_objects (id),
+      FOREIGN KEY (estate_object_id) REFERENCES estate_objects (id),
       FOREIGN KEY (admin_id) REFERENCES users (id),
       FOREIGN KEY (user_id) REFERENCES users (id)
 );
