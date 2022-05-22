@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>City</title>
+</head>
+<body>
+<div th:switch="${cities}">
+    <h2 th:case="null">No cities found!</h2>
+    <div th:case="*">
+        <h2>cities</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Par value</th>
+                <th>Current value in precent</th>
+                <th>Maturity date</th>
+                <th>Coupon size</th>
+                <th>Accumulated coupon income</th>
+                <th>Payment frequency</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="city : ${cities}">
+                <td th:text="${city.id}"></td>
+                <td th:text="${city.name}"></td>
+                <td th:text="${city.parValue}"></td>
+                <td th:text="${city.currentValueInPrecent}"></td>
+                <td th:text="${#temporals.format(city.maturityDate, 'dd.MM.yyyy')}"></td>
+                <td th:text="${city.couponSize}"></td>
+                <td th:text="${city.accumulatedCouponIncome}"></td>
+                <td th:text="${city.paymentFrequency}"></td>
+                <td><a th:href="@{cities/{id}/edit(id=${city.getId()})}">Edit</a></td>
+                <td><a th:href="@{cities/{id}(id=${city.getId()})}">Delete</a></td>
+                <td><a th:href="@{cities/{id}/calculate(id=${city.getId()})}">Calculate</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="cities/new">Create cities</a></p>
+</div>
+</body>
+</html>
