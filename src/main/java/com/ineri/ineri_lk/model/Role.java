@@ -26,5 +26,5 @@ public class Role {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "name")
-    private String name;
+    private ERole name;
 }
