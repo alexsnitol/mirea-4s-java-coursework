@@ -174,3 +174,11 @@ CREATE TABLE advertised_photos (
         FOREIGN KEY (form_id) REFERENCES forms (id),
         FOREIGN KEY (advertised_id) REFERENCES advertiseds (id)
 );
+
+-- Author: Kozlov A.V.
+CREATE TABLE user_roles (
+    user_id BIGINT UNSIGNED NOT NULL,
+    role_id BIGINT UNSIGNED NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (role_id) REFERENCES roles (id)
+);
