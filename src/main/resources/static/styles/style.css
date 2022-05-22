@@ -1884,13 +1884,13 @@ select {
 }
 /*Sign-Out*/
 
-.form-signout {
+.form-signup {
     max-width: 330px;
     padding: 15px;
     font-variant-numeric: lining-nums;
 }
 
-.form-signout .form-floating:focus-within {
+.form-signup .form-floating:focus-within {
     z-index: 2;
 }
 
@@ -1898,17 +1898,17 @@ select {
     font-variant-numeric: lining-nums;
 }
 
-.form-signout input{
+.form-signup input{
     font-variant-numeric: lining-nums;
 }
 
-.form-signout input[type="text"] {
+.form-signup input[type="text"] {
     margin-bottom: -1px;
 
 }
 
 
-.form-signout input[type="password"] {
+.form-signup input[type="password"] {
     margin-bottom: -1px;
 
 }
