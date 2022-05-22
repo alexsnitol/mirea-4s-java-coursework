@@ -61,9 +61,7 @@ CREATE TABLE users (
      patronymic       VARCHAR(31),
 
      photo_path       VARCHAR(255),
-     datetime_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-     role_id          BIGINT UNSIGNED NOT NULL,
-     FOREIGN KEY (role_id) REFERENCES roles (id)
+     datetime_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Author: Slotin A.S.
@@ -173,4 +171,12 @@ CREATE TABLE advertised_photos (
         form_id       BIGINT UNSIGNED NOT NULL,
         FOREIGN KEY (form_id) REFERENCES forms (id),
         FOREIGN KEY (advertised_id) REFERENCES advertiseds (id)
+);
+
+-- Author: Kozlov A.V.
+CREATE TABLE user_roles (
+    user_id BIGINT UNSIGNED NOT NULL,
+    role_id BIGINT UNSIGNED NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (role_id) REFERENCES roles (id)
 );
