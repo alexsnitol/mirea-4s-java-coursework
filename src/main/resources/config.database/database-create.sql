@@ -61,9 +61,7 @@ CREATE TABLE users (
      patronymic       VARCHAR(31),
 
      photo_path       VARCHAR(255),
-     datetime_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-     role_id          BIGINT UNSIGNED NOT NULL,
-     FOREIGN KEY (role_id) REFERENCES roles (id)
+     datetime_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Author: Slotin A.S.
