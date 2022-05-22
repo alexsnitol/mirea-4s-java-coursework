@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Контакты - Агенство недвижимости в Москве ИНЕРИ</title>
+    <meta name="description" content="Контакты. Агентство недвижимости в Москве ИНЕРИ. Инвестиции в недвижимость. Выкуп объектов. Торги по банкротству.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../../static/styles/style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="shortcut icon" href="../../static/images/icon_INERI_1.svg" type="image/x-icon">
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale-subtle.css" />
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/themes/light.css" />
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../../static/scripts/includeHTML.js"></script>
+    <script src="../../static/scripts/scrolling.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+</head>
+<body>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            // Global settings:
+            disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
+            startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
+            initClassName: 'aos-init', // class applied after initialization
+            animatedClassName: 'aos-animate', // class applied on animation
+            useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
+            disableMutationObserver: false, // disables automatic mutations' detections (advanced)
+            debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
+            throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
+
+
+            // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
+            offset: 0, // offset (in px) from the original trigger point
+            delay: 200, // values from 0 to 3000, with step 50ms
+            duration: 700, // values from 0 to 3000, with step 50ms
+            easing: 'ease', // default easing for AOS animations
+            once: true, // whether animation should happen only once - while scrolling down
+            mirror: true, // whether elements should animate out while scrolling past them
+            anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
+        });
+    </script>
+    <script type="text/javascript">
+        $( () => {
+            $('#menu-contacts').on('click', () => {
+                $('html,body').animate({
+                    scrollTop: 0
+                },500);
+            });
+        });
+        $( () => {
+            $('#menu-contacts-mini').on('click', () => {
+                $('html,body').animate({
+                    scrollTop: 0
+                },500);
+            });
+        });
+    </script>
+    <script>
+        async function clipboardCopy(idObject) {
+            let text = document.getElementById(idObject).innerHTML;
+            text = text.replace()
+            await navigator.clipboard.writeText(text);
+        }
+    </script>
+
+    <div id="header" class="header" include-html="./header.html"></div>
+
+    <div id="contacts-main" class="slide slide-darkblue" style="background-image: url('../../static/images/photo_dark-wall-empty-room-with-plants-floor-3d-rendering_1080.jpg'); background-position: center; background-size: cover; text-align: center;">
+        <div id="contacts-content-main" class="content">
+            <div class="title-big" data-aos="fade-up" data-aos-delay="200" style="position: relative; text-align: left; top: 15%">Контакты</div></br>
+            <div id="contacts-content-main-flex" style="position: relative; top: 15%">
+                <div id="contacts-content-main-flex-left">
+                    <div class="heading-with-icon noselect" data-aos="fade-up" data-aos-delay="300">
+                        <div class="icon-container">
+                            <div class="figure-circle" style="width: 70%; height: 70%; margin: 15%;"></div>
+                            <div class="icon icon-phone filter-dove-blue"></div>
+                        </div>Телефон
+                    </div></br>
+                    <div class="sub-content" data-aos="fade-up" data-aos-delay="350" style="margin-bottom: 36px; vertical-align: middle;">
+                        <div class="text-in-circle-rectangle" style="display: inline-block">
+                            <div id="contacts-number" style="display: inline-block">+7 995 150-23-80</div>
+                            <div id="copy-number" class="icon icon-copy filter-white" style="height: 100%" onclick="clipboardCopy('contacts-number')"></div>
+                            <script>
+                                tippy('#copy-number', {
+                                    content: 'Скопировано!',
+                                    animation: 'scale-subtle',
+                                    theme: 'light',
+                                    trigger: 'click',
+                                });
+                            </script>
+                        </div>
+                        <div class="contact-icons" style="position: relative; display: inline-block; width: fit-content;">
+                            <div class="icon-container">
+                                <a href="https://api.whatsapp.com/send?phone='+7 995 150-23-80'" target="_blank" title="Связаться через WhatsApp"><div class="icon-whatsapp-color"></div></a>
+                            </div>
+                            <div class="icon-container">
+                                <a href="https://t.me/" target="_blank" title="Связаться через Telegram"><div class="icon-telegram-color"></div></a>
+                            </div>
+                            <div class="icon-container hide">
+                                <a href="viber://chat?number=+79951502380" title="Для связи через Viber должно быть установленно приложение"><div class="icon-viber-color"></div></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="heading-with-icon noselect" data-aos="fade-up" data-aos-delay="400">
+                        <div class="icon-container">
+                            <div class="figure-box" style="width: 95%; height: 70%; margin: 15% 2.5% 15% 2.5%;"></div>
+                            <div class="icon icon-mail filter-dove-blue"></div>
+                        </div>Почта
+                    </div></br>
+                    <div class="sub-content" data-aos="fade-up" data-aos-delay="450" style="margin-bottom: 36px">
+                        <div class="text-in-circle-rectangle" style="display: inline-block">
+                            <div id="contacts-email" style="display: inline-block">er-ineri@mail.ru</div>
+                            <div id="copy-email" class="icon icon-copy filter-white" style="height: 100%" onclick="clipboardCopy('contacts-email')"></div>
+                            <script>
+                                tippy('#copy-email', {
+                                    content: 'Скопировано!',
+                                    animation: 'scale-subtle',
+                                    theme: 'light',
+                                    trigger: 'click',
+                                });
+                            </script>
+                        </div>
+                        <div class="contact-icons" style="position: relative; display: inline-block; width: fit-content;">
+                            <div class="icon-container">
+                                <a href="mailto:er-ineri@mail.ru" target="_blank" title="Открыть почту"><div class="icon-mail-sending-color" style="padding-top: 18%"></div></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="heading-with-icon noselect" data-aos="fade-up" data-aos-delay="500">
+                        <div class="icon-container">
+                            <div class="figure-circle" style="width: 50%; height: 50%; margin: 10% 25% 15% 25%;"></div>
+                            <div class="icon icon-geopoint filter-dove-blue"></div>
+                        </div>Адрес
+                    </div></br>
+                    <div data-aos="fade-up" data-aos-delay="550">
+                        <div class="text-in-circle-rectangle">г. Москва</div>
+                    </div>
+                </div>
+
+                <div id="contacts-content-main-flex-right">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div include-html="./footer.html" class="footer" id="footer"></div>
+    <script>
+        includeHTML();
+    </script>
+</body>
+</html>

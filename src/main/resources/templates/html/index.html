@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Агенство недвижимости в Москве ИНЕРИ</title>
+    <meta name="description" content="Агентство недвижимости в Москве ИНЕРИ. Инвестиции в недвижимость. Выкуп объектов. Торги по банкротству.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../../static/styles/style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="shortcut icon" href="../../static/images/icon_INERI_1.svg" type="image/x-icon">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../../static/scripts/includeHTML.js"></script>
+    <script src="../../static/scripts/jquery.mb.YTPlayer.js"></script>
+    <script src="../../static/scripts/scrolling.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.1/dist/chart.min.js"></script>
+</head>
+<body>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            // Global settings:
+            disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
+            startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
+            initClassName: 'aos-init', // class applied after initialization
+            animatedClassName: 'aos-animate', // class applied on animation
+            useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
+            disableMutationObserver: false, // disables automatic mutations' detections (advanced)
+            debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
+            throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
+
+
+            // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
+            offset: 0, // offset (in px) from the original trigger point
+            delay: 200, // values from 0 to 3000, with step 50ms
+            duration: 700, // values from 0 to 3000, with step 50ms
+            easing: 'ease', // default easing for AOS animations
+            once: false, // whether animation should happen only once - while scrolling down
+            mirror: true, // whether elements should animate out while scrolling past them
+            anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
+        });
+    </script>
+    <script type="text/javascript">
+        $( () => {
+            $('#menu-main').on('click', () => {
+                $('html,body').animate({
+                    scrollTop: 0
+                },500);
+            });
+        });
+        $( () => {
+            $('#menu-main-mini').on('click', () => {
+                $('html,body').animate({
+                    scrollTop: 0
+                },500);
+            });
+        });
+
+        /*$( () => {
+            $('#slide2-form-exit').on('click', () => {
+                $('#slide2-form').css({'display': 'none'});
+                $('#slide2-form').css({'opacity': '0'});
+                $('body').css({'overflow': 'auto'});
+            });
+        });
+
+        $( () => {
+            $('#index-button2').on('click', () => {
+                $('#slide2-form').css({'display': 'block'});
+                $('#slide2-form').css({'opacity': '1'});
+                $('body').css({'overflow': 'hidden'});
+            });
+        });*/
+    </script>
+
+    <div id="header" class="header" include-html="./header.html"></div>
+
+    <div id="slide2-form" class="form hide">
+        <form action="mailto:sslotin74@gmail.com" enctype="text/plain" method="post">
+            <div class="form-content">
+                <div class="row-name">
+                    <div class="name">
+                        Анкета
+                    </div>
+                    <div id="slide2-form-exit" class="icon-exit filter-white"></div>
+                </div>
+                <div class="row">
+                    <div class="label">Адрес объекта:</div>
+                    <div class="textbox"><input type="text" id="address" name="address" style="width: 95%"></div>
+                </div>
+                <div class="row">
+                    <div class="label">Квартира (необязательно):</div>
+                    <div class="textbox"><input type="text" id="apartment" name="apartment" style="width: 50px; text-align: center;"></div>
+                </div>
+                <div class="row">
+                    <div class="label">Площадь:</div>
+                    <div class="textbox"><input type="number" id="space" name="space" mix="0" style="width: 50px; text-align: center;"></div>
+                </div>
+                <div class="row">
+                    <div class="label">Этаж:</div>
+                    <div class="textbox"><input type="number" id="floor" name="floor" min="0" max="100" style="width: 50px; text-align: center;"></div>
+                </div>
+                <div class="row">
+                    <div class="label">Тип ремонта:</div>
+                    <div class="combobox">
+                        <select name="type_renovation">
+                            <option value="1">Без отделки</option>
+                            <option value="2">Советский</option>
+                            <option value="3">Обычный</option>
+                            <option value="4">Хороший</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="label">Желаемый срок реализации (в месяцах):</div>
+                    <div class="textbox"><input type="number" id="deadline" name="deadline" min="0" max="8" style="width: 50px; text-align: center;"></div>
+                </div>
+                <div class="row">
+                    <div class="label">Номер телефона: </div>
+                    <div class="textbox"><input type="text" id="tel" name="tel" style="width: 200px; text-align: center;"></div>
+                </div>
+                <div class="row" style="text-align: center">
+                    <div style="display: inline-block; width: 100%">
+                        <button type="submit" id="index-form1-button-send" class="button button-right-icon-type-0">Отправить анкету<div class="icon icon-send-h2 filter-white"></div></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- 1. Главный слайд -->
+    <div id="slide1" class="slide slide-main-video" style="background-image: url('../../static/images/photo_moscow_darkblue_1080.jpg'); background-position: center; background-size: cover;">
+        <div class="header-block"></div>
+        <div class="flex-container-center">
+            <div id="content-slide1" class="content">
+                <div class="sub-content">
+                    <div class="circle-border" data-aos="fade-up" data-aos-duration="1000" style="margin-right: auto">Команда ООО "ИНЕРИ"</div>
+                    <div id="index-slide1-text" data-aos="fade-up" data-aos-delay="500" data-aos-duration="800">поможет Вам выгодно вложить</br>
+                    сбережения в недвижимость</div>
+                </div>
+
+                <div href="#slide2" id="index-button1" class="button button-right-icon-type-0 animate-push-me" data-aos="zoom-in" data-aos-delay="2000">Узнать как<div class="icon icon-down filter-white"></div></div>
+
+                <script type="text/javascript">
+                    $( () => {
+                        $('#index-button1').on('click', function(e){
+                            $('html,body').animate({
+                                scrollTop: $($(this).attr('href')).offset().top
+                            },500);
+                            e.preventDefault();
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+        <!--
+        <div class="player" data-property="{videoURL:'S_dfq9rFWAE', ratio:'auto', mask:'./images/photo_moscow_1080.jpg', abundance:.3, anchor:'center,center', startAt: 9, stopAt:145, containment:'#slide1', showControls:false, autoPlay:true, loop:true, mute:true, opacity:1, addRaster:true, playOnlyIfVisible:false, stopMovieOnBlur:false, quality:'default', addFilters:{grayscale: 0, sepia: 0, contrast: 0, saturate: 0, brightness: 0, blur: 1, opacity: 60}}"></div>
+        <script>
+            jQuery(".player").YTPlayer({useOnMobile:true, mobileFallbackImage:"./images/photo_moscow_1080.jpg"});
+        </script>
+        -->
+    </div>
+
+    <!-- 2. Оказываем услуги по продаже и аренде -->
+    <div class="slide slide-darkblue" id="slide2">
+        <div style="position: absolute; margin-top: 8%; background: radial-gradient(#0B1F3A, transparent 65%); width: 100%; height: 45%"></div>
+        <div class="header-block"></div>
+        <div class="flex-container-center">
+            <div class="content" style="justify-content: center">
+                <div class="sub-content">
+                    <div class="title" data-aos="fade-up">Оказываем услуги по покупке, продаже и аренде</br>
+                    жилой и коммерческой недвижимости</div>
+                    <!--<div class="comment" data-aos="fade-up" style="color: #EDEEF0; margin-top: 3vh">Для уточнения рыночной стоимости или арендной ставки вашего объекта,</br>
+                    можете заполнить анкету и наши специалисты ответят Вам.</div>-->
+                    <div class="comment" data-aos="fade-up" style="color: #EDEEF0; margin-top: 3vh">Для уточнения рыночной стоимости или арендной ставки вашего объекта,</br>
+                        можете связаться с нами и наши специалисты ответят Вам.</div>
+                </div>
+
+                <!--<div id="index-button2" style="margin-top: 15vh;" class="button button-left-icon-type-0" data-aos="zoom-in" data-aos-delay="1000"><div class="icon icon-list filter-white"></div>Заполнить анкету</div>-->
+                <a href="contacts.html"><div id="index-button2" style="margin-top: 15vh;" class="button button-left-icon-type-0" data-aos="zoom-in" data-aos-delay="1000"><div class="icon icon-call filter-white"></div>Связаться с нами</div></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Подберём для вас объект стоимостью ниже рынка -->
+    <div class="slide slide-white" id="slide3" style="background-image: url('../../static/images/photo_interior-has-armchair-empty-white-wall_1080.jpg'); background-position: center; background-size: cover; text-align: center;">
+        <div class="header-block"></div>
+        <div class="flex-container-center">
+            <div id="content-slide3" class="content" style="height: inherit">
+                <div class="sub-content" style="margin-right: auto">
+                    <div class="title" data-aos="fade-up">Подберём для Вас объект стоимостью ниже рынка</div>
+                    <div class="subtitle text-dark-turquoise" style="margin-top: 2vh" data-aos-delay="600" data-aos="fade-up">Оказываем услуги по приобретению объекта недвижимости</br>
+                        на специализированных площадках, стоимостью ниже рыночной.</div>
+                    <div id="heading3-1" class="heading" style="margin-top: 4vh" data-aos="fade-up" data-aos-delay="900">Как мы работаем?</div>
+                    <div id="ol3-1" class="circle-ol" style="margin-right: auto">
+                        <ol class="semibold text-dark-turquoise">
+                            <li data-aos="fade-up" data-aos-delay="1500" data-aos-anchor=".heading">Предоставляем подборку объектов по выбранным параметрам.</li>
+                            <li data-aos="fade-up" data-aos-delay="1700" data-aos-anchor=".heading">Даём заключение по конкретному объекту о сложности реализации, сроках и возможных рисках.</li>
+                            <li data-aos="fade-up" data-aos-delay="1900" data-aos-anchor=".heading">После принятия клиентом решения, участвуем на торгах. </li>
+                            <li data-aos="fade-up" data-aos-delay="2100" data-aos-anchor=".heading">Готовим документы и помогаем с гос. регистрацией перехода права собственности.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div id="container-button3-1">
+                    <a href="contacts.html"><div id="index-button3" class="button button-left-icon-type-0" data-aos="zoom-in" data-aos-delay="2500"><div class="icon icon-call filter-white"></div>Получить консультацию</div></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Инвестиции в недвижимость это выгодно! -->
+    <div class="slide slide-darkblue" id="slide4">
+        <div style="position: absolute; margin-top: 6%; background: radial-gradient(rgba(11,31,58,0.7), transparent 65%); width: 100%; height: 350px"></div>
+        <div style="position: absolute; margin-top: 10%; background: radial-gradient(rgba(11,31,58,0.5), transparent 65%); width: 100%; height: 1000px;"></div>
+        <div class="header-block"></div>
+        <div id="content-slide4" class="content">
+            <div class="sub-content">
+                <div class="title" data-aos="fade-up">Инвестиции в недвижимость</br>
+                    это выгодно!</div>
+                <div class="text" data-aos="fade-up" data-aos-delay="800" style="color: #EDEEF0; margin-top: 2vh; margin-bottom: 2vh">С конца 2018 года стоимость на жилую недвижимость выросла на <div class="rise-indicator">40%</div>,</br>
+                    что нельзя сказать о процентной ставке банков, на продукты накопления средств.</div>
+            </div>
+
+            <div class="sub-content">
+                <div class="container-graph" data-aos="zoom-in-up" data-aos-delay="1500">
+                    <div class="graph">
+                        <canvas id="myChart1"></canvas>
+                    </div>
+                    <div class="graph-title">Индекс стоимости жилья в Москве</br>
+                        Средний уровень цен на жильё, руб./кв.м.</div>
+                </div>
+                <div class="container-graph" data-aos="zoom-in-up" data-aos-delay="1500">
+                    <div class="graph">
+                        <canvas id="myChart2"></canvas>
+                    </div>
+                    <div class="graph-title">Процентная ставка на продукты накопления средств в России</div>
+                </div>
+                <script src="../../static/scripts/charts.js"></script>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 5. Готовы рассмотреть выкуп вашего объекта -->
+    <div class="slide slide-darkblue" id="slide5">
+        <div style="position: absolute; margin-top: 8%; background: radial-gradient(#0B1F3A, transparent 65%); width: 100%; height: 45%"></div>
+        <div class="header-block"></div>
+        <div class="flex-container-center">
+            <div id="content-slide5" class="content" style="justify-content: center">
+                <div class="sub-content">
+                    <div class="title" data-aos="fade-up">Готовы рассмотреть выкуп вашего объекта</div>
+                    <div class="comment" data-aos="fade-up" style="color: #EDEEF0; margin-top: 3vh">Для предложения своих объектов недвижимости свяжитесь с нашим менеджером и обсудите все условия.</div>
+                </div>
+
+                <a href="contacts.html" style="margin-top: 15vh;"><div id="index-button4" class="button button-left-icon-type-0" data-aos="zoom-in" data-aos-delay="500" style="position: relative; top: 0%;"><div class="icon icon-call filter-white"></div>Узнать все условия</div></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. С нами ипотека проще -->
+    <div class="slide slide-white" id="slide6" style="background-image: url('../../static/images/photo_white_1080.jpg'); background-position: center; background-size: cover;">
+        <div class="header-block"></div>
+        <div class="flex-container-center">
+            <div id="content-slide6" class="content">
+                <div class="sub-content">
+                    <image data-aos="zoom-out-up" data-aos-delay="400" src="../../static/images/icon_Bank_success_color.svg"></image>
+                    <div class="title black" data-aos="fade-up" style="margin-top: 1vh;">С нами ипотека проще</div>
+                    <div class="subtitle2 text-dark-turquoise" data-aos-delay="1200" data-aos="fade-up" style="margin-top: 2vh;">Оказываем помощь в одобрении ипотеки</br>
+                        различных банков с пониженной ставкой</div>
+                </div>
+
+                <a href="contacts.html"><div id="index-button6" class="button button-left-icon-type-0" data-aos="zoom-in" data-aos-delay="2000"><div class="icon icon-call filter-white"></div>Получить консультацию</div></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7. Сделка на расстоянии -->
+    <div class="slide slide-darkblue" id="slide7">
+        <div style="position: absolute; margin-top: 8%; background: radial-gradient(#0B1F3A, transparent 65%); width: 100%; height: 45%"></div>
+        <div class="header-block"></div>
+        <div class="flex-container-center">
+            <div id="content-slide7" class="content" style="justify-content: center">
+                <div class="sub-content">
+                    <div class="title" data-aos="fade-up">Сделка на расстоянии</div>
+                    <div class="text semibold" data-aos="fade-up" style="color: #EDEEF0; margin-top: 3vh;">Вы нашли покупателя/продавца, но он в другом регионе и нету возможности приехать на сделку?</div>
+                    <div class="text bold" data-aos="fade-up" style="color: #EDEEF0; margin-top: 2vh;">Мы поможем провести межрегиональную сделку.</div>
+                </div>
+
+                <div id="container-button7-1" style="margin-top: 15vh;">
+                    <a href="contacts.html"><div id="index-button7" class="button button-left-icon-type-0" data-aos="zoom-in" data-aos-delay="500"><div class="icon icon-call filter-white"></div>Связаться с нами</div></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div include-html="./footer.html" class="footer" id="footer"></div>
+
+    <script>
+        includeHTML();
+    </script>
+</body>
+</html>
