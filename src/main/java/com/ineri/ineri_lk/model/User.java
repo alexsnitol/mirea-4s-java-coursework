@@ -58,7 +58,7 @@ public class User implements UserDetails {
     private String photoPath;
 
     @Column(name = "datetime_created")
-    private LocalDateTime datetimeCreated;
+    private LocalDateTime datetimeCreated = LocalDateTime.now();
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",

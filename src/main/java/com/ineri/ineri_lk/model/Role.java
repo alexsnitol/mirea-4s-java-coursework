@@ -27,4 +27,12 @@ public class Role {
     @Enumerated(EnumType.STRING)
     @Column(name = "name")
     private ERole name;
+
+    public Role(ERole name) {
+        this.name = name;
+    }
+
+    public String getAuthority() {
+        return this.name.toString();
+    }
 }

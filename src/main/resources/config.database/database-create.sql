@@ -57,7 +57,7 @@ CREATE TABLE users (
      phone_number     CHAR(13) NOT NULL,
 
      surname          VARCHAR(31) NOT NULL,
-     name             VARCHAR(31) NOT NULL,
+     username         VARCHAR(31) NOT NULL,
      patronymic       VARCHAR(31),
 
      photo_path       VARCHAR(255),
