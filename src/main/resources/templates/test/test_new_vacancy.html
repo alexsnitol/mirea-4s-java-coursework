@@ -22,10 +22,10 @@
       <input type="text" id="summary" th:field="*{summary}">
       <br/><br/>
       <label>contactUser:</label>
-      <select name="user" id="contactUser">
-          <option th:each="user : ${users}" th:value="${user.id}" th:text="@{${user.surname} + ${user.name} + ${user.patronymic}}"></option>
+      <select name="user" id="contactUser" th:field="*{contactUser}">
+          <option th:each="user : ${users}" th:value="${user.id}" th:text="@{${user.surname} + ' ' + ${user.name} + ' ' + ${user.patronymic}}"></option>
       </select>
-      <input type="text" id="contactUser_text" th:field="*{contactUser}">
+<!--      <input type="text" id="contactUser_text" th:field="*{contactUser}">-->
       <br/><br/>
       <label>activeStatus:</label>
       <input type="checkbox" id="activeStatus" value="true" th:field="*{active}">

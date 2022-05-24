@@ -1,13 +1,18 @@
 package com.ineri.ineri_lk.controller;
 
+import com.ineri.ineri_lk.model.City;
+import com.ineri.ineri_lk.model.User;
 import com.ineri.ineri_lk.model.Vacancy;
+import com.ineri.ineri_lk.service.impl.CityServiceImpl;
+import com.ineri.ineri_lk.service.impl.UserService;
 import com.ineri.ineri_lk.service.impl.VacancyServiceImpl;
 import com.ineri.ineri_lk.util.NewLineConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/vacancies")
@@ -15,10 +20,15 @@ public class VacancyController extends AbstractController {
 
     @Autowired
     VacancyServiceImpl vacancyService;
+    @Autowired
+    CityServiceImpl cityService;
+
+    @Autowired
+    UserService userService;
 
     @GetMapping
     public ModelAndView getAll() {
-        ModelAndView mv = new ModelAndView("vacancies");
+        ModelAndView mv = new ModelAndView("test_vacancies");
 
         mv.addObject("vacancies", vacancyService.getAll());
 
@@ -49,13 +59,27 @@ public class VacancyController extends AbstractController {
     }
 
     @GetMapping("/new")
-    public String newVacancy() {
-        return "test_new_vacancy";
+    public ModelAndView newVacancy(Vacancy vacancy) {
+        ModelAndView mv = new ModelAndView("test_new_vacancy");
+
+        List<City> cities = cityService.getAll();
+        List<User> users = userService.getAll();
+
+        mv.addObject("cities", cities);
+        mv.addObject("users", users);
+
+        return mv;
     }
 
     @PostMapping("/new")
     public String createVacancy(Vacancy vacancy) {
         vacancyService.save(vacancy);
+        return "redirect:/vacancies";
+    }
+
+    @GetMapping("/{id}/delete")
+    public String delete(@PathVariable("id") Long id) {
+        vacancyService.deleteById(id);
         return "redirect:/vacancies";
     }
 
