@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://tymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+</head>
+<body>
+<h1>Заполните поля</h1>
+<form action="#" th:action="@{/signup}" th:object="${user}" method="post">
+    <label for="login">Логин</label>
+    <input type="text" th:field="*{login}" id="login">
+    <br>
+    <br>
+
+    <label for="password">Пароль</label>
+    <input type="text" th:field="*{password}" id="password">
+    <br>
+    <br>
+
+    <label for="confirmPassword">Подтвердите пароль</label>
+    <input type="text" th:field="*{confirmPassword}" id="confirmPassword">
+    <br>
+    <br>
+
+    <label for="surname">Фамилия</label>
+    <input type="text" th:field="*{surname}" id="surname">
+    <br>
+    <br>
+
+    <label for="name">Имя</label>
+    <input type="text" th:field="*{name}" id="name">
+    <br>
+    <br>
+
+    <label for="patronymic">Отчество</label>
+    <input type="text" th:field="*{patronymic}" id="patronymic">
+    <br>
+    <br>
+
+    <label for="email">Email</label>
+    <input type="text" th:field="*{email}" id="email">
+    <br>
+    <br>
+
+    <label for="phoneNumber">Номер телефона</label>
+    <input type="text" th:field="*{phoneNumber}" id="phoneNumber">
+    <br>
+    <br>
+
+    <input type="submit" value="Зарегистрироваться">
+</form>
+</body>
+</html>
