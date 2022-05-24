@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>TEMPLATE TEST</title>
+</head>
+<body>
+<div th:switch="${bonds}">
+    <h2 th:case="null">No bonds found!</h2>
+    <div th:case="*">
+        <h2>Bonds</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Par value</th>
+                <th>Current value in precent</th>
+                <th>Maturity date</th>
+                <th>Coupon size</th>
+                <th>Accumulated coupon income</th>
+                <th>Payment frequency</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="bond : ${bonds}">
+                <td th:text="${bond.id}"></td>
+                <td th:text="${bond.name}"></td>
+                <td th:text="${bond.parValue}"></td>
+                <td th:text="${bond.currentValueInPrecent}"></td>
+                <td th:text="${#temporals.format(bond.maturityDate, 'dd.MM.yyyy')}"></td>
+                <td th:text="${bond.couponSize}"></td>
+                <td th:text="${bond.accumulatedCouponIncome}"></td>
+                <td th:text="${bond.paymentFrequency}"></td>
+                <td><a th:href="@{bonds/{id}/edit(id=${bond.getId()})}">Edit</a></td>
+                <td><a th:href="@{bonds/{id}(id=${bond.getId()})}">Delete</a></td>
+                <td><a th:href="@{bonds/{id}/calculate(id=${bond.getId()})}">Calculate</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="bonds/new">Create bonds</a></p>
+</div>
+</body>
+</html>

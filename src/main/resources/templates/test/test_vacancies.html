@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Vacancies TEST</title>
+</head>
+<body>
+    <div th:switch="${vacancies}">
+        <h2 th:case="null">NOT FOUND</h2>
+        <div th:case="*">
+            <h2>Vacancies</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>keywords</th>
+                    <th>city</th>
+                    <th>summary</th>
+                    <th>admin</th>
+                    <th>is_active</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="vacancy : ${vacancies}">
+                        <td th:text="${vacancy.id}"></td>
+                        <td><a th:text="${vacancy.name}" th:href="@{'/vacancies/' + ${vacancy.id}}"></a></td>
+                        <td>
+                            <div th:each="keyword : ${vacancy.keywordsList}">
+                                <div th:text="${keyword}"></div>
+                            </div>
+                        </td>
+                        <td th:text="${vacancy.city.name}"></td>
+                        <td th:text="${vacancy.summary}"></td>
+                        <td th:text="${vacancy.contactUser.login}"></td>
+                        <td th:text="${vacancy.isActive}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p><a href="/vacancies/new">Create vacancy</a></p>
+    </div>
+</body>
+</html>

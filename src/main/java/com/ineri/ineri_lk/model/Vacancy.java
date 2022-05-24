@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,10 +23,12 @@ public class Vacancy extends AbstractModel {
 
     private String name;
     private String keywords;
+    @Transient
+    private List<String> keywordsList;
     @ManyToOne
     @JoinColumn(name = "city_id")
     private City city;
-    private float summary;
+    private String summary;
     private String textDescription;
     private String textStudy;
     private String textResponsibilities;
