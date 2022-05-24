@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Estate object types TEST</title>
+</head>
+<body>
+    <div th:switch="${estateObjectTypes}">
+        <h2 th:case="null">NOT FOUND</h2>
+        <div th:case="*">
+            <h2>Estate object types</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>action</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="type : ${estateObjectTypes}">
+                        <td th:text="${type.id}"></td>
+                        <td th:text="${type.name}"></td>
+                        <td>
+                            <a th:href="@{'/estate-object-types/' + ${type.id} + '/delete'}"><button>Delete</button></a>
+                            <a th:href="@{'/estate-object-types/' + ${type.id} + '/edit'}"><button>Edit</button></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p><a href="/estate-object-types/new"><button>Create</button></a></p>
+    </div>
+</body>
+</html>

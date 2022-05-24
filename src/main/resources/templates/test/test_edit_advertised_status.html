@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Advertised status TEST</title>
+</head>
+<body>
+  <form th:action="@{'/advertised-statuses/' + ${advertisedStatus.id} + '/edit'}" th:object="${advertisedStatus}" method="post">
+      <label>name:</label>
+      <input type="text" id="name" th:field="*{name}">
+      <br/><br/>
+      <button type="submit">EDIT</button>
+  </form>
+</body>
+</html>

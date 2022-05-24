@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class Address extends AbstractModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
     @Column

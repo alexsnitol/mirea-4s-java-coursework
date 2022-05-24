@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Advertised statuses TEST</title>
+</head>
+<body>
+    <div th:switch="${advertisedStatuses}">
+        <h2 th:case="null">NOT FOUND</h2>
+        <div th:case="*">
+            <h2>Advertised statuses</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>action</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="status : ${advertisedStatuses}">
+                        <td th:text="${status.id}"></td>
+                        <td th:text="${status.name}"></td>
+                        <td>
+                            <a th:href="@{'/advertised-statuses/' + ${status.id} + '/delete'}"><button>Delete</button></a>
+                            <a th:href="@{'/advertised-statuses/' + ${status.id} + '/edit'}"><button>Edit</button></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p><a href="/advertised-statuses/new"><button>Create</button></a></p>
+    </div>
+</body>
+</html>
