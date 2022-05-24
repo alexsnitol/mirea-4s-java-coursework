@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Estate object TEST</title>
+</head>
+<body>
+  <form th:action="@{/estate-object-types/new}" th:object="${estateObjectType}" method="post">
+      <label>name:</label>
+      <input type="text" id="name" th:field="*{name}">
+      <br/><br/>
+      <button type="submit">ADD</button>
+  </form>
+</body>
+</html>

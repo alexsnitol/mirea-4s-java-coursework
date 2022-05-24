@@ -1,59 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>New Vacancy TEST</title>
 </head>
 <body>
-  <form method="post">
-    <label>
-        <p>name:</p>
-        <input type="text">
-    </label>
-      <label>
-          <p>keywords:</p>
-          <input type="text">
-      </label>
-      <label>
-          <p>city:</p>
-          <input type="text">
-      </label>
-      <label>
-          <p>summary:</p>
-          <input type="text">
-      </label>
-      <label>
-          <p>contactUser:</p>
-          <input type="text">
-      </label>
-      <label>
-          <p>activeStatus:</p>
-          <input type="text">
-      </label>
-      <label>
-          <p>textDescription:</p>
-          <input type="text">
-      </label>
-      <label>
-          <p>textStudy:</p>
-          <input type="text">
-      </label>
-      <label>
-          <p>textResponsibilities:</p>
-          <input type="text">
-      </label>
-      <label>
-          <p>textRequirements:</p>
-          <input type="text">
-      </label>
-      <label>
-          <p>textFeatures:</p>
-          <input type="text">
-      </label>
-      <label>
-          <p>textSummary:</p>
-          <input type="text">
-      </label>
+  <form th:action="@{/vacancies/new}" th:object="${vacancy}" method="post">
+      <label>name:</label>
+      <input type="text" id="name" th:field="*{name}">
+      <br/><br/>
+      <label>keywords:</label>
+      <input type="text" id="keywords" th:field="*{keywords}">
+      <br/><br/>
+      <label>city:</label>
+      <select name="city" id="city">
+          <option th:each="city : ${cities}" th:value="${city.id}" th:text="${city.name}"></option>
+      </select>
+      <input type="text" id="city_text" th:field="*{city}">
+      <br/><br/>
+      <label>summary:</label>
+      <input type="text" id="summary" th:field="*{summary}">
+      <br/><br/>
+      <label>contactUser:</label>
+      <select name="user" id="contactUser" th:field="*{contactUser}">
+          <option th:each="user : ${users}" th:value="${user.id}" th:text="@{${user.surname} + ' ' + ${user.name} + ' ' + ${user.patronymic}}"></option>
+      </select>
+<!--      <input type="text" id="contactUser_text" th:field="*{contactUser}">-->
+      <br/><br/>
+      <label>activeStatus:</label>
+      <input type="checkbox" id="activeStatus" value="true" th:field="*{active}">
+      <br/><br/>
+      <label>textDescription:</label>
+      <input type="text" id="textDescription" th:field="*{textDescription}">
+      <br/><br/>
+      <label>textStudy:</label>
+      <input type="text" id="textStudy" th:field="*{textStudy}">
+      <br/><br/>
+      <label>textResponsibilities:</label>
+      <input type="text" id="textResponsibilities" th:field="*{textResponsibilities}">
+      <br/><br/>
+      <label>textRequirements:</label>
+      <input type="text" id="textRequirements" th:field="*{textRequirements}">
+      <br/><br/>
+      <label>textFeatures:</label>
+      <input type="text" id="textFeatures" th:field="*{textFeatures}">
+      <br/><br/>
+      <label>textSummary:</label>
+      <input type="text" id="textSummary" th:field="*{textSummary}">
+      <br/><br/>
+      <button type="submit">ADD</button>
   </form>
 </body>
 </html>

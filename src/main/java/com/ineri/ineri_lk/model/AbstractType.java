@@ -10,7 +10,4 @@ import javax.persistence.Column;
 @Setter
 public abstract class AbstractType extends AbstractModel {
 
-    @Column
-    private String name;
-
 }

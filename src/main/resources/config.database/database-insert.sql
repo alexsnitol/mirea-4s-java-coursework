@@ -1,7 +1,7 @@
 INSERT INTO roles(name)
 VALUES ('admin'), ('user');
 
-INSERT INTO users(login, password, email, phone_number, surname, username, patronymic, photo_path)
+INSERT INTO users(username, password, email, phone_number, surname, name, patronymic, photo_path)
 VALUES ('admin', 'admin', 'admin@ineri.ru', '900 000-00-00', 'admin_surname', 'admin_name', 'admin_patronymic', '');
 
 INSERT INTO cities(name)

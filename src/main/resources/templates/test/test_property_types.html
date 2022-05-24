@@ -2,13 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Cities TEST</title>
+    <title>Property types TEST</title>
 </head>
 <body>
-    <div th:switch="${cities}">
+    <div th:switch="${propertyTypes}">
         <h2 th:case="null">NOT FOUND</h2>
         <div th:case="*">
-            <h2>Cities</h2>
+            <h2>Property types</h2>
             <table>
                 <thead>
                 <tr>
@@ -18,18 +18,18 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="city : ${cities}">
-                        <td th:text="${city.id}"></td>
-                        <td th:text="${city.name}"></td>
+                    <tr th:each="type : ${propertyTypes}">
+                        <td th:text="${type.id}"></td>
+                        <td th:text="${type.name}"></td>
                         <td>
-                            <a th:href="@{'/cities/' + ${city.id} + '/delete'}"><button>Delete</button></a>
-                            <a th:href="@{'/cities/' + ${city.id} + '/edit'}"><button>Edit</button></a>
+                            <a th:href="@{'/property-types/' + ${type.id} + '/delete'}"><button>Delete</button></a>
+                            <a th:href="@{'/property-types/' + ${type.id} + '/edit'}"><button>Edit</button></a>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <p><a href="/cities/new"><button>Create</button></a></p>
+        <p><a href="/property-types/new"><button>Create</button></a></p>
     </div>
 </body>
 </html>
