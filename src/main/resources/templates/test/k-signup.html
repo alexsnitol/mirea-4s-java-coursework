@@ -8,7 +8,7 @@
 <h1>Заполните поля</h1>
 <form action="#" th:action="@{/signup}" th:object="${user}" method="post">
     <label for="login">Логин</label>
-    <input type="text" th:field="*{login}" id="login">
+    <input type="text" th:field="*{login}" id="login" placeholder="">
     <br>
     <br>
 
@@ -27,8 +27,8 @@
     <br>
     <br>
 
-    <label for="name">Имя</label>
-    <input type="text" th:field="*{name}" id="name">
+    <label for="username">Имя</label>
+    <input type="text" th:field="*{username}" id="username">
     <br>
     <br>
 
