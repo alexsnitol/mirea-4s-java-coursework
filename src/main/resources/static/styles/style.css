@@ -1955,3 +1955,30 @@ select {
     cursor: pointer;
     border: solid 1px #BA68C8
 }
+
+.logo-holder {
+    max-width: 100px;
+    overflow: hidden;
+    margin: 10px 0;
+    min-height: 50px;
+    border-radius: 6px;
+}
+.logo-holder img {
+    width: 100px;
+    height: auto;
+    border-radius: 6px;
+}
+.flex-row-account {
+    lex-direction: row;
+    display: flex;
+}
+.btn-primary{
+    margin-top: 0px;
+    border-radius: 20px;
+    background: #129DFF;
+    letter-spacing: 0;
+    border: 0px;
+}
+.btn-danger{
+    margin-top: 0px;
+}
