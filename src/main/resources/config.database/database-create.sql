@@ -51,13 +51,13 @@ CREATE TABLE addresses (
 -- Author: Kozlov A.V.
 CREATE TABLE users (
      id               SERIAL PRIMARY KEY,
-     login            VARCHAR(31) NOT NULL,
-     password         VARCHAR(31) NOT NULL,
+     username         VARCHAR(31) NOT NULL,
+     password         VARCHAR(127) NOT NULL,
      email            VARCHAR(31) NOT NULL,
      phone_number     CHAR(13) NOT NULL,
 
      surname          VARCHAR(31) NOT NULL,
-     username         VARCHAR(31) NOT NULL,
+     name             VARCHAR(31) NOT NULL,
      patronymic       VARCHAR(31),
 
      photo_path       VARCHAR(255),

@@ -24,46 +24,26 @@ import java.util.Optional;
  */
 
 @Service
-public class UserService implements UserDetailsService {
+public class UserService{
 
     @PersistenceContext
     private EntityManager em;
+
     @Autowired
     private UserRepository userRepository;
 
-
-//    private final UserRepository userRepository;
-//    private final BCryptPasswordEncoder bCryptPasswordEncoder;
-//
-//    public UserService(UserRepository userRepository,BCryptPasswordEncoder bCryptPasswordEncoder) {
-//        this.userRepository = userRepository;
-//        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-//    }
-
-    @Override
-    public User loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
-
-        if (user == null) {
-            throw new UsernameNotFoundException("User not found");
-        }
-
-        return user;
+    public User getUserById(Long userId) {
+        return userRepository.findById(userId).orElse(null);
     }
 
-    public User findUserById(Long userId) {
-        Optional<User> userFromDb = userRepository.findById(userId);
-        return userFromDb.orElse(new User());
-    }
-
-    public List<User> allUsers() {
-        return userRepository.findAll();
+    public User getUserByUsername(String login) {
+        return userRepository.findByUsername(login).orElse(null);
     }
 
     public boolean saveUser(User user) {
-        User userFromDB = userRepository.findByUsername(user.getUsername());
+        Optional<User> userFromDB = userRepository.findByUsername(user.getUsername());
 
-        if (userFromDB != null) {
+        if (userFromDB.isPresent()) {
             return false;
         }
 
@@ -73,17 +53,16 @@ public class UserService implements UserDetailsService {
         return true;
     }
 
-    public boolean deleteUser(Long userId) {
-        if (userRepository.findById(userId).isPresent()) {
-            userRepository.deleteById(userId);
-            return true;
-        }
-        return false;
+    public void deleteById(Long id) {
+        userRepository.deleteById(id);
+    }
+
+    public void deleteByUsername(String login) {
+        userRepository.deleteByUsername(login);
     }
 
     public List<User> getAll() {
         return userRepository.findAll();
     }
-
 
 }

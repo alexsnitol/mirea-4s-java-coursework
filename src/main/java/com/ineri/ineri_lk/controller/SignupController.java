@@ -14,7 +14,6 @@ import javax.validation.Valid;
 
 /**
  * @author Kozlov Alexander
- * @version 1.0
  */
 
 @Controller
@@ -30,7 +29,7 @@ public class SignupController {
     }
 
     @PostMapping("/signup")
-    public String addUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model) {
+    public String saveUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             return "sign-up";
