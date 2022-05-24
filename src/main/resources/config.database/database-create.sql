@@ -89,9 +89,9 @@ CREATE TABLE estate_objects (
 -- Author: Slotin A.S.
 CREATE TABLE vacancies (
       id                   SERIAL PRIMARY KEY,
-      name                 VARCHAR(31) NOT NULL,
+      name                 VARCHAR(63) NOT NULL,
       keywords             VARCHAR(255) NOT NULL,
-      summary              FLOAT(2) UNSIGNED NOT NULL,
+      summary              VARCHAR(63) NOT NULL,
       is_active            BOOLEAN NOT NULL,
 
       text_description     VARCHAR(511) NOT NULL,
