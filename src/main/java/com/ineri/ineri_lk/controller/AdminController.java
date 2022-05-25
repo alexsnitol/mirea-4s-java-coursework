@@ -5,6 +5,7 @@ import com.ineri.ineri_lk.model.Role;
 import com.ineri.ineri_lk.model.User;
 import com.ineri.ineri_lk.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,7 @@ import java.util.Set;
  */
 
 @Controller
+//@PreAuthorize("hasAuthority('ADMIN')")
 public class AdminController {
 
     @Autowired
