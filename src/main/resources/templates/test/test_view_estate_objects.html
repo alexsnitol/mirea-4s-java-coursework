@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Estate objects TEST</title>
+</head>
+<body>
+    <div th:switch="${estateObjects}">
+        <h2 th:case="null">NOT FOUND</h2>
+        <div th:case="*">
+            <h2>Estate objects</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>city</th>
+                    <th>full_address</th>
+                    <th>area</th>
+                    <th>floor</th>
+                    <th>max_floor</th>
+                    <th>room_size</th>
+                    <th>house_type</th>
+                    <th>property_type</th>
+                    <th>renovation_type</th>
+                    <th>estate_object_type</th>
+                    <th>datetime_created</th>
+                    <th>actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="object : ${estateObjects}">
+                        <td th:text="${object.id}"></td>
+                        <td th:text="${object.address.city.name}"></td>
+                        <td th:text="${object.address.fullAddress}"></td>
+                        <td th:text="${object.area}"></td>
+                        <td th:text="${object.floor}"></td>
+                        <td th:text="${object.maxFloor}"></td>
+                        <td th:text="${object.roomSize}"></td>
+                        <td th:text="${object.houseType.name}"></td>
+                        <td th:text="${object.propertyType.name}"></td>
+                        <td th:text="${object.renovationType.name}"></td>
+                        <td th:text="${object.estateObjectType.name}"></td>
+                        <td th:text="${object.dateTimeCreated}"></td>
+                        <td>
+                            <a th:href="@{'/estate-objects/' + object.id + '/delete'}"><button>Delete</button></a>
+                            <a th:href="@{'/estate-objects/' + object.id + '/edit'}"><button>Edit</button></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p><a href="/estate-objects/new"><button>Create</button></a></p>
+    </div>
+</body>
+</html>

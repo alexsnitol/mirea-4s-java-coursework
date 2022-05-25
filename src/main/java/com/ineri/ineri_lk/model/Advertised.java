@@ -38,4 +38,8 @@ public class Advertised extends AbstractModel {
     AdvertisedStatus advertisedStatus;
     LocalDateTime dateTimeCreated;
 
+    public void updateDateTime() {
+        this.dateTimeCreated = LocalDateTime.now();
+    }
+
 }

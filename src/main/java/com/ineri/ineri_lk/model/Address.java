@@ -28,4 +28,9 @@ public class Address extends AbstractModel {
     @JoinColumn(name = "city_id")
     private City city;
 
+    public Address(City city, String fullAddress) {
+        this.city = city;
+        this.fullAddress = fullAddress;
+    }
+
 }

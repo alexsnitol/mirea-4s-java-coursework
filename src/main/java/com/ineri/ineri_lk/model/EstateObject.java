@@ -21,22 +21,11 @@ public class EstateObject extends AbstractModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
     private Long id;
-
-    @Column
     private float area;
-
-    @Column
     private int floor;
-
-    @Column
     private int maxFloor;
-
-    @Column
     private int roomSize;
-
-    @Column
     private LocalDateTime dateTimeCreated;
 
     @ManyToOne
@@ -58,5 +47,9 @@ public class EstateObject extends AbstractModel {
     @ManyToOne
     @JoinColumn(name = "address_id")
     private Address address;
+
+    public void setNowDateTime() {
+        this.dateTimeCreated = LocalDateTime.now();
+    }
 
 }
