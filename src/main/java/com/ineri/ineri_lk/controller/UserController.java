@@ -17,6 +17,11 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/{username}")
+    public String account() {
+        return "account";
+    }
+
     @GetMapping("/{username}/edit")
     public String updateUserForm(@PathVariable("username") String username, Model model) {
         User user = userService.getUserByUsername(username);
