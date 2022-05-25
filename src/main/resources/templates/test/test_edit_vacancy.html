@@ -2,10 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>New Vacancy TEST</title>
+    <title>Edit Vacancy TEST</title>
 </head>
 <body>
-  <form th:action="@{/vacancies/new}" th:object="${vacancy}" method="post">
+  <form th:action="@{'/vacancies/' + ${vacancy.id} + '/edit'}" th:object="${vacancy}" method="post">
       <label>name:</label>
       <input type="text" id="name" th:field="*{name}">
       <br/><br/>
@@ -26,7 +26,7 @@
       </select>
       <br/><br/>
       <label>activeStatus:</label>
-      <input type="checkbox" id="activeStatus" th:field="*{active}">
+      <input type="checkbox" id="activeStatus" value="true" th:field="*{active}">
       <br/><br/>
       <label>textDescription:</label>
       <textarea name="textDescription" rows="5" cols="33" id="textDescription" th:field="*{textDescription}"></textarea>
@@ -46,7 +46,7 @@
       <label>textSummary:</label>
       <textarea name="textSummary" rows="5" cols="33" id="textSummary" th:field="*{textSummary}"></textarea>
       <br/><br/>
-      <button type="submit">ADD</button>
+      <button type="submit">EDIT</button>
   </form>
 </body>
 </html>

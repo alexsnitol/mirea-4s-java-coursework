@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * @author Slotin Alexander (@alexsnitol)
+ */
+
 @Controller
 @RequestMapping("/cities")
 public class CityController {
@@ -20,7 +24,7 @@ public class CityController {
 
     @GetMapping
     public ModelAndView getAll() {
-        ModelAndView mv = new ModelAndView("test_cities");
+        ModelAndView mv = new ModelAndView("test_view_cities");
 
         mv.addObject("cities", cityService.getAll());
 

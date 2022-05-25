@@ -7,6 +7,10 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+/**
+ * @author Slotin Alexander (@alexsnitol)
+ */
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter

@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * @author Slotin Alexander (@alexsnitol)
+ */
 @Controller
 @RequestMapping("/property-types")
 public class PropertyTypeController {
@@ -19,7 +22,7 @@ public class PropertyTypeController {
 
     @GetMapping
     public ModelAndView getAll() {
-        ModelAndView mv = new ModelAndView("test_property_types");
+        ModelAndView mv = new ModelAndView("test_view_property_types");
 
         mv.addObject("propertyTypes", propertyTypeService.getAll());
 
@@ -28,7 +31,7 @@ public class PropertyTypeController {
 
     @GetMapping("/new")
     public ModelAndView newPropertyType(PropertyType propertyType) {
-        return new ModelAndView("test_new_property_type");
+        return new ModelAndView("test_view_new_property_type");
     }
 
     @PostMapping("/new")

@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * @author Slotin Alexander (@alexsnitol)
+ */
 @Controller
 @RequestMapping("/advertised-statuses")
 public class AdvertisedStatusController {
@@ -19,7 +22,7 @@ public class AdvertisedStatusController {
 
     @GetMapping
     public ModelAndView getAll() {
-        ModelAndView mv = new ModelAndView("test_advertised_statuses");
+        ModelAndView mv = new ModelAndView("test_view_advertised_statuses");
 
         mv.addObject("advertised-statuses", advertisedStatusService.getAll());
 

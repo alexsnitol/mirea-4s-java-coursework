@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * @author Slotin Alexander (@alexsnitol)
+ */
 @Controller
 @RequestMapping("/renovation-types")
 public class RenovationTypeController {
@@ -19,7 +22,7 @@ public class RenovationTypeController {
 
     @GetMapping
     public ModelAndView getAll() {
-        ModelAndView mv = new ModelAndView("test_renovation_types");
+        ModelAndView mv = new ModelAndView("test_view_renovation_types");
 
         mv.addObject("renovationTypes", renovationTypeService.getAll());
 

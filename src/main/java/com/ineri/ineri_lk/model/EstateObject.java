@@ -8,6 +8,9 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+/**
+ * @author Slotin Alexander (@alexsnitol)
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter

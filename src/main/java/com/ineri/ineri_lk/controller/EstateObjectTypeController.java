@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * @author Slotin Alexander (@alexsnitol)
+ */
 @Controller
 @RequestMapping("/estate-object-types")
 public class EstateObjectTypeController {
@@ -19,7 +22,7 @@ public class EstateObjectTypeController {
 
     @GetMapping
     public ModelAndView getAll() {
-        ModelAndView mv = new ModelAndView("test_estate_object_types");
+        ModelAndView mv = new ModelAndView("test_view_estate_object_types");
 
         mv.addObject("estateObjectTypes", estateObjectTypeService.getAll());
 

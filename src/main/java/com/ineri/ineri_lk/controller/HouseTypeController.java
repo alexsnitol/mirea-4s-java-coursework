@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * @author Slotin Alexander (@alexsnitol)
+ */
+
 @Controller
 @RequestMapping("/house-types")
 public class HouseTypeController {
@@ -19,7 +23,7 @@ public class HouseTypeController {
 
     @GetMapping
     public ModelAndView getAll() {
-        ModelAndView mv = new ModelAndView("test_house_types");
+        ModelAndView mv = new ModelAndView("test_view_house_types");
 
         mv.addObject("houseTypes", houseTypeService.getAll());
 

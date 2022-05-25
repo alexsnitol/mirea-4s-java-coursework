@@ -5,6 +5,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
+/**
+ * @author Slotin Alexander (@alexsnitol)
+ */
+
 public abstract class AbstractServiceImpl<M extends AbstractModel, R extends JpaRepository<M, Long>> {
     protected R defaultRepository;
 

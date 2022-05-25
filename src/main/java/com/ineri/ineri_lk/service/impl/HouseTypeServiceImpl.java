@@ -9,6 +9,10 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 
+/**
+ * @author Slotin Alexander (@alexsnitol)
+ */
+
 @Service
 public class HouseTypeServiceImpl extends AbstractServiceImpl<HouseType, HouseTypeRepository> {
 

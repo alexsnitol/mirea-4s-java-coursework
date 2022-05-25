@@ -69,10 +69,11 @@
             </tbody>
         </table>
     </div>
-    <p><a th:href="@{'/vacancies/' + ${vacancy.id} + '/delete'}">Delete</a></p>
+    <p><a th:href="@{'/vacancies/' + ${vacancy.id} + '/delete'}"><button>Delete</button></a></p>
+    <p><a th:href="@{'/vacancies/' + ${vacancy.id} + '/edit'}"><button>Edit</button></a></p>
     <p th:switch="${vacancy.active}">
-        <a th:case="true" th:href="@{'/vacancies/' + ${vacancy.id} + '/set-active/?is-active=false'}">Deactivate</a>
-        <a th:case="false" th:href="@{'/vacancies/' + ${vacancy.id} + '/set-active/?is-active=true'}">Activate</a>
+        <a th:case="true" th:href="@{'/vacancies/' + ${vacancy.id} + '/set-active/?is-active=false'}"><button>Deactivate</button></a>
+        <a th:case="false" th:href="@{'/vacancies/' + ${vacancy.id} + '/set-active/?is-active=true'}"><button>Activate</button></a>
     </p>
 </div>
 </body>

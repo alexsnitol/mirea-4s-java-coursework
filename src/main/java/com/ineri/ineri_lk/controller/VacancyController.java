@@ -14,6 +14,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
+/**
+ * @author Slotin Alexander (@alexsnitol)
+ */
+
 @Controller
 @RequestMapping("/vacancies")
 public class VacancyController extends AbstractController {
@@ -28,7 +32,7 @@ public class VacancyController extends AbstractController {
 
     @GetMapping
     public ModelAndView getAll() {
-        ModelAndView mv = new ModelAndView("test_vacancies");
+        ModelAndView mv = new ModelAndView("test_view_vacancies");
 
         mv.addObject("vacancies", vacancyService.getAll());
 
@@ -37,7 +41,7 @@ public class VacancyController extends AbstractController {
 
     @GetMapping("/{id}")
     public ModelAndView getById(@PathVariable("id") Long id) {
-        ModelAndView mv = new ModelAndView("test_vacancy");
+        ModelAndView mv = new ModelAndView("test_view_vacancy");
 
         Vacancy vacancy = vacancyService.getById(id);
 
@@ -64,6 +68,7 @@ public class VacancyController extends AbstractController {
 
         List<City> cities = cityService.getAll();
         List<User> users = userService.getAll();
+        vacancy.setActive(true);
 
         mv.addObject("cities", cities);
         mv.addObject("users", users);
@@ -81,6 +86,26 @@ public class VacancyController extends AbstractController {
     public String delete(@PathVariable("id") Long id) {
         vacancyService.deleteById(id);
         return "redirect:/vacancies";
+    }
+
+    @GetMapping("/{id}/edit")
+    public ModelAndView editVacancy(@PathVariable("id") Long id) {
+        ModelAndView mv = new ModelAndView("test_edit_vacancy");
+
+        List<City> cities = cityService.getAll();
+        List<User> users = userService.getAll();
+
+        mv.addObject(vacancyService.getById(id));
+        mv.addObject("cities", cities);
+        mv.addObject("users", users);
+
+        return mv;
+    }
+
+    @PostMapping("/{id}/edit")
+    public String update(Vacancy vacancy) {
+        vacancyService.save(vacancy);
+        return "redirect:/vacancies/" + vacancy.getId();
     }
 
 }
