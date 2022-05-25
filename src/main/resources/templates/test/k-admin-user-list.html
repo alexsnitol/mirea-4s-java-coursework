@@ -14,7 +14,6 @@
             <tr>
                 <th>Id</th>
                 <th>Логин</th>
-                <th>Пароль</th>
                 <th>Фамилия</th>
                 <th>Имя</th>
                 <th>Отчество</th>
@@ -28,7 +27,6 @@
             <tr th:each="user : ${users}">
                 <td th:text="${user.id}"></td>
                 <td th:text="${user.username}"></td>
-                <td th:text="${user.password}"></td>
                 <td th:text="${user.surname}"></td>
                 <td th:text="${user.name}"></td>
                 <td th:text="${user.patronymic}"></td>

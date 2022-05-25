@@ -7,9 +7,7 @@ import com.ineri.ineri_lk.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
 import java.util.List;
@@ -33,8 +31,6 @@ public class AdminController {
         return "k-admin-user-list";
     }
 
-
-
     @GetMapping("/{currentUsername}/users/new")
     public String newUser(User user, @PathVariable("currentUsername") String username, Model model) {
         model.addAttribute("currentUsername", username);
@@ -50,8 +46,6 @@ public class AdminController {
         return "redirect:/" + username + "/users";
     }
 
-
-
     @GetMapping("/{currentUsername}/users/{userId}/edit")
     public String updateUserForm(@PathVariable("userId") Long id, Model model, @PathVariable("currentUsername") String username) {
         User user = userService.getUserById(id);
@@ -66,11 +60,10 @@ public class AdminController {
         return "redirect:/" + username + "/users";
     }
 
-
-
     @GetMapping("/{currentUsername}/users/{userId}/delete")
     public String deleteUser(@PathVariable("currentUsername") String username, @PathVariable("userId") Long id) {
         userService.deleteById(id);
         return "redirect:/" + username + "/users";
     }
+
 }

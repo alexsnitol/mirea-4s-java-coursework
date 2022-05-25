@@ -40,12 +40,9 @@ public class UserService{
 
     public boolean saveUser(User user) {
         Optional<User> userFromDB = userRepository.findByUsername(user.getUsername());
-
         if (userFromDB.isPresent()) {
             return false;
         }
-
-        user.setRoles(Collections.singleton(new Role(ERole.USER)));
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         userRepository.save(user);
         return true;
