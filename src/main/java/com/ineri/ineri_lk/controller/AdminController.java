@@ -57,7 +57,16 @@ public class AdminController {
     }
 
     @PostMapping("/{currentUsername}/users/{userId}/edit")
-    public String updateUser(User user, @PathVariable("currentUsername") String username) {
+    public String updateUser(User user, @PathVariable("currentUsername") String username, @RequestParam(value = "isAdmin", required = false) boolean isAdmin) {
+        Set<Role> roles = user.getRoles();
+        roles.add(new Role(ERole.USER));
+
+        if (isAdmin) {
+            roles.add(new Role(ERole.ADMIN));
+        } else {
+            roles.remove(new Role(ERole.ADMIN));
+        }
+        user.setRoles(roles);
         userService.updateUser(user);
         return "redirect:/" + username + "/users";
     }
