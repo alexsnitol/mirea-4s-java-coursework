@@ -5,8 +5,6 @@ import com.ineri.ineri_lk.model.Role;
 import com.ineri.ineri_lk.model.User;
 import com.ineri.ineri_lk.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -53,12 +51,17 @@ public class UserService{
         return true;
     }
 
+    public void updateUser(User user) {
+        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+        userRepository.save(user);
+    }
+
     public void deleteById(Long id) {
         userRepository.deleteById(id);
     }
 
-    public void deleteByUsername(String login) {
-        userRepository.deleteByUsername(login);
+    public void deleteByUsername(String username) {
+        userRepository.deleteByUsername(username);
     }
 
     public List<User> getAll() {

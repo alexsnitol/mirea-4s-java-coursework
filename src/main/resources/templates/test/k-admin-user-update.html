@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>Измените данные</h1>
-    <form th:action="@{'/'+${user.username}+'/edit'}" th:object="${user}" method="post">
+    <form th:action="@{'/'+${currentUsername}+'/users/'+${user.id}+'/edit'}" th:object="${user}" method="post">
         <input type="text" th:field="*{id}" id="id" hidden>
 
         <label for="username">Логин</label>

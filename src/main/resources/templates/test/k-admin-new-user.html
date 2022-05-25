@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Заполните поля</h1>
-<form action="#" th:action="@{/signup}" th:object="${user}" method="post">
+<form th:action="@{'/'+${currentUsername}+'/users/new'}" th:object="${user}" method="post">
     <label for="username">Логин</label>
     <input type="text" th:field="*{username}" id="username">
     <br>
@@ -46,6 +46,8 @@
     <input type="text" th:field="*{phoneNumber}" id="phoneNumber">
     <br>
     <br>
+
+    <input type="checkbox">
 
     <input type="submit" value="Зарегистрироваться">
 </form>

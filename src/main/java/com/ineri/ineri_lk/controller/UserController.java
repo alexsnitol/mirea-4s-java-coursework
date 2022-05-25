@@ -26,14 +26,14 @@ public class UserController {
 
     @PostMapping("/{username}/edit")
     public String updateUser(User user){
-        userService.saveUser(user);
-        return "redirect:./" + user.getUsername() + "/users";
+        userService.updateUser(user);
+        return "redirect:/" + user.getUsername();
     }
 
     @GetMapping("/{username}/delete")
     public String deleteUser(@PathVariable("username") String username) {
         userService.deleteByUsername(username);
-        return "redirect:./" + username + "/users";
+        return "redirect:/";
     }
 
 }

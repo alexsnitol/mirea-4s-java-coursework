@@ -28,39 +28,21 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
-
-    @Column(name = "username")
     private String username;
-
-    @Column(name = "password")
     private String password;
-
+    @Transient
     private String confirmPassword;
-
-    @Column(name = "surname")
     private String surname;
-
-    @Column(name = "name")
     private String name;
-
-    @Column(name = "patronymic")
     private String patronymic;
-
-    @Column(name = "email")
     private String email;
-
-    @Column(name = "phone_number")
     private String phoneNumber;
-
-    @Column(name = "photo_path")
     private String photoPath;
-
-    @Column(name = "datetime_created")
     private LocalDateTime datetimeCreated = LocalDateTime.now();
 
-    @ManyToMany(fetch = FetchType.LAZY)
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -95,4 +77,5 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return false;
     }
+
 }

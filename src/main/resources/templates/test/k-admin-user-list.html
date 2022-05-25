@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Пользователи</title>
+</head>
+<body>
+<div th:switch="${users}">
+    <h2 th:case="null">Пользователи не найдены!</h2>
+    <div th:case="*">
+        <h2>Список всех пользователей</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Логин</th>
+                <th>Пароль</th>
+                <th>Фамилия</th>
+                <th>Имя</th>
+                <th>Отчество</th>
+                <th>Email</th>
+                <th>Номер телефона</th>
+                <th>Дата создания</th>
+                <th>Роли</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.password}"></td>
+                <td th:text="${user.surname}"></td>
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.patronymic}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.phoneNumber}"></td>
+                <td th:text="${#temporals.format(user.datetimeCreated, 'dd.MM.yyyy')}"></td>
+                <td>
+                    <div th:each="role : ${user.roles}" th:text="${role.name}"></div>
+                </td>
+                <td><a th:href="@{'/'+${currentUsername}+'/users/'+${user.id}+'/edit'}">Редактировать</a></td>
+                <td><a th:href="@{'/'+${currentUsername}+'/users/'+${user.id}+'/delete'}">Удалить</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a th:href="@{'/'+${currentUsername}+'/users/new'}">Создать пользователя</a></p>
+</div>
+</body>
+</html>
