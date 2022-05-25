@@ -1,8 +1,36 @@
 INSERT INTO roles(name)
-VALUES ('admin'), ('user');
+VALUES ('ADMIN'), ('USER');
 
 INSERT INTO users(username, password, email, phone_number, surname, name, patronymic, photo_path)
-VALUES ('admin', 'admin', 'admin@ineri.ru', '900 000-00-00', 'admin_surname', 'admin_name', 'admin_patronymic', '');
+VALUES ('admin', 'admin', 'admin@ineri.ru', '900 000-00-00', 'admin_surname', 'admin_name', 'admin_patronymic', ''),
+       ('evgeniy37', 'a277981d4', 'evgeniy37@gmail.com', '921 167-69-55', 'Керимбаев', 'Евгений', 'Егорович', ''),
+       ('prohor03111985', '26b79f3c2', 'prohor03111985@rambler.ru', '954 883-56-98', 'Зуев', 'Прохор', 'Иннокентиевич', ''),
+       ('mila.naberejneva', '20ddeebf3', 'mila.naberejneva@hotmail.com', '973 762-51-24', 'Набережнева', 'Мила', 'Евгеньевна', ''),
+       ('maryamna09011968', 'd0471b447', 'maryamna09011968@gmail.com', '946 950-24-24', 'Мерзлякова', 'Марьямна', 'Егоровна', ''),
+       ('serafim1988', '01c0380a9', 'serafim1988@yandex.ru', '926 965-36-70', 'Баева', 'Серафим', 'Павлович', ''),
+       ('feliks94', 'e967c3ecd', 'feliks94@ya.ru', '976 719-41-64', 'Ягунов', 'Феликс', 'Александрович', ''),
+       ('semen23', '802b17c59', 'semen23@gmail.com', '971 602-76-38', 'Лобачёв', 'Семен', 'Евгениевич', ''),
+       ('marianna17121965', '5482846fb', 'marianna17121965@rambler.ru', '940 487-33-86', 'Юшакова', 'Марианна', 'Климентьевна', ''),
+       ('trofim5535', '883e36aa7', 'trofim5535@hotmail.com', '984 410-13-82', 'Волошин', 'Трофим', 'Федорович', ''),
+       ('tamara1977', '26e4db4e3', 'tamara1977@hotmail.com', '971 769-76-16', 'Хитрово', 'Тамара', 'Кирилловна', ''),
+       ('viktoriya1996', 'd09c6fd21', 'viktoriya1996@hotmail.com', '975 654-14-87', 'Эйлер', 'Виктория', 'Константиновна', ''),
+       ('trofim.yabloncev', 'cf901c28d', 'trofim.yabloncev@hotmail.com', '914 959-99-80', 'Яблонцев', 'Трофим', 'Никифорович', '');
+
+INSERT INTO user_roles(user_id, role_id)
+VALUES  (1, 1),
+        (1, 2),
+        (2, 2),
+        (3, 2),
+        (4, 2),
+        (5, 2),
+        (6, 2),
+        (7, 2),
+        (8, 2),
+        (9, 2),
+        (10, 2),
+        (11, 2),
+        (12, 2),
+        (13, 2);
 
 INSERT INTO cities(name)
 VALUES ('Москва'), ('Санкт-Петербург'), ('Мытищи'), ('Королёв'), ('Балашиха'), ('Подольск'), ('Красногорск'), ('Химки'), ('Люберцы'), ('Одинцово');
@@ -138,3 +166,67 @@ VALUES  ('Описание',
          9954349, '2022-03-14 10:39:54', 2, 5, 1, 1),
         ('Описание',
         114578199, '2022-03-27 17:39:54', 1, 6, 1, 1);
+
+INSERT INTO favorites(user_id, advertised_id)
+VALUES (2, 1),
+       (2, 2),
+       (2, 3),
+       (2, 4),
+       (2, 5),
+       (1, 3),
+       (1, 1);
+
+INSERT INTO forms(state_enum, admin_comment, area, floor, max_floor, room_size, description, price, datetime_created, user_id, admin_id, house_type_id, property_type_id, renovation_type_id, estate_object_type_id, address_id)
+VALUES (0, 'test0',
+        39, 9, 15, 2,
+        'Описание',
+        5899999, '2021-12-29 11:59:00',
+        2, 1, 1, 1, 1, 2, 1),
+       (-1, 'test-1',
+        23, 9, 15, 1,
+        'Описание',
+        12546142, '2021-11-28 19:13:00',
+        2, 1, 1, 1, 1, 2, 1),
+       (1, 'test1',
+        23, 9, 15, 1,
+        'Описание',
+        29546142, '2021-11-28 19:13:00',
+        2, 1, 1, 1, 1, 2, 1);
+
+INSERT INTO advertised_photos(path, advertised_id, form_id)
+VALUES ('/images/userdata/1-0',
+        1, 1),
+       ('/images/userdata/1-1',
+        1, 1),
+       ('/images/userdata/1-2',
+        1, 1),
+       ('/images/userdata/1-3',
+        1, 1),
+       ('/images/userdata/1-4',
+        1, 1),
+       ('/images/userdata/1-5',
+        1, 1),
+       ('/images/userdata/1-6',
+        1, 1),
+       ('/images/userdata/1-7',
+        1, 1),
+       ('/images/userdata/1-8',
+        1, 1),
+       ('/images/userdata/1-9',
+        1, 1),
+       ('/images/userdata/2-0',
+        2, 1),
+       ('/images/userdata/2-1',
+        2, 1),
+       ('/images/userdata/2-2',
+        2, 1),
+       ('/images/userdata/2-3',
+        2, 1),
+       ('/images/userdata/2-4',
+        2, 1),
+       ('/images/userdata/2-5',
+        2, 1),
+       ('/images/userdata/2-6',
+        2, 1),
+       ('/images/userdata/2-7',
+        2, 1);
