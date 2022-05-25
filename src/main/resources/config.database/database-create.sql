@@ -167,8 +167,8 @@ CREATE TABLE forms (
 -- Author: Slotin A.S.
 CREATE TABLE advertised_photos (
         path          VARCHAR(2047),
-        advertised_id BIGINT UNSIGNED NOT NULL,
-        form_id       BIGINT UNSIGNED NOT NULL,
+        advertised_id BIGINT UNSIGNED,
+        form_id       BIGINT UNSIGNED,
         FOREIGN KEY (form_id) REFERENCES forms (id),
         FOREIGN KEY (advertised_id) REFERENCES advertiseds (id)
 );

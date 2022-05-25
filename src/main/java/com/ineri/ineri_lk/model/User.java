@@ -31,8 +31,6 @@ public class User implements UserDetails {
     private Long id;
     private String username;
     private String password;
-    @Transient
-    private String confirmPassword;
     private String surname;
     private String name;
     private String patronymic;
@@ -40,6 +38,11 @@ public class User implements UserDetails {
     private String phoneNumber;
     private String photoPath;
     private LocalDateTime datetimeCreated = LocalDateTime.now();
+
+    @Transient
+    private String confirmPassword;
+    @Transient
+    private boolean active;
 
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
@@ -60,22 +63,22 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 
 }
