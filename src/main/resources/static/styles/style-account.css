@@ -96,7 +96,6 @@ a {
 a.btn-main, a.btn-main:active, a.btn-main:focus, a.btn-main:visited, .btn-main, input[type=button].btn-main, a.btn-line {
     text-align: center;
     color: #fff;
-    border-radius: 0px;
     -moz-border-radius: 0px;
     -webkit-border-radius: 0px;
     outline: 0;
@@ -105,6 +104,18 @@ a.btn-main, a.btn-main:active, a.btn-main:focus, a.btn-main:visited, .btn-main, 
     padding: 8px 40px;
     font-size: 14px;
     border: none;
+
+}
+.btn-primary{
+    margin-top: 10px;
+    border-radius: 0px;
+    background: #129DFF;
+    letter-spacing: 0;
+    border: 0px;
+    width: 100%;
+    height: 40px;
+    font-weight: 700;
+    font-size:16px;
 }
 .spacer-single {
     width: 100%;
@@ -348,6 +359,46 @@ a, img {
 #sidebar {
     padding-left: 10px;
 }
+.li-announc{
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    margin-bottom: 16px;
+    font-size: 16px;
+    line-height: 22px;
+    list-style: none;
+    color: black;
+}
+.ul-announc{
+    color: black;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.span-name{
+    -webkit-flex: 1 1 220px;
+    -ms-flex: 1 1 220px;
+    flex: 1 1 220px;
+    max-width: 220px;
+    color: black;
+    font-size: 16px;
+    line-height: 22px;
+    list-style: none;
+    font-weight: 400;
+}
+
+.span-value{
+    color: black;
+    padding-left: 24px;
+    font-size: 16px;
+    line-height: 22px;
+    list-style: none;
+    font-weight: 400;
+}
 @media only screen and (max-width: 992px) {
     #subheader {
         -webkit-background-size: cover;
@@ -366,3 +417,5 @@ a, img {
         background-attachment: scroll;
     }
 }
+
+
