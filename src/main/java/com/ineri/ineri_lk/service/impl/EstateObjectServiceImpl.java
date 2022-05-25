@@ -12,10 +12,24 @@ public class EstateObjectServiceImpl extends AbstractServiceImpl<EstateObject, E
 
     @Autowired
     EstateObjectRepository estateObjectRepository;
+    @Autowired
+    AddressServiceImpl addressService;
 
     @PostConstruct
     public void init() {
         defaultRepository = estateObjectRepository;
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        Long idOfAddress = getById(id).getAddress().getId();
+        defaultRepository.deleteById(id);
+        addressService.deleteById(idOfAddress);
+    }
+
+    public void save(EstateObject estateObject) {
+        addressService.save(estateObject.getAddress());
+        defaultRepository.save(estateObject);
     }
 
 }

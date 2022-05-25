@@ -42,8 +42,8 @@
                         <td th:text="${object.estateObjectType.name}"></td>
                         <td th:text="${object.dateTimeCreated}"></td>
                         <td>
-                            <a th:href="@{'/estate-objects/' + object.id + '/delete'}"><button>Delete</button></a>
-                            <a th:href="@{'/estate-objects/' + object.id + '/edit'}"><button>Edit</button></a>
+                            <a th:href="@{'/estate-objects/' + ${object.id} + '/delete'}"><button>Delete</button></a>
+                            <a th:href="@{'/estate-objects/' + ${object.id} + '/edit'}"><button>Edit</button></a>
                         </td>
                     </tr>
                 </tbody>
