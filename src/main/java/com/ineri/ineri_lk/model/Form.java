@@ -25,7 +25,7 @@ public class Form {
     private Long id;
     @Enumerated(EnumType.STRING)
     private EState state;
-    private String admin_comment;
+    private String adminComment;
     private Double area;
     private Integer floor;
     private Integer maxFloor;
@@ -60,6 +60,6 @@ public class Form {
 
     @ManyToOne
     @JoinColumn(name = "address_id")
-    private Address addressId;
+    private Address address;
 
 }
