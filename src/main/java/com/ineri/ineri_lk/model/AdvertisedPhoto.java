@@ -28,6 +28,6 @@ public class AdvertisedPhoto {
 
     @ManyToOne
     @JoinColumn(name = "advertised_id")
-    private AdvertisedPhoto advertisedPhoto;
+    private Advertised advertised;
 
 }
