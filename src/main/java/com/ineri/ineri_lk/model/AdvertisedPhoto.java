@@ -11,16 +11,13 @@ import javax.persistence.*;
  * @author Kozlov Alexander
  */
 
-@Entity
 @Table(name = "advertised_photos")
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
 public class AdvertisedPhoto {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String path;
 
     @ManyToOne
     @JoinColumn(name = "form_id")
