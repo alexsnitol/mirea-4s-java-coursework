@@ -31,7 +31,7 @@
         <div class="block-header">
             <div class="row">
                 <div class="p-4">
-                    <h1 style="color: white">Просмотр городов</h1>
+                    <h1 style="color: white">renovationTypes</h1>
                 </div>
             </div>
         </div>
@@ -39,46 +39,46 @@
             <div class="row clearfix">
                 <div class="col-lg-12">
 
-                        <div class="card" style="margin-bottom: 0; border-bottom-left-radius: 0;border-bottom-right-radius: 0">
-                            <div class="body">
-                                <div class="row clearfix">
-                                    <div class="col-sm-6" style="width: 100%"th:switch="${cities}">
-                                        <h2 th:case="null">NOT FOUND</h2>
-                                        <div class="form-group" th:case="*">
-                                            <h2>Города</h2>
-                                            <table class="table">
-                                                <thead>
-                                                <tr>
-                                                    <th scope="col">id</th>
-                                                    <th scope="col">name</th>
-                                                    <th scope="col">action</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr th:each="city : ${cities}">
-                                                    <td th:text="${city.id}"></td>
-                                                    <td th:text="${city.name}"></td>
-                                                    <td>
-                                                        <a th:href="@{'/cities/' + ${city.id} + '/delete'}"><button class="btn-danger">Delete</button></a>
-                                                        <a th:href="@{'/cities/' + ${city.id} + '/edit'}"><button class="btn-secondary">Edit</button></a>
-                                                    </td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <p><a href="/cities/new"><button class="btn-primary">Create</button></a></p>
-                                        </div>
+                    <div class="card" style="margin-bottom: 0; border-bottom-left-radius: 0;border-bottom-right-radius: 0">
+                        <div class="body">
+                            <div class="row clearfix">
+                                <div class="col-sm-6" style="width: 100%"th:switch="${renovationTypes}">
+                                    <h2 th:case="null">NOT FOUND</h2>
+                                    <div class="form-group" th:case="*">
+                                        <h2>renovationTypes</h2>
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">id</th>
+                                                <th scope="col">name</th>
+                                                <th scope="col">action</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr th:each="type : ${renovationTypes}">
+                                                <td th:text="${type.id}"></td>
+                                                <td th:text="${type.name}"></td>
+                                                <td>
+                                                    <a th:href="@{'/renovation-types/' + ${type.id} +  '/delete'}"><button class="btn-danger">Delete</button></a>
+                                                    <a th:href="@{'/renovation-types/' + ${type.id} +  '/edit'}"><button class="btn-secondary">Edit</button></a>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
+                                    <p><a href="/renovation-types/new"><button class="btn-primary">Create</button></a></p>
                                 </div>
                             </div>
-
                         </div>
-                        <div class="col-sm-12" style="background-color: #c6c8cb;padding: 10px; border-radius: 0 0 5px 5px;">
-                            <button type="submit" class="btn btn-primary btn-round" >Подтвердить</button>
-                        </div>
+                    </div>
 
                 </div>
+                <div class="col-sm-12" style="background-color: #c6c8cb;padding: 10px; border-radius: 0 0 5px 5px;">
+                    <button type="submit" class="btn btn-primary btn-round" >Подтвердить</button>
+                </div>
+
             </div>
+        </div>
     </section>
 </div>
 <script src="../../static/scripts/jquery/libscripts.bundle.js"></script> <!-- Lib Scripts Plugin Js ( jquery.v3.2.1, Bootstrap4 js) -->
