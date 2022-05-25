@@ -26,33 +26,37 @@
 </head>
 <body class="text-center">
 <main class="form-signup w-100 m-auto">
-    <form>
+    <form action="#" th:action="@{/signup}" th:object="${user}" method="post">
         <img class="mb-4" src="../../static/images/icon_INERI_1.svg" alt="" width="72" height="57">
         <h1 class="h3 mb-3 fw-normal">Регистрация</h1>
 
         <div class="form-floating">
-            <input type="text" class="form-control" id="floatingName" placeholder="Имя">
-            <label for="floatingName">Имя</label>
+            <input type="text" class="form-control"  placeholder="Имя" th:field="*{name}" id="name">
+            <label for="name">Имя</label>
         </div>
         <div class="form-floating">
-            <input type="text" class="form-control" id="floatingSurname" placeholder="Фамилия">
-            <label for="floatingSurname">Фамилия</label>
+            <input type="text" class="form-control"  placeholder="Фамилия"th:field="*{surname}" id="surname">
+            <label for="surname">Фамилия</label>
         </div>
         <div class="form-floating">
-            <input type="text" class="form-control" id="floatingLogin" placeholder="Логин">
-            <label for="floatingLogin">Логин</label>
+            <input type="text" class="form-control"  placeholder="Логин"th:field="*{username}" id="username">
+            <label for="username">Логин</label>
         </div>
         <div class="form-floating pb--11">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Пароль">
-            <label for="floatingPassword">Пароль</label>
+            <input type="password" class="form-control"  placeholder="Пароль" th:field="*{password}" id="password">
+            <label for="password">Пароль</label>
+        </div>
+        <div class="form-floating pb--11">
+            <input type="password" class="form-control"  placeholder="Подтвердите пароль" th:field="*{confirmPassword}" id="confirmPassword">
+            <label for="confirmPassword">Подтвердите пароль</label>
         </div>
         <div class="form-floating">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Email</label>
+            <input type="email" class="form-control"  placeholder="name@example.com"th:field="*{email}" id="email">
+            <label for="email">Email</label>
         </div>
         <div class="form-floating">
-            <input type="text" class="form-control bfh-phone" id="floatingNumber" data-format="+7 ddd ddd-dd-dd">
-            <label for="floatingNumber">Номер</label>
+            <input type="text" class="form-control bfh-phone" id="phoneNumber" data-format="+7 ddd ddd-dd-dd"th:field="*{phoneNumber}">
+            <label for="phoneNumber">Номер</label>
         </div>
 
 
@@ -61,7 +65,7 @@
             <input type="checkbox" value="remember-me"> Remember me
           </label>
         </div> -->
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Зарегистрироваться</button>
+        <button class="w-100 btn btn-lg btn-primary mt-2" type="submit">Зарегистрироваться</button>
     </form>
 </main>
 
