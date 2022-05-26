@@ -6,6 +6,10 @@ import com.ineri.ineri_lk.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * @author Kozlov Alexander
+ */
+
 @Service
 public class RoleService {
     @Autowired

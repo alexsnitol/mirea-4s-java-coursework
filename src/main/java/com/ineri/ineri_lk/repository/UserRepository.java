@@ -9,7 +9,6 @@ import java.util.Optional;
 
 /**
  * @author Kozlov Alexander
- * @version 1.0
  */
 
 @Repository
