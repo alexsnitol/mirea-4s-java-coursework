@@ -69,163 +69,31 @@
                 <div class="row py-lg-5">
                     <div class="col-lg-6 col-md-8 mx-auto">
 
-                        <h1 class="fw-light" style="color: white;width: 100%;font-weight: 700;font-size: 52px;">Объявления о продаже недвижимости</h1>
-                        <p class="lead text-muted" >Ноль, целковый, чекушка, порнушка, пердушка, засирушка, жучок, мудачок, хуй на воротничок, дурачок, ВСЕ.</p>
+                        <h1 class="fw-light mt-4" style="color: white;width: 100%;font-weight: 700;font-size: 52px;">Объявления о продаже недвижимости</h1>
                     </div>
                 </div>
             </section>
-            <div class="album py-5 bg-light">
+            <div class="album py-5 bg-light" >
                 <div class="container">
                     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                        <form>
-                            <div class="col">
+                            <div class="col" th:each="advertised : ${advertiseds}">
                                 <div class="card shadow-sm">
                                     <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Миниатюра" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Миниатюра</text></svg>
                                     <div class="card-body">
-                                        <h4>ЖК Красивск</h4>
-                                        <h6>3-комнатная 1м</h6>
+                                        <h4 th:text="${advertised.estateObject.address.city.name}" ></h4>
+                                        <h6 th:text="${advertised.estateObject.area +'м²'}" ></h6>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="btn-group">
-                                                <button type="submit" class="btn btn-sm btn-outline-secondary">Посмотреть</button>
+
+                                                <a class="btn btn-sm btn-outline-secondary" th:text="${advertised.estateObject.address.fullAddress}" th:href="@{'/catalog/' + ${advertised.id}}"></a>
                                                 <button type="submit" class="btn btn-sm btn-outline-secondary">В избранное</button>
                                             </div>
-                                            <small class="text-muted">50000$$</small>
+                                            <small th:text="@{${#numbers.formatDecimal(advertised.price, 1, 'WHITESPACE', 0, 'COMMA')} + ' ₽'}" class="text-muted"></small>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </form>
-                        <div class="col">
-                            <div class="card shadow-sm">
-                                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Миниатюра" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Миниатюра</text></svg>
 
-                                <div class="card-body">
-                                    <form>
-                                    </form>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button type="submit" class="btn btn-sm btn-outline-secondary">Посмотреть</button>
-                                            <button type="submit" class="btn btn-sm btn-outline-secondary">В избранное</button>
-                                        </div>
-                                        <small class="text-muted">50000$$</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card shadow-sm">
-                                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Миниатюра" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Миниатюра</text></svg>
-
-                                <div class="card-body">
-                                    <form></form>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button type="submit" class="btn btn-sm btn-outline-secondary">Посмотреть</button>
-                                            <button type="submit" class="btn btn-sm btn-outline-secondary">В избранное</button>
-                                        </div>
-                                        <small class="text-muted">50000$$</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col">
-                            <div class="card shadow-sm">
-                                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Миниатюра" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Миниатюра</text></svg>
-
-                                <div class="card-body">
-                                    <form></form>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button type="submit" class="btn btn-sm btn-outline-secondary">Посмотреть</button>
-                                            <button type="submit" class="btn btn-sm btn-outline-secondary">В избранное</button>
-                                        </div>
-                                        <small class="text-muted">50000$$</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card shadow-sm">
-                                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Миниатюра" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Миниатюра</text></svg>
-
-                                <div class="card-body">
-                                    <form></form>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button type="submit" class="btn btn-sm btn-outline-secondary">Посмотреть</button>
-                                            <button type="submit" class="btn btn-sm btn-outline-secondary">В избранное</button>
-                                        </div>
-                                        <small class="text-muted">50000$$</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card shadow-sm">
-                                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Миниатюра" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Миниатюра</text></svg>
-
-                                <div class="card-body">
-                                    <form></form>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button type="submit" class="btn btn-sm btn-outline-secondary">Посмотреть</button>
-                                            <button type="submit" class="btn btn-sm btn-outline-secondary">В избранное</button>
-                                        </div>
-                                        <small class="text-muted">50000$$</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col">
-                            <div class="card shadow-sm">
-                                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Миниатюра" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Миниатюра</text></svg>
-
-                                <div class="card-body">
-                                    <form></form>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button type="submit" class="btn btn-sm btn-outline-secondary">Посмотреть</button>
-                                            <button type="submit" class="btn btn-sm btn-outline-secondary">В избранное</button>
-                                        </div>
-                                        <small class="text-muted">50000$$</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card shadow-sm">
-                                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Миниатюра" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Миниатюра</text></svg>
-
-                                <div class="card-body">
-                                    <form></form>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button type="submit" class="btn btn-sm btn-outline-secondary">Посмотреть</button>
-                                            <button type="submit" class="btn btn-sm btn-outline-secondary">В избранное</button>
-                                        </div>
-                                        <small class="text-muted">50000$$</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card shadow-sm">
-                                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Миниатюра" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Миниатюра</text></svg>
-
-                                <div class="card-body">
-                                    <form></form>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button type="submit" class="btn btn-sm btn-outline-secondary">Посмотреть</button>
-                                            <button type="submit" class="btn btn-sm btn-outline-secondary">В избранное</button>
-                                        </div>
-                                        <small class="text-muted">50000$$</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
