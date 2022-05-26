@@ -16,25 +16,21 @@
 </head>
 <body class="text-center">
 <main class="form-signin w-100 m-auto">
-    <form action="#" th:action="@{/login}" th:object="${user}" method="post">
+    <form action="/login"method="post">
         <img class="mb-4" src="../../static/images/icon_INERI_1.svg" alt="" width="72" height="57">
         <h1 class="h3 mb-3 fw-normal">Авторизация</h1>
 
         <div class="form-floating">
-            <input type="text" class="form-control" id="floatingLogin" placeholder="Логин" th:field="*{username}">
+            <input type="text" class="form-control" id="floatingLogin" placeholder="Логин">
             <label for="floatingLogin">Логин</label>
         </div>
         <div class="form-floating pb--11">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Пароль"th:field="*{password}">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Пароль">
             <label for="floatingPassword">Пароль</label>
         </div>
-        <!-- <div class="checkbox mb-3">
-          <label>
-            <input type="checkbox" value="remember-me"> Запомнить меня
-          </label>
-        </div> -->
+
         <button class="w-100 btn btn-lg btn-primary" type="submit">Войти</button>
-        <a href="sign-up.html" class="w-100 mt-1 btn btn-lg btn-secondary" role="button" aria-pressed="true">Создать аккаунт</a>
+        <a th:href="@{'/sign-up'}" class="w-100 mt-1 btn btn-lg btn-secondary" role="button" aria-pressed="true">Создать аккаунт</a>
     </form>
 </main>
 
