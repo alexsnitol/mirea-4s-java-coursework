@@ -8,11 +8,11 @@
 <!--    <link href="style.css" rel="stylesheet" type="text/css">-->
     <link th:href="@{/styles/style.css}" rel="stylesheet" />
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
-    <link rel="shortcut icon" href="images/icon_INERI_1.svg" type="image/x-icon">
+    <link rel="shortcut icon" th:href="@{/images/icon_INERI_1.svg}" type="image/x-icon">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="../../static/scripts/includeHTML.js"></script>
-    <script src="../../static/scripts/scrolling.js"></script>
+    <script th:src="@{/scripts/includeHTML.js}"></script>
+    <script th:src="@{/scripts/scrolling.js}"></script>
 </head>
 <body>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
@@ -56,8 +56,7 @@
         });
     </script>
 
-    <div id="header" class="header" include-html="./header.html"></div>
-    <header th:insert="fragment/header :: header"></header>
+    <div id="header" class="header" th:attr="include-html=@{/html/header.html}"></div>
     <div id="vacancies-main" class="slide slide-darkblue">
         <div id="vacancies-main-content" class="content">
             <div class="title-big" data-aos="fade-up" data-aos-delay="200" style="position: relative; text-align: left; top: 15%">Вакансии</div>
@@ -79,7 +78,7 @@
             </div>
         </div>
     </div>
-    <div include-html=" footer.html" id="footer"></div>
+    <div th:attr="include-html=@{/html/footer.html}" class="footer" id="footer"></div>
     <script>
         includeHTML();
     </script>

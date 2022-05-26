@@ -29,25 +29,25 @@ public class SignupController {
     @GetMapping("/signup")
     public String registration(Model model) {
         model.addAttribute("user", new User());
-        return "k-signup";
+        return "sign-up";
     }
 
     @PostMapping("/signup")
     public String saveUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
-            return "k-signup";
+            return "sign-up";
         }
         if (!user.getPassword().equals(user.getConfirmPassword())){
             model.addAttribute("passwordError", "Пароли не совпадают");
-            return "k-signup";
+            return "sign-up";
         }
         Set<Role> roles = new HashSet<>();
         roles.add(new Role(ERole.USER));
         user.setRoles(roles);
         if (!userService.saveUser(user)){
             model.addAttribute("usernameError", "Пользователь с таким именем уже существует");
-            return "k-signup";
+            return "sign-up";
         }
 
         return "redirect:/index";

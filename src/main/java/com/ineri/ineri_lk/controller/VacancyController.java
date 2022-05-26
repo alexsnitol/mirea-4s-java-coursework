@@ -32,7 +32,7 @@ public class VacancyController extends AbstractController {
 
     @GetMapping
     public ModelAndView getAll() {
-        ModelAndView mv = new ModelAndView("test_view_vacancies");
+        ModelAndView mv = new ModelAndView("vacancies");
 
         mv.addObject("vacancies", vacancyService.getAll());
 

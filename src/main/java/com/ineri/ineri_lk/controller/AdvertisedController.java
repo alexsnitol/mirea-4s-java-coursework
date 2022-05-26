@@ -48,7 +48,7 @@ public class AdvertisedController {
 
     @GetMapping
     public ModelAndView getAll() {
-        ModelAndView mv = new ModelAndView("test_view_catalog");
+        ModelAndView mv = new ModelAndView("catalog");
 
         mv.addObject("advertiseds", advertisedService.getAll());
 

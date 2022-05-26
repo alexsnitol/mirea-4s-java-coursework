@@ -4,31 +4,86 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="generator" content="Hugo 0.98.0">
     <title>Регистрация</title>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/sign-in/">
-    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="../../static/styles/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../static/styles/bootstrap-formhelpers.min.css">
-    <script src="../../static/scripts/charts.js"></script>
+    <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" th:href="@{/images/icon_INERI_1.svg}" type="image/x-icon">
+    <link th:href="@{/styles/bootstrap-formhelpers.min.css}" rel="stylesheet" type="text/css">
+    <script th:src="@{/scripts/charts.js}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="../../static/scripts/includeHTML.js"></script>
-    <script src="../../static/scripts/jquery.mb.YTPlayer.js"></script>
-    <script src="../../static/scripts/scrolling.js"></script>
+    <script th:src="@{/scripts/includeHTML.js}"></script>
+    <script th:src="@{/scripts/scrolling.js}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.1/dist/chart.min.js"></script>
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-    <script src="../../static/scripts/bootstrap-formhelpers.min.js"></script>
+    <script th:src="@{/scripts/bootstrap-formhelpers.min.js}"></script>
 
 </head>
-<body class="text-center">
+<body class="text-center" style="display: block;background-color: #061121;">
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init({
+        // Global settings:
+        disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
+        startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
+        initClassName: 'aos-init', // class applied after initialization
+        animatedClassName: 'aos-animate', // class applied on animation
+        useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
+        disableMutationObserver: false, // disables automatic mutations' detections (advanced)
+        debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
+        throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
+
+
+        // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
+        offset: 0, // offset (in px) from the original trigger point
+        delay: 200, // values from 0 to 3000, with step 50ms
+        duration: 700, // values from 0 to 3000, with step 50ms
+        easing: 'ease', // default easing for AOS animations
+        once: false, // whether animation should happen only once - while scrolling down
+        mirror: true, // whether elements should animate out while scrolling past them
+        anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
+    });
+</script>
+<script type="text/javascript">
+    $( () => {
+        $('#menu-main').on('click', () => {
+            $('html,body').animate({
+                scrollTop: 0
+            },500);
+        });
+    });
+    $( () => {
+        $('#menu-main-mini').on('click', () => {
+            $('html,body').animate({
+                scrollTop: 0
+            },500);
+        });
+    });
+
+    /*$( () => {
+        $('#slide2-form-exit').on('click', () => {
+            $('#slide2-form').css({'display': 'none'});
+            $('#slide2-form').css({'opacity': '0'});
+            $('body').css({'overflow': 'auto'});
+        });
+    });
+
+    $( () => {
+        $('#index-button2').on('click', () => {
+            $('#slide2-form').css({'display': 'block'});
+            $('#slide2-form').css({'opacity': '1'});
+            $('body').css({'overflow': 'hidden'});
+        });
+    });*/
+</script>
+
+<div id="header" class="header" th:attr="include-html=@{/html/header.html}"></div>
 <main class="form-signup w-100 m-auto">
     <form action="#" th:action="@{/sign-up}" th:object="${user}" method="post">
-        <img class="mb-4" src="../../static/images/icon_INERI_1.svg" alt="" width="72" height="57">
-        <h1 class="h3 mb-3 fw-normal">Регистрация</h1>
+        <h1 class="h3 mb-3 mt-5 fw-normal" style="color: white">Регистрация</h1>
 
         <div class="form-floating">
             <input type="text" class="form-control"  placeholder="Имя" th:field="*{name}" id="name">
@@ -72,8 +127,12 @@
         <button class="w-100 btn btn-lg btn-primary mt-2" type="submit">Зарегистрироваться</button>
     </form>
 </main>
+<div th:attr="include-html=@{/html/footer.html}" class="footer" id="footer" style="background-color: white"></div>
 
-
-
+<script>
+    includeHTML();
+</script>
 </body>
+
+
 </html>
