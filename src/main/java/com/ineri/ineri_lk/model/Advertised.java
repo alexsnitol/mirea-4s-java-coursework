@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @author Slotin Alexander (@alexsnitol)
@@ -32,13 +33,16 @@ public class Advertised extends AbstractModel {
     @JoinColumn(name = "user_id")
     private User user;
     private String description;
-    private float price;
+    private double price;
     @ManyToOne
     @JoinColumn(name = "advertised_status_id")
     AdvertisedStatus advertisedStatus;
+    @Column(name = "datetime_created")
     LocalDateTime dateTimeCreated;
+    @OneToMany(mappedBy = "advertised")
+    List<AdvertisedPhoto> advertisedPhoto;
 
-    public void updateDateTime() {
+    public void setNowDateTime() {
         this.dateTimeCreated = LocalDateTime.now();
     }
 

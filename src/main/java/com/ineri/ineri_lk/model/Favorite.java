@@ -7,24 +7,21 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-/**
- * @author Kozlov Alexander
- */
-
-@Entity
-@Table(name = "advertised_photos")
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
-public class AdvertisedPhoto extends AbstractModel {
+@Entity
+@Table(name = "favorites")
+public class Favorite extends AbstractModel {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "form_id")
-    private Form form;
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "advertised_id")

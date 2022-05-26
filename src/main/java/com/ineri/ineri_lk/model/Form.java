@@ -32,6 +32,7 @@ public class Form {
     private Integer roomSize;
     private String description;
     private float price;
+    @Column(name = "datetime_created")
     private LocalDateTime dateTimeCreated = LocalDateTime.now();
 
     @ManyToOne

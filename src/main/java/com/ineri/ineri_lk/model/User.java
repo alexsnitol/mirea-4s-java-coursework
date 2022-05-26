@@ -37,6 +37,7 @@ public class User implements UserDetails {
     private String email;
     private String phoneNumber;
     private String photoPath;
+    @Column(name = "datetime_created")
     private LocalDateTime datetimeCreated = LocalDateTime.now();
 
     @Transient

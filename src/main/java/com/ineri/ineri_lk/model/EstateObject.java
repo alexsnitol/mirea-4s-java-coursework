@@ -26,6 +26,7 @@ public class EstateObject extends AbstractModel {
     private int floor;
     private int maxFloor;
     private int roomSize;
+    @Column(name = "datetime_created")
     private LocalDateTime dateTimeCreated;
 
     @ManyToOne
