@@ -3,6 +3,7 @@ VALUES ('ADMIN'), ('USER');
 
 INSERT INTO users(username, password, email, phone_number, surname, name, patronymic, photo_path)
 VALUES ('admin', 'admin', 'admin@ineri.ru', '900 000-00-00', 'admin_surname', 'admin_name', 'admin_patronymic', ''),
+       ('user', 'user', 'ivan@gmail.com', '921 167-69-55', 'Иванов', 'Иван', 'Иванович', ''),
        ('evgeniy37', 'a277981d4', 'evgeniy37@gmail.com', '921 167-69-55', 'Керимбаев', 'Евгений', 'Егорович', ''),
        ('prohor03111985', '26b79f3c2', 'prohor03111985@rambler.ru', '954 883-56-98', 'Зуев', 'Прохор', 'Иннокентиевич', ''),
        ('mila.naberejneva', '20ddeebf3', 'mila.naberejneva@hotmail.com', '973 762-51-24', 'Набережнева', 'Мила', 'Евгеньевна', ''),
