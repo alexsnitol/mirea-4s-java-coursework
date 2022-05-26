@@ -28,4 +28,8 @@ public abstract class AbstractServiceImpl<M extends AbstractModel, R extends Jpa
         defaultRepository.deleteById(id);
     }
 
+    public void delete(M model) {
+        defaultRepository.delete(model);
+    }
+
 }

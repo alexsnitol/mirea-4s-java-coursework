@@ -3,6 +3,7 @@ package com.ineri.ineri_lk.controller;
 import com.ineri.ineri_lk.model.Form;
 import com.ineri.ineri_lk.service.impl.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
