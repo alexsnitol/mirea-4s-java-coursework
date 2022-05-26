@@ -22,7 +22,7 @@ public class PropertyTypeController {
 
     @GetMapping
     public ModelAndView getAll() {
-        ModelAndView mv = new ModelAndView("test_view_property_types");
+        ModelAndView mv = new ModelAndView("view-property-types");
 
         mv.addObject("propertyTypes", propertyTypeService.getAll());
 

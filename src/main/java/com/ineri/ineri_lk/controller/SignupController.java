@@ -26,13 +26,13 @@ public class SignupController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/signup")
+    @GetMapping("/sign-up")
     public String registration(Model model) {
         model.addAttribute("user", new User());
         return "sign-up";
     }
 
-    @PostMapping("/signup")
+    @PostMapping("/sign-up")
     public String saveUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
@@ -45,11 +45,8 @@ public class SignupController {
         Set<Role> roles = new HashSet<>();
         roles.add(new Role(ERole.USER));
         user.setRoles(roles);
-        if (!userService.saveUser(user)){
-            model.addAttribute("usernameError", "Пользователь с таким именем уже существует");
-            return "sign-up";
-        }
+        userService.saveUser(user);
 
-        return "redirect:/index";
+        return "redirect:/";
     }
 }

@@ -85,6 +85,7 @@
     <form action="#" th:action="@{/sign-up}" th:object="${user}" method="post">
         <h1 class="h3 mb-3 mt-5 fw-normal" style="color: white">Регистрация</h1>
 
+
         <div class="form-floating">
             <input type="text" class="form-control"  placeholder="Имя" th:field="*{name}" id="name">
             <label for="name">Имя</label>
@@ -127,7 +128,7 @@
         <button class="w-100 btn btn-lg btn-primary mt-2" type="submit">Зарегистрироваться</button>
     </form>
 </main>
-<div th:attr="include-html=@{/html/footer.html}" class="footer" id="footer" style="background-color: white"></div>
+<div th:attr="include-html=@{/html/footer.html}" class="footer" id="footer" style="background-color: white;padding: 10px 0 10px 0;height: auto"></div>
 
 <script>
     includeHTML();

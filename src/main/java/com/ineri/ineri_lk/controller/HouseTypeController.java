@@ -23,7 +23,7 @@ public class HouseTypeController {
 
     @GetMapping
     public ModelAndView getAll() {
-        ModelAndView mv = new ModelAndView("test_view_house_types");
+        ModelAndView mv = new ModelAndView("view-house-types");
 
         mv.addObject("houseTypes", houseTypeService.getAll());
 

@@ -16,6 +16,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import javax.sql.DataSource;
+
 /**
  * @author Kozlov Alexander
  */
@@ -28,18 +30,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserService userService;
 
-
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
+                .csrf()
+                    .disable()
 			    .authorizeRequests()
                     .antMatchers("/", "/signup").permitAll()
                 .and()
-                    .formLogin()
-                    .loginPage("/login")
-                    .permitAll()
-                .and()
                     .logout()
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                     .permitAll();
     }
+
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+                .userDetailsService(userService)
+                .passwordEncoder(new BCryptPasswordEncoder());
+    }
+
 }

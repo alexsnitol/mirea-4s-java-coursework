@@ -39,14 +39,12 @@ public class UserService implements UserDetailsService {
         return userRepository.findByUsername(login).orElse(null);
     }
 
-    public boolean saveUser(User user) {
+    public void saveUser(User user) {
         Optional<User> userFromDB = userRepository.findByUsername(user.getUsername());
-        if (userFromDB.isPresent()) {
-            return false;
+        if (userFromDB == null) {
+            user.setPassword(user.getPassword());
+            userRepository.save(user);
         }
-        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-        userRepository.save(user);
-        return true;
     }
 
     public void updateUser(User user) {

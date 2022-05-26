@@ -66,7 +66,6 @@
             $('body').css({'overflow': 'auto'});
         });
     });
-
     $( () => {
         $('#index-button2').on('click', () => {
             $('#slide2-form').css({'display': 'block'});
@@ -91,13 +90,13 @@
         </div>
 
         <button class="w-100 btn btn-lg btn-primary mt-1" type="submit">Войти</button>
-        <a th:href="@{'/signup'}" class="w-100 mt-1 btn btn-lg btn-secondary" role="button" aria-pressed="true">Создать аккаунт</a>
+        <a th:href="@{'/sign-up'}" class="w-100 mt-1 btn btn-lg btn-secondary" role="button" aria-pressed="true">Создать аккаунт</a>
     </form>
 </main>
 
 
 </body>
-<div th:attr="include-html=@{/html/footer.html}" class="footer mb-0" id="footer" style="background-color: white; height: auto"></div>
+<div th:attr="include-html=@{/html/footer.html}" class="footer mb-0" id="footer" style="background-color: white;margin: 40px 0 0px 0;padding: 10px 0 10px 0; height: auto"></div>
 
 <script>
     includeHTML();

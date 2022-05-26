@@ -24,10 +24,11 @@ public class CityController {
 
     @GetMapping
     public ModelAndView getAll() {
-        ModelAndView mv = new ModelAndView("test_view_cities");
+        ModelAndView mv = new ModelAndView("view-cities");
 
         mv.addObject("cities", cityService.getAll());
-
+        Boolean admin = false;
+        mv.addObject("isAdmin", admin);
         return mv;
     }
 
