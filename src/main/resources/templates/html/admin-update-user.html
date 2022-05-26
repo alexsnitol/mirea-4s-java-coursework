@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="generator" content="Hugo 0.98.0">
-    <title>Регистрация</title>
+    <title>Admin Измените данные</title>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/sign-in/">
@@ -26,10 +26,12 @@
 </head>
 <body class="text-center">
 <main class="form-signup w-100 m-auto">
-    <form action="#" th:action="@{/signup}" th:object="${user}" method="post">
+    <form th:action="@{'/'+${currentUsername}+'/users/'+${user.id}+'/edit'}" th:object="${user}" method="post">
         <img class="mb-4" src="../../static/images/icon_INERI_1.svg" alt="" width="72" height="57">
-        <h1 class="h3 mb-3 fw-normal">Регистрация</h1>
-
+        <h1 class="h3 mb-3 fw-normal">Измените данные</h1>
+        <div class="form-floating">
+            <input type="text" th:field="*{id}" id="id" hidden>
+        </div>
         <div class="form-floating">
             <input type="text" class="form-control"  placeholder="Имя" th:field="*{name}" id="name">
             <label for="name">Имя</label>
@@ -62,6 +64,10 @@
             <input type="text" class="form-control bfh-phone" id="phoneNumber" data-format="+7 ddd ddd-dd-dd"th:field="*{phoneNumber}">
             <label for="phoneNumber">Номер</label>
         </div>
+        <div class="checkbox mb-3">
+            <label>Сделать администратором:</label>
+            <input type="checkbox" id="isAdmin" name="isAdmin">
+        </div>
 
 
         <!-- <div class="checkbox mb-3">
@@ -69,7 +75,7 @@
             <input type="checkbox" value="remember-me"> Remember me
           </label>
         </div> -->
-        <button class="w-100 btn btn-lg btn-primary mt-2" type="submit">Зарегистрироваться</button>
+        <button class="w-100 btn btn-lg btn-primary mt-2" type="submit">Добавить пользователя</button>
     </form>
 </main>
 

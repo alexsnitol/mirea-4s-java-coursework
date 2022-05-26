@@ -16,16 +16,16 @@
 </head>
 <body class="text-center">
 <main class="form-signin w-100 m-auto">
-    <form>
+    <form action="#" th:action="@{/login}" th:object="${user}" method="post">
         <img class="mb-4" src="../../static/images/icon_INERI_1.svg" alt="" width="72" height="57">
         <h1 class="h3 mb-3 fw-normal">Авторизация</h1>
 
         <div class="form-floating">
-            <input type="text" class="form-control" id="floatingLogin" placeholder="Логин">
+            <input type="text" class="form-control" id="floatingLogin" placeholder="Логин" th:field="*{username}">
             <label for="floatingLogin">Логин</label>
         </div>
         <div class="form-floating pb--11">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Пароль">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Пароль"th:field="*{password}">
             <label for="floatingPassword">Пароль</label>
         </div>
         <!-- <div class="checkbox mb-3">
