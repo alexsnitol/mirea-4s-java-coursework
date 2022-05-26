@@ -95,7 +95,7 @@
         <div class="block-header">
             <div class="row">
                 <div class="p-4">
-                    <h1 style="color: white">Просмотр городов</h1>
+                    <h1 style="color: white">Просмотр типа недвижимости</h1>
                 </div>
             </div>
         </div>
@@ -109,7 +109,7 @@
                                 <div class="col-sm-6" style="width: 100%"th:switch="${propertyTypes}">
                                     <h2 th:case="null">NOT FOUND</h2>
                                     <div class="form-group" th:case="*">
-                                        <h2>propertyTypes types</h2>
+                                        <h2></h2>
                                         <table class="table">
                                             <thead>
                                             <tr>

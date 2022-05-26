@@ -22,7 +22,7 @@ public class EstateObjectTypeController {
 
     @GetMapping
     public ModelAndView getAll() {
-        ModelAndView mv = new ModelAndView("test_view_estate_object_types");
+        ModelAndView mv = new ModelAndView("view-estate-object-types");
 
         mv.addObject("estateObjectTypes", estateObjectTypeService.getAll());
 

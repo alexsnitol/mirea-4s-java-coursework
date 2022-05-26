@@ -35,7 +35,7 @@ public class EstateObjectController extends AbstractController {
 
     @GetMapping
     public ModelAndView getAll() {
-        ModelAndView mv = new ModelAndView("test_view_estate_objects");
+        ModelAndView mv = new ModelAndView("view-estate-objects");
         mv.addObject("estateObjects", estateObjectService.getAll());
         return mv;
     }

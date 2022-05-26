@@ -22,7 +22,7 @@ public class RenovationTypeController {
 
     @GetMapping
     public ModelAndView getAll() {
-        ModelAndView mv = new ModelAndView("test_view_renovation_types");
+        ModelAndView mv = new ModelAndView("view-renovation-types");
 
         mv.addObject("renovationTypes", renovationTypeService.getAll());
 
