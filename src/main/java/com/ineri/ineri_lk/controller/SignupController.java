@@ -45,10 +45,7 @@ public class SignupController {
         Set<Role> roles = new HashSet<>();
         roles.add(new Role(ERole.USER));
         user.setRoles(roles);
-        if (!userService.saveUser(user)){
-            model.addAttribute("usernameError", "Пользователь с таким именем уже существует");
-            return "sign-up";
-        }
+        userService.saveUser(user);
 
         return "redirect:/";
     }

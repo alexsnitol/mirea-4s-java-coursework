@@ -30,8 +30,7 @@ public class LoginController {
     @PostMapping("/login")
     public String login(@ModelAttribute("user") User user) {
         User userDB = userService.getUserByUsername(user.getUsername());
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        if (userDB != null && encoder.encode(user.getPassword()).equals(userDB.getPassword()))
+        if (userDB != null && user.getPassword().equals(userDB.getPassword()))
             return "redirect:/" + user.getUsername() + "/catalog";
         else
             return "redirect:/login";

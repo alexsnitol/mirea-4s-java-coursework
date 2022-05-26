@@ -19,9 +19,4 @@ public class MVCConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/html/**")
                 .addResourceLocations("classpath:/templates/html/");
     }
-
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/login").setViewName("sign-in");
-    }
-
 }
