@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Test Catalog</title>
+</head>
+<body>
+<div th:switch="${advertiseds}">
+  <h2 th:case="null">NOT FOUND</h2>
+  <div th:case="*">
+    <h2>Catalog</h2>
+    <table>
+      <thead>
+      <tr>
+        <th>id</th>
+        <th>city</th>
+        <th>full_address</th>
+        <th>area</th>
+        <th>floor</th>
+        <th>max_floor</th>
+        <th>room_size</th>
+        <th>house_type</th>
+        <th>property_type</th>
+        <th>renovation_type</th>
+        <th>estate_object_type</th>
+        <th>description</th>
+        <th>price</th>
+        <th>status</th>
+        <th>datetime_created</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="advertised : ${advertiseds}">
+        <td th:text="${advertised.id}"></td>
+        <td th:text="${advertised.estateObject.address.city.name}"></td>
+        <td>
+          <a th:text="${advertised.estateObject.address.fullAddress}" th:href="@{'/catalog/' + ${advertised.id}}"></a>
+        </td>
+        <td th:text="${advertised.estateObject.area}"></td>
+        <td th:text="${advertised.estateObject.floor}"></td>
+        <td th:text="${advertised.estateObject.maxFloor}"></td>
+        <td th:text="${advertised.estateObject.roomSize}"></td>
+        <td th:text="${advertised.estateObject.houseType.name}"></td>
+        <td th:text="${advertised.estateObject.propertyType.name}"></td>
+        <td th:text="${advertised.estateObject.renovationType.name}"></td>
+        <td th:text="${advertised.estateObject.estateObjectType.name}"></td>
+        <td th:text="${advertised.description}"></td>
+        <td th:text="@{${#numbers.formatDecimal(advertised.price, 1, 'WHITESPACE', 0, 'COMMA')} + ' ₽'}"></td>
+        <td th:text="${advertised.advertisedStatus.name}"></td>
+        <td th:text="${#temporals.format(advertised.dateTimeCreated, 'dd.MM.yyy')}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <p><a href="/catalog/new"><button>Create</button></a></p>
+</div>
+</body>
+</html>

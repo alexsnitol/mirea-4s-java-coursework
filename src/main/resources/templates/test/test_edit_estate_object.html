@@ -7,13 +7,13 @@
 <body>
   <form th:action="@{'/estate-objects/' + ${estateObject.id} + '/edit'}" th:object="${estateObject}" method="post">
       <label>city:</label>
-      <select name="city" id="city" th:field="${estateObject.address.city}">
+      <select name="city" id="city" th:field="*{address.city}">
           <option th:each="city : ${cities}" th:value="${city.id}" th:text="${city.name}"></option>
       </select>
       <br/><br/>
 
       <label>full_address:</label>
-      <textarea name="fullAddress" id="fullAddress" th:field="${estateObject.address.fullAddress}"></textarea>
+      <textarea name="fullAddress" id="fullAddress" th:field="*{address.fullAddress}"></textarea>
       <br/><br/>
 
       <label>area:</label>

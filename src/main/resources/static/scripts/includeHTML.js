@@ -38,17 +38,25 @@ function includeHTML() {
 
     let page = path.split("/").pop();
 
-    if (page === "index.html") {
+    if (page === "") {
         document.getElementById("menu-main").classList.add("current");
         document.getElementById("menu-main-mini").classList.add("current");
     }
-    else if (page === "contacts.html") {
+    else if (page === "contacts") {
         document.getElementById("menu-contacts").classList.add("current");
         document.getElementById("menu-contacts-mini").classList.add("current");
     }
-    else if (page === "vacancies.html") {
+    else if (page === "catalog") {
+        document.getElementById("menu-catalog").classList.add("current");
+        document.getElementById("menu-catalog-mini").classList.add("current");
+    }
+    else if (page === "vacancies") {
         document.getElementById("menu-vacancies").classList.add("current");
         document.getElementById("menu-vacancies-mini").classList.add("current");
+    }
+    else if (page === "account") {
+        document.getElementById("menu-account").classList.add("current");
+        document.getElementById("menu-account-mini").classList.add("current");
     }
 
     let d = new Date;

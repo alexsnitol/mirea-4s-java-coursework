@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Test Advertised</title>
+</head>
+<body>
+    <h2>Advertised</h2>
+
+    <h3>city</h3>
+    <div th:text="${advertised.estateObject.address.city.name}"></div>
+    <br/><br/>
+
+    <h3>full_address</h3>
+    <div th:text="${advertised.estateObject.address.fullAddress}"></div>
+    <br/><br/>
+
+    <h3>area</h3>
+    <div th:text="${advertised.estateObject.area}"></div>
+    <br/><br/>
+
+    <h3>floor</h3>
+    <div th:text="${advertised.estateObject.floor}"></div>
+    <br/><br/>
+
+    <h3>max_floor</h3>
+    <div th:text="${advertised.estateObject.maxFloor}"></div>
+    <br/><br/>
+
+    <h3>room_size</h3>
+    <div th:text="${advertised.estateObject.roomSize}"></div>
+    <br/><br/>
+
+    <h3>house_type</h3>
+    <div th:text="${advertised.estateObject.houseType.name}"></div>
+    <br/><br/>
+
+    <h3>property_type</h3>
+    <div th:text="${advertised.estateObject.propertyType.name}"></div>
+    <br/><br/>
+
+    <h3>renovation_type</h3>
+    <div th:text="${advertised.estateObject.renovationType.name}"></div>
+    <br/><br/>
+
+    <h3>estate_object_type</h3>
+    <div th:text="${advertised.estateObject.estateObjectType.name}"></div>
+    <br/><br/>
+
+    <h3>description</h3>
+    <div th:text="${advertised.description}"></div>
+    <br/><br/>
+
+    <h3>price</h3>
+    <div th:text="@{${#numbers.formatDecimal(advertised.price, 1, 'WHITESPACE', 0, 'COMMA')} + ' ₽'}"></div>
+    <br/><br/>
+
+    <h3>fio</h3>
+    <div th:text="@{${advertised.admin.surname} + ' ' + ${advertised.admin.name} + ' ' + ${advertised.admin.patronymic}}"></div>
+
+    <h3>contact_phone</h3>
+    <div th:text="@{'+7 ' + ${advertised.admin.phoneNumber}}"></div>
+
+    <h3>status</h3>
+    <div th:text="${advertised.advertisedStatus.name}"></div>
+    <br/><br/>
+
+    <h3>datetime_created</h3>
+    <div th:text="${#temporals.format(advertised.dateTimeCreated, 'dd.MM.yyy')}"></div>
+    <br/><br/>
+
+    <p><a th:href="@{'/catalog/' + ${advertised.id} + '/delete'}"><button>Delete</button></a></p>
+    <p><a th:href="@{'/catalog/' + ${advertised.id} + '/edit'}"><button>Edit</button></a></p>
+</body>
+</html>

@@ -14,4 +14,9 @@ public class IndexController {
     public String index() {
         return "index";
     }
+
+    @GetMapping("/contacts")
+    public String showContact() {
+        return "contacts";
+    }
 }

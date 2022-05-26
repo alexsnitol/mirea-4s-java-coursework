@@ -40,7 +40,7 @@
                         <td th:text="${object.propertyType.name}"></td>
                         <td th:text="${object.renovationType.name}"></td>
                         <td th:text="${object.estateObjectType.name}"></td>
-                        <td th:text="${object.dateTimeCreated}"></td>
+                        <td th:text="${#temporals.format(object.dateTimeCreated, 'dd.MM.yyy HH:mm')}"></td>
                         <td>
                             <a th:href="@{'/estate-objects/' + ${object.id} + '/delete'}"><button>Delete</button></a>
                             <a th:href="@{'/estate-objects/' + ${object.id} + '/edit'}"><button>Edit</button></a>
