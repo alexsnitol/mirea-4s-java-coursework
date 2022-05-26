@@ -58,7 +58,7 @@ public class AdvertisedController {
 
     @GetMapping("/{id}")
     public ModelAndView getById(@PathVariable Long id) {
-        ModelAndView mv = new ModelAndView("test_view_advertised");
+        ModelAndView mv = new ModelAndView("advertised");
         mv.addObject("advertised", advertisedService.getById(id));
         return mv;
     }
