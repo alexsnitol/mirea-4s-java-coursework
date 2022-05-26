@@ -26,13 +26,13 @@ public class SignupController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/signup")
+    @GetMapping("/sign-up")
     public String registration(Model model) {
         model.addAttribute("user", new User());
         return "sign-up";
     }
 
-    @PostMapping("/signup")
+    @PostMapping("/sign-up")
     public String saveUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
@@ -50,6 +50,6 @@ public class SignupController {
             return "sign-up";
         }
 
-        return "redirect:/index";
+        return "redirect:/";
     }
 }

@@ -123,14 +123,14 @@
                                                 <td th:text="${type.id}"></td>
                                                 <td th:text="${type.name}"></td>
                                                 <td>
-                                                    <a th:href="@{'/property-types/' + ${type.id} +  '/delete'}"><button class="btn-danger">Delete</button></a>
-                                                    <a th:href="@{'/property-types/' + ${type.id} +  '/edit'}"><button class="btn-secondary">Edit</button></a>
+                                                    <a th:if="${isAdmin}" th:href="@{'/property-types/' + ${type.id} +  '/delete'}"><button class="btn-danger">Delete</button></a>
+                                                    <a th:if="${isAdmin}" th:href="@{'/property-types/' + ${type.id} +  '/edit'}"><button class="btn-secondary">Edit</button></a>
                                                 </td>
                                             </tr>
                                             </tbody>
                                         </table>
                                     </div>
-                                    <p><a href="/property-types/new"><button class="btn-primary">Create</button></a></p>
+                                    <p><a th:if="${isAdmin}" href="/property-types/new"><button class="btn-primary">Create</button></a></p>
                                 </div>
                             </div>
                         </div>

@@ -106,7 +106,7 @@
                     <div class="card" style="margin-bottom: 0; border-bottom-left-radius: 0;border-bottom-right-radius: 0">
                         <div class="body">
                             <div class="row clearfix">
-                                <div class="col-sm-6" style="width: 100%"th:switch="${houseTypes}">
+                                <div class="col-sm-6" style="width: 100%" th:switch="${houseTypes}">
                                     <h2 th:case="null">NOT FOUND</h2>
                                     <div class="form-group" th:case="*">
                                         <h2></h2>
@@ -123,14 +123,14 @@
                                                 <td th:text="${type.id}"></td>
                                                 <td th:text="${type.name}"></td>
                                                 <td>
-                                                    <a th:href="@{'/house-types/' + ${type.id} + '/delete'}"><button class="btn-danger">Delete</button></a>
-                                                    <a th:href="@{'/house-types/' + ${type.id} + '/edit'}"><button class="btn-secondary">Edit</button></a>
+                                                    <a th:if="${isAdmin}" th:href="@{'/house-types/' + ${type.id} + '/delete'}"><button class="btn-danger">Delete</button></a>
+                                                    <a th:if="${isAdmin}" th:href="@{'/house-types/' + ${type.id} + '/edit'}"><button class="btn-secondary">Edit</button></a>
                                                 </td>
                                             </tr>
                                             </tbody>
                                         </table>
                                     </div>
-                                    <p><a href="/house-types/new"><button class="btn-primary">Create</button></a></p>
+                                    <p><a th:if="${isAdmin}" href="/house-types/new"><button class="btn-primary">Create</button></a></p>
                                 </div>
                             </div>
                         </div>
