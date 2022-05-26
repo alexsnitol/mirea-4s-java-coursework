@@ -5,6 +5,7 @@ import com.ineri.ineri_lk.model.AdvertisedPhoto;
 import com.ineri.ineri_lk.model.Favorite;
 import com.ineri.ineri_lk.repository.AdvertisedRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -22,10 +23,13 @@ public class AdvertisedServiceImpl extends AbstractServiceImpl<Advertised, Adver
     @Autowired
     AdvertisedRepository advertisedRepository;
     @Autowired
+    @Lazy
     EstateObjectServiceImpl estateObjectService;
     @Autowired
+    @Lazy
     FavoriteServiceImpl favoriteService;
     @Autowired
+    @Lazy
     AdvertisedPhotoServiceImpl advertisedPhotoService;
 
     @PostConstruct
@@ -45,7 +49,7 @@ public class AdvertisedServiceImpl extends AbstractServiceImpl<Advertised, Adver
 
         if (!favoriteList.isEmpty()) {
             for (Favorite favorite : favoriteList) {
-                favoriteService.deleteById(favorite.getId());
+                favoriteService.delete(favorite);
             }
         }
 
@@ -53,11 +57,19 @@ public class AdvertisedServiceImpl extends AbstractServiceImpl<Advertised, Adver
 
         if (!advertisedPhotoList.isEmpty()) {
             for (AdvertisedPhoto advertisedPhoto : advertisedPhotoList) {
-                advertisedPhotoService.deleteById(advertisedPhoto.getId());
+                if (advertisedPhoto.getForm() == null) {
+                    advertisedPhotoService.delete(advertisedPhoto);
+                } else {
+                    advertisedPhoto.setAdvertised(null);
+                    advertisedPhotoService.save(advertisedPhoto);
+                }
             }
         }
 
         advertisedRepository.deleteById(id);
     }
 
+    public List<Advertised> getAllByEstateObjectId(Long id) {
+        return advertisedRepository.findAllByEstateObjectId(id);
+    }
 }

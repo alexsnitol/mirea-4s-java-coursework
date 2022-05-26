@@ -2,6 +2,7 @@ package com.ineri.ineri_lk.service.impl;
 
 import com.ineri.ineri_lk.model.Advertised;
 import com.ineri.ineri_lk.model.EstateObject;
+import com.ineri.ineri_lk.model.Form;
 import com.ineri.ineri_lk.repository.AdvertisedRepository;
 import com.ineri.ineri_lk.repository.EstateObjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +25,16 @@ public class EstateObjectServiceImpl extends AbstractServiceImpl<EstateObject, E
     @Autowired
     EstateObjectRepository estateObjectRepository;
     @Autowired
+    @Lazy
     AddressServiceImpl addressService;
     @Autowired
     AdvertisedRepository advertisedRepository;
     @Autowired
     @Lazy
     AdvertisedServiceImpl advertisedService;
+    @Autowired
+    @Lazy
+    FormService formService;
 
     @PostConstruct
     public void init() {
@@ -38,10 +43,13 @@ public class EstateObjectServiceImpl extends AbstractServiceImpl<EstateObject, E
 
     @Override
     public void deleteById(Long id) {
-        List<Advertised> advertisedList = advertisedRepository.findAllByEstateObjectId(id);
-        for (Advertised advertised : advertisedList) {
-            advertisedService.deleteById(advertised.getId());
+        List<Advertised> advertisedList = advertisedService.getAllByEstateObjectId(id);
+        if (!advertisedList.isEmpty()) {
+            for (Advertised advertised : advertisedList) {
+                advertisedService.deleteById(advertised.getId());
+            }
         }
+
         Long idOfAddress = getById(id).getAddress().getId();
         defaultRepository.deleteById(id);
         addressService.deleteById(idOfAddress);
@@ -50,6 +58,10 @@ public class EstateObjectServiceImpl extends AbstractServiceImpl<EstateObject, E
     public void save(EstateObject estateObject) {
         addressService.save(estateObject.getAddress());
         defaultRepository.save(estateObject);
+    }
+
+    public List<EstateObject> getAllByAddressId(Long id) {
+        return defaultRepository.findAllByAddressId(id);
     }
 
 }

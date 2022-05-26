@@ -23,8 +23,4 @@ public class FavoriteServiceImpl extends AbstractServiceImpl<Favorite, FavoriteR
         return favoriteRepository.findAllByAdvertisedId(id);
     }
 
-    public void deleteByAdvertisedId(Long id) {
-        defaultRepository.deleteByAdvertisedId(id);
-    }
-
 }

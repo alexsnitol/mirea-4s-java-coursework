@@ -128,6 +128,7 @@ CREATE TABLE advertiseds (
 
 -- Author: Kozlov A.V.
 CREATE TABLE favorites (
+       id            SERIAL PRIMARY KEY,
        user_id       BIGINT(10) UNSIGNED NOT NULL,
        advertised_id BIGINT(10) UNSIGNED NOT NULL,
        FOREIGN KEY (user_id) REFERENCES users (id),
@@ -166,6 +167,7 @@ CREATE TABLE forms (
 
 -- Author: Slotin A.S.
 CREATE TABLE advertised_photos (
+        id            SERIAL PRIMARY KEY,
         path          VARCHAR(2047),
         advertised_id BIGINT UNSIGNED,
         form_id       BIGINT UNSIGNED,
@@ -175,6 +177,7 @@ CREATE TABLE advertised_photos (
 
 -- Author: Kozlov A.V.
 CREATE TABLE user_roles (
+    id      SERIAL PRIMARY KEY,
     user_id BIGINT UNSIGNED NOT NULL,
     role_id BIGINT UNSIGNED NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users (id),
