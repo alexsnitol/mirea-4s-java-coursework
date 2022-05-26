@@ -1,7 +1,11 @@
 package com.ineri.ineri_lk.service.impl;
 
 import com.ineri.ineri_lk.model.User;
+import com.ineri.ineri_lk.repository.RoleRepository;
 import com.ineri.ineri_lk.repository.UserRepository;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,9 +20,6 @@ import java.util.Optional;
 
 /**
  * @author Kozlov Alexander
- * @version 1.0
- *
- * Добавить методы
  */
 
 @Service
@@ -26,9 +27,9 @@ public class UserService implements UserDetailsService {
 
     @PersistenceContext
     private EntityManager em;
-
     @Autowired
     private UserRepository userRepository;
+
 
     public User getUserById(Long userId) {
         return userRepository.findById(userId).orElse(null);

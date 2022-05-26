@@ -1,12 +1,13 @@
 package com.ineri.ineri_lk.controller;
 
-import com.ineri.ineri_lk.model.Address;
-import com.ineri.ineri_lk.model.City;
 import com.ineri.ineri_lk.model.EstateObject;
 import com.ineri.ineri_lk.service.impl.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -38,13 +39,6 @@ public class EstateObjectController extends AbstractController {
         mv.addObject("estateObjects", estateObjectService.getAll());
         return mv;
     }
-
-//    @GetMapping("/{id}")
-//    public ModelAndView getById(@PathVariable Long id) {
-//        ModelAndView mv = new ModelAndView("test_view_estate_objects");
-//        mv.addObject("estateObject", estateObjectService.getById(id));
-//        return mv;
-//    }
 
     @GetMapping("/new")
     public ModelAndView newEstateObject(EstateObject estateObject) {

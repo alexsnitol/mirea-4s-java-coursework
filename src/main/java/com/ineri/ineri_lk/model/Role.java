@@ -19,7 +19,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Setter
 @Getter
-public class Role implements GrantedAuthority {
+public class Role extends AbstractModel implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
