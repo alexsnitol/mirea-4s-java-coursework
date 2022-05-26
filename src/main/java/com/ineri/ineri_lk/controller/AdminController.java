@@ -3,6 +3,8 @@ package com.ineri.ineri_lk.controller;
 import com.ineri.ineri_lk.model.ERole;
 import com.ineri.ineri_lk.model.Role;
 import com.ineri.ineri_lk.model.User;
+import com.ineri.ineri_lk.repository.RoleRepository;
+import com.ineri.ineri_lk.service.impl.RoleService;
 import com.ineri.ineri_lk.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -19,11 +21,14 @@ import java.util.Set;
  */
 
 @Controller
-//@PreAuthorize("hasAuthority('ADMIN')")
 public class AdminController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RoleService roleService;
+
 
     @GetMapping("/{username}/users")
     public String findAll(Model model, @PathVariable String username){
@@ -41,8 +46,9 @@ public class AdminController {
 
     @PostMapping("/{currentUsername}/users/new")
     public String createUser(User user, @PathVariable("currentUsername") String username) {
-        Set<Role> roles = new HashSet<>();
-        roles.add(new Role(ERole.USER));
+        Set<Role> roles = user.getRoles();
+        Role role = roleService.getByName(ERole.USER);
+        roles.add(role);
         user.setRoles(roles);
         userService.saveUser(user);
         return "redirect:/" + username + "/users";
@@ -57,9 +63,13 @@ public class AdminController {
     }
 
     @PostMapping("/{currentUsername}/users/{userId}/edit")
-    public String updateUser(User user, @PathVariable("currentUsername") String username, @RequestParam(value = "isAdmin", required = false) boolean isAdmin) {
+    public String updateUser(User user,
+                             @PathVariable("currentUsername") String username,
+                             @RequestParam(value = "isAdmin", required = false) boolean isAdmin) {
+
         Set<Role> roles = user.getRoles();
-        roles.add(new Role(ERole.USER));
+        Role role = roleService.getByName(ERole.USER);
+        roles.add(role);
 
         if (isAdmin) {
             roles.add(new Role(ERole.ADMIN));

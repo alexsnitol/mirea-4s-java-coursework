@@ -32,8 +32,10 @@ VALUES  (1, 1),
         (12, 2),
         (13, 2);
 
+
 INSERT INTO cities(name)
 VALUES ('Москва'), ('Санкт-Петербург'), ('Мытищи'), ('Королёв'), ('Балашиха'), ('Подольск'), ('Красногорск'), ('Химки'), ('Люберцы'), ('Одинцово');
+
 
 INSERT INTO addresses(city_id, full_address)
 VALUES  (1, 'ул. Партизанская, д. 10, кв. 1'),
@@ -99,6 +101,8 @@ VALUES ('Брокер по недвижимости',
         1
        );
 
+
+
 INSERT INTO vacancies(name, keywords, summary, is_active, text_description, text_study, text_responsibilities, text_requirements, text_features, text_summary, admin_id, city_id)
 VALUES ('Оператор call-центра',
         'Консультирование клиентов;Сопровождение клиента;Уверенный пользователь ПК;',
@@ -144,6 +148,7 @@ VALUES ('Без ремонта'), ('Косметический'), ('Евроре
 INSERT INTO estate_object_types(name)
 VALUES ('Новостройка'), ('Вторичка'), ('Дом'), ('Участок'), ('Офис'), ('Помещение'), ('Склад');
 
+
 INSERT INTO estate_objects(area, floor, max_floor, room_size, datetime_created,
                            house_type_id, property_type_id, renovation_type_id, estate_object_type_id, address_id)
 VALUES  (50, 4, 30, 3, '2022-01-01 12:00:00', 2, 1, 2, 2, 1),
@@ -154,7 +159,11 @@ VALUES  (50, 4, 30, 3, '2022-01-01 12:00:00', 2, 1, 2, 2, 1),
         (215, 0, 2, 6, '2021-12-29 11:59:00', 3, 1, 1, 3, 6);
 
 INSERT INTO advertiseds(description, price, datetime_created, advertised_status_id, estate_object_id, admin_id, user_id)
-VALUES  ('Описание',
+VALUES  ('Проспект Мира и ВДНХ: это традиции и преемственность поколений. Четыре парка рядом с вами.
+Жизнь в нескольких минутах от центра города в месте, утопающем в высоких зеленых деревьях
+это жизнь в "Триколоре", где слагаемых комфорта, здоровья и окружения для вас и вашей семьи
+даже больше, чем три причины вашего счастья. Собственная инфраструктура, подземный паркинг
+здесь учтены и реализованы все решения уровня бизнес-класса в недвижимости.',
         8500199, '2021-12-29 11:59:00', 1, 1, 1, 1),
         ('Описание',
          18999899, '2022-02-01 14:14:56', 1, 2, 1, 1),
