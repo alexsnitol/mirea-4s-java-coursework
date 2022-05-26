@@ -27,7 +27,8 @@ public class CityController {
         ModelAndView mv = new ModelAndView("view-cities");
 
         mv.addObject("cities", cityService.getAll());
-
+        Boolean admin = false;
+        mv.addObject("isAdmin", admin);
         return mv;
     }
 
