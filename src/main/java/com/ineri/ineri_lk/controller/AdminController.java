@@ -72,10 +72,9 @@ public class AdminController {
         roles.add(role);
 
         if (isAdmin) {
-            roles.add(new Role(ERole.ADMIN));
-        } else {
-            roles.remove(new Role(ERole.ADMIN));
+            roles.add(roleService.getByName(ERole.ADMIN));
         }
+        user.setPhotoPath("");
         user.setRoles(roles);
         userService.updateUser(user);
         return "redirect:/" + username + "/users";
