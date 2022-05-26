@@ -79,14 +79,14 @@
                                                 <td th:text="${object.estateObjectType.name}"></td>
                                                 <td th:text="${object.dateTimeCreated}"></td>
                                                 <td>
-                                                    <a th:href="@{'/estate-objects/' + ${object.id} + '/delete'}"><button class="btn-danger">Delete</button></a>
-                                                    <a th:href="@{'/estate-objects/' + ${object.id} + '/edit'}"><button class="btn-secondary">Edit</button></a>
+                                                    <a th:if="${isAdmin}" th:href="@{'/estate-objects/' + ${object.id} + '/delete'}"><button class="btn-danger">Delete</button></a>
+                                                    <a th:if="${isAdmin}" th:href="@{'/estate-objects/' + ${object.id} + '/edit'}"><button class="btn-secondary">Edit</button></a>
                                                 </td>
                                             </tr>
                                             </tbody>
                                         </table>
                                     </div>
-                                    <p><a href="/estate-objects/new"><button class="btn-primary">Create</button></a></p>
+                                    <p><a th:if="${isAdmin}" href="/estate-objects/new"><button class="btn-primary">Create</button></a></p>
                                 </div>
                             </div>
                         </div>
