@@ -35,13 +35,13 @@ public class AdminController {
         List<User> users = userService.getAll();
         model.addAttribute("users", users);
         model.addAttribute("currentUsername", username);
-        return "k-admin-user-list";
+        return "admin-user-list";
     }
 
     @GetMapping("/{currentUsername}/users/new")
     public String newUser(User user, @PathVariable("currentUsername") String username, Model model) {
         model.addAttribute("currentUsername", username);
-        return "k-admin-new-user";
+        return "admin-new-user";
     }
 
     @PostMapping("/{currentUsername}/users/new")
@@ -59,7 +59,7 @@ public class AdminController {
         User user = userService.getUserById(id);
         model.addAttribute("user", user);
         model.addAttribute("currentUsername", username);
-        return "k-admin-user-update";
+        return "admin-update-user";
     }
 
     @PostMapping("/{currentUsername}/users/{userId}/edit")
