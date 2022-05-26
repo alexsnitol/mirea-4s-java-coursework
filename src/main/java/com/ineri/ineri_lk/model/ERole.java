@@ -5,7 +5,7 @@ package com.ineri.ineri_lk.model;
  * @version 1.0
  */
 
-public enum ERole {
+public enum ERole{
     USER,
     ADMIN
 }
