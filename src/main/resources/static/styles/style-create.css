@@ -234,3 +234,20 @@ section.content {
     text-align: center;
     margin: 2em 0;
 }
+.labels1{
+    font-weight: 700;
+    font-size: 24px;
+    color: white;
+    line-height: 0;
+    cursor: pointer;
+}
+a{
+    text-decoration: none;
+}
+
+a:hover {
+    color: #129DFF;
+}
+.labels1:hover{
+    color: #129DFF;
+}
