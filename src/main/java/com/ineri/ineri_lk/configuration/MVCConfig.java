@@ -14,8 +14,8 @@ public class MVCConfig implements WebMvcConfigurer {
                 .addResourceLocations("classpath:/static/styles/");
         registry.addResourceHandler("/images/**")
                 .addResourceLocations("classpath:/static/images/");
-        registry.addResourceHandler("/js/**")
-                .addResourceLocations("classpath:/static/js/");
+        registry.addResourceHandler("/scripts/**")
+                .addResourceLocations("classpath:/static/scripts/");
     }
 
     public void addViewControllers(ViewControllerRegistry registry) {
