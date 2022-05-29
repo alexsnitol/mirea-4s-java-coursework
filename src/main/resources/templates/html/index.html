@@ -10,7 +10,6 @@
     <link rel="shortcut icon" th:href="@{/images/icon_INERI_1.svg}" type="image/x-icon">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script th:src="@{/scripts/includeHTML.js}"></script>
     <script th:src="@{/scripts/scrolling.js}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.1/dist/chart.min.js"></script>
 </head>
@@ -72,7 +71,7 @@
         });*/
     </script>
 
-    <div id="header" class="header" th:attr="include-html=@{/html/header.html}"></div>
+    <div th:replace="fragments/header :: header"></div>
 
     <div id="slide2-form" class="form hide">
         <form action="mailto:sslotin74@gmail.com" enctype="text/plain" method="post">
@@ -293,10 +292,7 @@
         </div>
     </div>
 
-    <div th:attr="include-html=@{/html/footer.html}" class="footer" id="footer"></div>
+    <div th:replace="fragments/footer :: footer"></div>
 
-    <script>
-        includeHTML();
-    </script>
 </body>
 </html>

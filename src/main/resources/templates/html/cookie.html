@@ -10,7 +10,6 @@
     <link rel="shortcut icon" href="../../static/images/icon_INERI_1.svg" type="image/x-icon">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="../../static/scripts/includeHTML.js"></script>
     <script src="../../static/scripts/scrolling.js"></script>
 </head>
 <body>
@@ -39,7 +38,7 @@
         });
     </script>
 
-    <div id="header" class="header" include-html="./header.html"></div>
+    <div th:replace="fragments/header :: header"></div>
 
     <div id="vacancies-main" class="slide slide-darkblue">
         <div id="vacancies-main-content" class="content">
@@ -57,9 +56,8 @@
             </div>
         </div>
     </div>
-    <div include-html="footer.html" class="footer" id="footer"></div>
-    <script>
-        includeHTML();
-    </script>
+
+    <div th:replace="fragments/footer :: footer"></div>
+
 </body>
 </html>

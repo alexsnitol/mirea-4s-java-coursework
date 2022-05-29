@@ -13,7 +13,6 @@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script th:src="@{/scripts/includeHTML.js}"></script>
     <script th:src="@{/scripts/scrolling.js}"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://unpkg.com/tippy.js@6"></script>
@@ -67,7 +66,7 @@
         }
     </script>
 
-    <div id="header" class="header" th:attr="include-html=@{/html/header.html}"></div>
+    <div th:replace="fragments/header :: header"></div>
 
     <div id="contacts-main" class="slide slide-darkblue" style="background-image: url('../../static/images/photo_dark-wall-empty-room-with-plants-floor-3d-rendering_1080.jpg'); background-position: center; background-size: cover; text-align: center;">
         <div id="contacts-content-main" class="content">
@@ -146,9 +145,8 @@
             </div>
         </div>
     </div>
-    <div th:attr="include-html=@{/html/footer.html}" class="footer" id="footer"></div>
-    <script>
-        includeHTML();
-    </script>
+
+    <div th:replace="fragments/footer :: footer"></div>
+
 </body>
 </html>

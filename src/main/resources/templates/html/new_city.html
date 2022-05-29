@@ -9,7 +9,7 @@
     <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css">
     <link th:href="@{/styles/style-create.css}" rel="stylesheet" type="text/css">
     <link rel="shortcut icon" th:href="@{/images/icon_INERI_1.svg}" type="image/x-icon">
-    <script th:src="@{/scripts/includeHTML.js}"></script>
+
     <script th:src="@{/scripts/scrolling.js}"></script>
     <link rel="stylesheet" href="../../static/styles/bootstrap.min.css">
     <link rel="stylesheet" href="../../static/styles/style-create.css">
@@ -24,7 +24,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="../../static/scripts/includeHTML.js"></script>
+
     <script src="../../static/scripts/scrolling.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://unpkg.com/tippy.js@6"></script>
@@ -88,7 +88,7 @@
     });*/
 </script>
 
-<div id="header" class="header" th:attr="include-html=@{/html/header.html}"></div>
+<div th:replace="fragments/header :: header"></div>
 <div class="container" style="background-color: #061121; width: 60%">
     <section class="content home">
         <div class="block-header">
@@ -124,11 +124,9 @@
         </div>
     </section>
 </div>
-<div th:attr="include-html=@{/html/footer.html}" class="footer" id="footer"></div>
 
-<script>
-    includeHTML();
-</script>
+<div th:replace="fragments/footer :: footer"></div>
+
 <script src="../../static/scripts/jquery/libscripts.bundle.js"></script> <!-- Lib Scripts Plugin Js ( jquery.v3.2.1, Bootstrap4 js) -->
 <script src="../../static/scripts/jquery/vendorscripts.bundle.js"></script> <!-- slimscroll, waves Scripts Plugin Js -->
 
@@ -136,7 +134,7 @@
 
 <script src="../../static/scripts/jquery/mainscripts.bundle.js"></script>
 <script th:src="@{/scripts/jquery/libscripts.js}"></script>
-<script th:src="@{/scripts/jquery/includeHTML.js}"></script>
+
 <script th:src="@{/scripts/jquery/dropzone.js}"></script>
 <script th:src="@{/scripts/jquery/mainscripts.bundle.js}"></script>
 </body>
