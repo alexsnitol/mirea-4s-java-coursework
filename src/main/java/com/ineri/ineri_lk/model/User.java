@@ -42,9 +42,6 @@ public class User implements UserDetails {
 
     @Transient
     private String confirmPassword;
-    @Transient
-    private boolean active;
-
 
     @ManyToMany(fetch = FetchType.LAZY,  cascade = CascadeType.PERSIST)
     @JoinTable(name = "user_roles",
