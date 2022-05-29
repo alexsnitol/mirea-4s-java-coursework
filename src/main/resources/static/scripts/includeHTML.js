@@ -1,6 +1,10 @@
 function includeHTML() {
     let path = document.location.pathname;
     var z, i, elmnt, file, xhttp, href;
+
+    let currentuser = path.substring(1, path.indexOf('/', 1));
+    let page1 = '';
+
     /*loop through a collection of all HTML elements:*/
     z = document.getElementsByTagName("*");
     for (i = 0; i < z.length; i++) {
@@ -8,6 +12,20 @@ function includeHTML() {
         /*search for elements with a certain atrribute:*/
         file = elmnt.getAttribute("include-html");
         href = elmnt.getAttribute("href");
+
+        if (href && elmnt.tagName === "A") {
+            page1 = href.substring(href.indexOf('/', 10) + 1, href.indexOf('/', href.indexOf('/', 10) + 1));
+            if (page1 === "") {
+                page1 = href.substring(href.indexOf('/', 10) + 1);
+            }
+            if (href.substring(0, 3) !== "http"
+                && (page1 === "catalog" || page1 === "vacancies")
+            )
+            {
+                elmnt.setAttribute("href", currentuser + "/" + elmnt.getAttribute("href"));
+            }
+        }
+
 
         if (path.substring(0, 30) === "/INERI_website/html/vacancies/") {
             if (href && elmnt.tagName === "A") {
