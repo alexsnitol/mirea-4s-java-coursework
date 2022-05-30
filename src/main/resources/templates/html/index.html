@@ -10,7 +10,6 @@
     <link rel="shortcut icon" th:href="@{/images/icon_INERI_1.svg}" type="image/x-icon">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script th:src="@{/scripts/includeHTML.js}"></script>
     <script th:src="@{/scripts/scrolling.js}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.1/dist/chart.min.js"></script>
 </head>
@@ -72,7 +71,7 @@
         });*/
     </script>
 
-    <div id="header" class="header" th:attr="include-html=@{/html/header.html}"></div>
+    <div th:replace="fragments/header :: header"></div>
 
     <div id="slide2-form" class="form hide">
         <form action="mailto:sslotin74@gmail.com" enctype="text/plain" method="post">
@@ -128,7 +127,7 @@
     </div>
 
     <!-- 1. Главный слайд -->
-    <div id="slide1" class="slide slide-main-video" style="background-image: url('../../static/images/photo_moscow_darkblue_1080.jpg'); background-position: center; background-size: cover;">
+    <div id="slide1" class="slide slide-main-video" style="background-image: url('/images/photo_moscow_darkblue_1080.jpg'); background-position: center; background-size: cover;">
         <div class="header-block"></div>
         <div class="flex-container-center">
             <div id="content-slide1" class="content">
@@ -182,7 +181,7 @@
     </div>
 
     <!-- 3. Подберём для вас объект стоимостью ниже рынка -->
-    <div class="slide slide-white" id="slide3" style="background-image: url('../../static/images/photo_interior-has-armchair-empty-white-wall_1080.jpg'); background-position: center; background-size: cover; text-align: center;">
+    <div class="slide slide-white" id="slide3" style="background-image: url('/images/photo_interior-has-armchair-empty-white-wall_1080.jpg'); background-position: center; background-size: cover; text-align: center;">
         <div class="header-block"></div>
         <div class="flex-container-center">
             <div id="content-slide3" class="content" style="height: inherit">
@@ -235,7 +234,7 @@
                     </div>
                     <div class="graph-title">Процентная ставка на продукты накопления средств в России</div>
                 </div>
-                <script src="../../static/scripts/charts.js"></script>
+                <script src="/scripts/charts.js"></script>
             </div>
 
         </div>
@@ -258,12 +257,12 @@
     </div>
 
     <!-- 6. С нами ипотека проще -->
-    <div class="slide slide-white" id="slide6" style="background-image: url('../../static/images/photo_white_1080.jpg'); background-position: center; background-size: cover;">
+    <div class="slide slide-white" id="slide6" style="background-image: url('/images/photo_white_1080.jpg'); background-position: center; background-size: cover;">
         <div class="header-block"></div>
         <div class="flex-container-center">
             <div id="content-slide6" class="content">
                 <div class="sub-content">
-                    <image data-aos="zoom-out-up" data-aos-delay="400" src="../../static/images/icon_Bank_success_color.svg"></image>
+                    <image data-aos="zoom-out-up" data-aos-delay="400" src="/images/icon_Bank_success_color.svg"></image>
                     <div class="title black" data-aos="fade-up" style="margin-top: 1vh;">С нами ипотека проще</div>
                     <div class="subtitle2 text-dark-turquoise" data-aos-delay="1200" data-aos="fade-up" style="margin-top: 2vh;">Оказываем помощь в одобрении ипотеки</br>
                         различных банков с пониженной ставкой</div>
@@ -293,10 +292,7 @@
         </div>
     </div>
 
-    <div th:attr="include-html=@{/html/footer.html}" class="footer" id="footer"></div>
+    <div th:replace="fragments/footer :: footer"></div>
 
-    <script>
-        includeHTML();
-    </script>
 </body>
 </html>

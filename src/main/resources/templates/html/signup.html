@@ -14,7 +14,7 @@
     <link th:href="@{/styles/bootstrap-formhelpers.min.css}" rel="stylesheet" type="text/css">
     <script th:src="@{/scripts/charts.js}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script th:src="@{/scripts/includeHTML.js}"></script>
+
     <script th:src="@{/scripts/scrolling.js}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.1/dist/chart.min.js"></script>
     <!-- JavaScript Bundle with Popper -->
@@ -80,7 +80,7 @@
     });*/
 </script>
 
-<div id="header" class="header" th:attr="include-html=@{/html/header.html}"></div>
+<div th:replace="fragments/header :: header"></div>
 <main class="form-signup w-100 m-auto">
     <form action="#" th:action="@{/sign-up}" th:object="${user}" method="post">
         <h1 class="h3 mb-3 mt-5 fw-normal" style="color: white">Регистрация</h1>
@@ -128,11 +128,9 @@
         <button class="w-100 btn btn-lg btn-primary mt-2" type="submit">Зарегистрироваться</button>
     </form>
 </main>
-<div th:attr="include-html=@{/html/footer.html}" class="footer" id="footer" style="background-color: white;padding: 10px 0 10px 0;height: auto"></div>
 
-<script>
-    includeHTML();
-</script>
+<div th:replace="fragments/footer :: footer"></div>
+
 </body>
 
 
