@@ -7,6 +7,13 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 
+/**
+ * @author Kozlov Alexander
+ * Примечание: бины fourTemplateResolver() и fiveTemplateResolver() нужно будет удалить,
+ * так как они созданы только для тестовых html страниц.
+ */
+
+
 @Configuration
 @ComponentScan("com.ineri.ineri_lk")
 @EnableWebMvc
@@ -55,6 +62,18 @@ public class TemplateResolverConfig {
         templateResolver.setTemplateMode(TemplateMode.HTML);
         templateResolver.setCharacterEncoding("UTF-8");
         templateResolver.setOrder(4);
+        templateResolver.setCheckExistence(true);
+        return templateResolver;
+    }
+
+    @Bean
+    public SpringResourceTemplateResolver fiveTemplateResolver() {
+        SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
+        templateResolver.setPrefix("classpath:/templates/test/kozlov/");
+        templateResolver.setSuffix(".html");
+        templateResolver.setTemplateMode(TemplateMode.HTML);
+        templateResolver.setCharacterEncoding("UTF-8");
+        templateResolver.setOrder(5);
         templateResolver.setCheckExistence(true);
         return templateResolver;
     }

@@ -70,7 +70,7 @@ CREATE TABLE addresses (
 CREATE TABLE users (
                        id               SERIAL PRIMARY KEY,
                        username         VARCHAR(31) NOT NULL,
-                       password         VARCHAR(127) NOT NULL,
+                       password         VARCHAR(255) NOT NULL,
                        email            VARCHAR(31) NOT NULL,
                        phone_number     CHAR(13) NOT NULL,
 
