@@ -54,7 +54,7 @@ public class AdminController {
     public String updateUserForm(@PathVariable("userId") Long id, Model model) {
         User user = userService.getUserById(id);
         model.addAttribute("user", user);
-        model.addAttribute("isAdmin", user.getRoles().contains(new Role(ERole.ADMIN)));
+        model.addAttribute("isAdmin", user.getRoles().contains(new Role(ERole.ROLE_ADMIN)));
         return "test_edit_user";
     }
 

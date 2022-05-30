@@ -30,18 +30,48 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserService userService;
 
-    @Override
-    protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity
-                .csrf()
-                    .disable()
-			    .authorizeRequests()
-                    .antMatchers("/", "/signup").permitAll()
-                .and()
-                    .logout()
-                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                    .permitAll();
-    }
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http
+//                .authorizeRequests()
+//                    .antMatchers("/", "/signup")
+//                    .permitAll()
+//                    .anyRequest().authenticated()
+//                .and()
+//                    .formLogin()
+//                    .loginPage("/login") // Указываем настраиваемую целевую страницу
+//                .and()
+//                    .httpBasic()     // Включаем базовую аутентификацию
+//                .and()
+//                    .logout()
+//                .and()
+//                    .csrf()
+//                    .disable();
+//    }
+
+
+//    .authorizeRequests()
+//                    .antMatchers("/", "/registration", "/static/**", "/activate/*").permitAll()
+//                    .anyRequest().authenticated()
+//                .and()
+//                    .formLogin()
+//                    .loginPage("/login")
+//                    .permitAll()
+//                .and()
+//                    .logout()
+//                    .permitAll();
+//    @Override
+//    protected void configure(HttpSecurity httpSecurity) throws Exception {
+//        httpSecurity
+//                .csrf()
+//                    .disable()
+//			    .authorizeRequests()
+//                    .antMatchers("/", "/signup").permitAll()
+//                .and()
+//                    .logout()
+//                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+//                    .permitAll();
+//    }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {

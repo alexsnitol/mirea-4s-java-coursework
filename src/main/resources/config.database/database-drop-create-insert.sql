@@ -204,7 +204,7 @@ CREATE TABLE user_roles (
 
 
 INSERT INTO roles(name)
-VALUES ('ADMIN'), ('USER');
+VALUES ('ROLE_ADMIN'), ('ROLE_USER');
 
 INSERT INTO users(username, password, email, phone_number, surname, name, patronymic, photo_path)
 VALUES ('admin', 'admin', 'admin@ineri.ru', '900 000-00-00', 'admin_surname', 'admin_name', 'admin_patronymic', ''),
