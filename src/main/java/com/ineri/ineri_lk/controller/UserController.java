@@ -29,16 +29,12 @@ public class UserController {
     public String updateUserForm(@PathVariable("username") String username, Model model) {
         User user = userService.getUserByUsername(username);
         model.addAttribute("user", user);
-        return "k-user-update";
+        return "test_edit_user";
     }
 
     @PostMapping("/{username}/edit")
     public String updateUser(User user){
-        Set<Role> roles = user.getRoles();
-        Role role = roleService.getByName(ERole.USER);
-        roles.add(role);
-        user.setPhotoPath("");
-        user.setRoles(roles);
+        user.getRoles().add(roleService.getRoleById(2L));
         userService.updateUser(user);
         return "redirect:/" + user.getUsername();
     }
