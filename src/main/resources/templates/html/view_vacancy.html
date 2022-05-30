@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Вакансия - Агент по продаже жилой недвижимости - Агенство недвижимости в Москве ИНЕРИ</title>
     <meta name="description" content="Вакансия - Агент по продаже жилой недвижимости. Агентство недвижимости в Москве ИНЕРИ. Инвестиции в недвижимость. Выкуп объектов. Торги по банкротству.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../../../static/styles/style.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link rel="shortcut icon" href="../../../static/images/icon_INERI_1.svg" type="image/x-icon">
-
+    <link th:href="@{/styles/style.css}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <link rel="shortcut icon" th:href="@{/images/icon_INERI_1.svg}" type="image/x-icon">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="../../../static/scripts/scrolling.js"></script>
+    <script th:src="@{/scripts/scrolling.js}"></script>
+
 </head>
 <body>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
@@ -42,79 +42,77 @@
 
     <div id="vacancies-main" class="bg-darkblue">
         <div id="vacancies-main-content" class="content">
-            <div class="title-big" data-aos="fade-up" data-aos-delay="200" style="position: relative; text-align: left; top: 15%">Агент по продаже жилой недвижимости</div></br>
-            <div class="title" data-aos="fade-up" data-aos-delay="200" style="position: relative; text-align: left; top: -40px; padding-bottom: 20px; font-weight: 600">Москва</div>
+            <div class="title-big" th:text="${vacancy.name}" data-aos="fade-up" data-aos-delay="200" style="position: relative; text-align: left; top: 15%">Агент по продаже жилой недвижимости</div><br/>
+            <div class="title" th:text="${vacancy.city.name}" data-aos="fade-up" data-aos-delay="200" style="position: relative; text-align: left; top: -40px; padding-bottom: 20px; font-weight: 600">Москва</div>
             <div id="vacancies-main-content-list" style="position: relative; top: 0%">
 
-                <div class="list-element" data-aos="fade-up" data-aos-delay="300">
+                <div class="list-element" th:if="${textDescription != null}" data-aos="fade-up" data-aos-delay="300">
                     <div class="first-row-block">
                         <div class="name">Описание</div>
                     </div>
                     <div class="second-row-block">
-                        <p>Если вы человек самоорганизованный, настроены на результат, это деятельность вам подойдет. Компания ведет деятельность в направлении приобретения объектов представляющих наибольший инвестиционный интерес.</p>
+                        <div th:each="line : ${textDescription}" th:remove="tag">
+                            <p th:utext="${line}"></p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="list-element" data-aos="fade-up" data-aos-delay="300">
+                <div class="list-element" th:if="${textStudy != null}" data-aos="fade-up" data-aos-delay="300">
                     <div class="first-row-block">
                         <div class="name">Чему вы можете у нас научиться</div>
                     </div>
                     <div class="second-row-block">
-                        <p>- Анализировать стоимость и ликвидность объектов недвижимости, а также состояние рынка в целом</p>
-                        <p>- Оценивать рентабельность и инвестиционные риски</p>
-                        <p>- Работать со 127 ф. з.</p>
+                        <div th:each="line : ${textStudy}" th:remove="tag">
+                            <p th:utext="${line}"></p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="list-element" data-aos="fade-up" data-aos-delay="300">
+                <div class="list-element" th:if="${textResponsibilities != null}" data-aos="fade-up" data-aos-delay="300">
                     <div class="first-row-block">
                         <div class="name">Обязанности</div>
                     </div>
                     <div class="second-row-block">
-                        <p>- Ведение переговоров и консультирование клиентов по вопросам покупки/продаже/аренде недвижимости</p>
-                        <p>- Подбор и организация показов объектов недвижимости</p>
-                        <p>- Сопровождение клиента на всех этапах сделки</p>
+                        <div th:each="line : ${textResponsibilities}" th:remove="tag">
+                            <p th:utext="${line}"></p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="list-element" data-aos="fade-up" data-aos-delay="300">
+                <div class="list-element" th:if="${textRequirements != null}" data-aos="fade-up" data-aos-delay="300">
                     <div class="first-row-block">
                         <div class="name">Требования</div>
                     </div>
                     <div class="second-row-block">
-                        <p>- Умение вести переговоры (эмпатия)</p>
-                        <p>- Активная жизненная позиция</p>
-                        <p>- Самоорганизация</p>
-                        <p>- Работать на результат</p>
-                        <p>- Позитивное мышление</p>
-                        <p>- Уверенный пользователь ПК</p>
+                        <div th:each="line : ${textRequirements}" th:remove="tag">
+                            <p th:utext="${line}"></p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="list-element" data-aos="fade-up" data-aos-delay="300">
+                <div class="list-element" th:if="${textFeatures != null}" data-aos="fade-up" data-aos-delay="300">
                     <div class="first-row-block">
                         <div class="name">Мы предлагаем</div>
                     </div>
                     <div class="second-row-block">
-                        <p>- Обучение для начинающих специалистов проводится и персональный наставник</p>
-                        <p>- Прекрасную атмосферу в коллективе, поддержка коллег и руководителей</p>
-                        <p>- Обеспечение заявками и лидами</p>
-                        <p>- Карьерный рост</p>
-                        <p>- Гибкий график работы</p>
-                        <p>- Высокий % с каждой закрытой сделки, З/П без «потолка»</p>
+                        <div th:each="line : ${textFeatures}" th:remove="tag">
+                            <p th:text="${line}"></p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="list-element" data-aos="fade-up" data-aos-delay="300">
+                <div class="list-element" th:if="${textSummary != null}" data-aos="fade-up" data-aos-delay="300">
                     <div class="first-row-block">
                         <div class="name">Зарплата</div>
                     </div>
                     <div class="second-row-block">
-                        <p>От 50 000 до 200 000 руб. в месяц. Заработная плата будет зависеть напрямую от вашей организованности и систематичности.</p>
+                        <div th:each="line : ${textSummary}" th:remove="tag">
+                            <p th:utext="${line}"></p>
+                        </div>
                     </div>
                 </div>
 
-                <a href="../contacts.html"><div id="vacancies-1-button" class="button button-left-icon-type-0" data-aos="zoom-in" data-aos-delay="450"><div class="icon icon-call filter-white"></div>Показать контакты</div></a>
+                <a th:href="@{'/contacts'}"><div id="vacancies-1-button" class="button button-left-icon-type-0" data-aos="zoom-in" data-aos-delay="450"><div class="icon icon-call filter-white"></div>Показать контакты</div></a>
             </div>
         </div>
     </div>

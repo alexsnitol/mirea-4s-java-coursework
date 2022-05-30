@@ -2,24 +2,52 @@
 <div id="header" class="header" th:fragment="header">
     <div class="logo logo-INERI" id="logo"></div>
     <div class="menu">
-        <a th:href="@{'/'}">
-            <div id="menu-main" class="menu-item" th:attrappend="class=${#httpServletRequest.requestURI == '/'} ? ${' current'} : ${''}"><div class="icon icon-home filter-white" style="margin-right: 10px;"></div>Главная</div>
-        </a>
-        <a th:href="@{'/catalog'}">
-            <div id="menu-catalog" class="menu-item" th:attrappend="class=${#httpServletRequest.requestURI == '/catalog'} ? ${' current'} : ${''}"><div class="icon icon-home-purchasing-2 filter-white" style="margin-right: 10px;"></div>Каталог</div>
-        </a>
-        <a href="#">
-            <div id="menu-investing" class="menu-item hide" th:attrappend="class=${#httpServletRequest.requestURI == '/investing'} ? ${' current'} : ${''}"><div class="icon icon-growth filter-white" style="margin-right: 10px;"></div>Инвестиции</div>
-        </a>
-        <a th:href="@{'/contacts'}">
-            <div id="menu-contacts" class="menu-item" th:attrappend="class=${#httpServletRequest.requestURI == '/contacts'} ? ${' current'} : ${''}"><div class="icon icon-call-point-2 filter-white" style="margin-right: 10px;"></div>Контакты</div>
-        </a>
-        <a th:href="@{'/vacancies'}">
-            <div id="menu-vacancies" class="menu-item" th:attrappend="class=${#httpServletRequest.requestURI == '/vacancies'} ? ${' current'} : ${''}"><div class="icon icon-job filter-white" style="margin-right: 10px;"></div>Вакансии</div>
-        </a>
-        <a th:href="@{'/login'}">
-            <div id="menu-account" class="menu-item" th:attrappend="class=${#httpServletRequest.requestURI == '/login'} ? ${' current'} : ${''}"><div class="icon icon-user filter-white" style="margin-right: 10px;"></div>Личный кабинет</div>
-        </a>
+        <div id="menu-main" class="menu-item">
+            <a th:href="@{'/'}">
+                <div class="menu-item-button" th:attrappend="class=${#httpServletRequest.requestURI == '/'} ? ${' current'} : ${''}">
+                    <div class="icon icon-home filter-white" style="margin-right: 10px;"></div>Главная
+                </div>
+            </a>
+        </div>
+        <div id="menu-catalog" class="menu-item">
+            <a th:href="@{'/catalog'}">
+                <div class="menu-item-button" th:attrappend="class=${#httpServletRequest.requestURI == '/catalog'} ? ${' current'} : ${''}">
+                    <div class="icon icon-home-purchasing-2 filter-white" style="margin-right: 10px;"></div>Каталог
+                </div>
+            </a>
+        </div>
+        <div id="menu-investing" class="menu-item hide">
+            <a href="#">
+                <div class="menu-item-button" th:attrappend="class=${#httpServletRequest.requestURI == '/investing'} ? ${' current'} : ${''}">
+                    <div class="icon icon-growth filter-white" style="margin-right: 10px;"></div>Инвестиции
+                </div>
+            </a>
+        </div>
+        <div id="menu-contacts" class="menu-item">
+            <a th:href="@{'/contacts'}">
+                <div class="menu-item-button" th:attrappend="class=${#httpServletRequest.requestURI == '/contacts'} ? ${' current'} : ${''}">
+                    <div class="icon icon-call-point-2 filter-white" style="margin-right: 10px;"></div>Контакты
+                </div>
+            </a>
+        </div>
+        <div id="menu-vacancies" class="menu-item">
+            <a th:href="@{'/vacancies'}">
+            <div class="menu-item-button" th:attrappend="class=${#httpServletRequest.requestURI == '/vacancies'} ? ${' current'} : ${''}">
+                <div class="icon icon-job filter-white" style="margin-right: 10px;"></div>Вакансии
+            </div>
+            </a>
+        </div>
+        <div id="menu-account" class="menu-item">
+            <a th:href="@{'/login'}">
+                <div class="menu-item-button" th:attrappend="class=${#httpServletRequest.requestURI == '/login'} ? ${' current'} : ${''}"><div class="icon icon-user filter-white" style="margin-right: 10px;"></div>Личный кабинет</div>
+            </a>
+            <div class="menu-dropdown">
+                <a class="item" th:href="@{'/' + ${curUserId} + '/favorites'}">Избранное</a>
+                <a class="item" th:href="@{'/' + ${curUserId} + '/forms'}">Анкеты</a>
+                <a class="item" th:href="@{'/control'}">Панель управления</a>
+                <a class="item" th:href="@{'/' + ${curUserId} + '/signout'}" style="border-radius: 0 0 20px 20px">Выйти</a>
+            </div>
+        </div>
 
         <a th:href="@{'/'}">
             <div id="menu-main-mini" class="menu-item only-icon" th:attrappend="class=${#httpServletRequest.requestURI == '/'} ? ${' current'} : ${''}"><div class="icon icon-home filter-white"></div></div>

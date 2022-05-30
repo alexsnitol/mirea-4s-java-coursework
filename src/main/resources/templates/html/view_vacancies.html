@@ -2,16 +2,13 @@
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Вакансии - Агенство недвижимости в Москве ИНЕРИ</title>
-    <meta name="description" content="Вакансии. Агентство недвижимости в Москве ИНЕРИ. Инвестиции в недвижимость. Выкуп объектов. Торги по банкротству.">
+    <title>Вакансии - Агентство недвижимости в Москве ИНЕРИ</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!--    <link href="style.css" rel="stylesheet" type="text/css">-->
+    <meta name="description" content="Вакансии. Агентство недвижимости в Москве ИНЕРИ. Инвестиции в недвижимость. Выкуп объектов. Торги по банкротству.">
     <link th:href="@{/styles/style.css}" rel="stylesheet" />
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
     <link rel="shortcut icon" th:href="@{/images/icon_INERI_1.svg}" type="image/x-icon">
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
     <script th:src="@{/scripts/scrolling.js}"></script>
 </head>
 <body>
@@ -60,7 +57,7 @@
 
     <div id="vacancies-main" class="slide slide-darkblue">
         <div id="vacancies-main-content" class="content">
-            <div class="title-big" data-aos="fade-up" data-aos-delay="200" style="position: relative; text-align: left; top: 15%">Вакансии</div>
+            <div class="title-big" data-aos="fade-up" data-aos-delay="200" style="position: relative; text-align: left; top: 15%">Вакансии</div><br/>
             <div id="vacancies-main-content-list" style="position: relative; top: 15%">
                 <div class="list-element" data-aos="fade-up" data-aos-delay="300" th:each="vacancy : ${vacancies}">
                     <div class="first-row-flex">
@@ -82,5 +79,5 @@
 
     <div th:replace="fragments/footer :: footer"></div>
 
-</div></div></div></div></div></div></body>
+</body>
 </html>
