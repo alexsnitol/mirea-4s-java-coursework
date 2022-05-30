@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.crypto.BadPaddingException;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -21,6 +23,7 @@ import java.util.Set;
  */
 
 @Controller
+@RequestMapping("/users")
 public class AdminController {
 
     @Autowired
@@ -29,61 +32,48 @@ public class AdminController {
     @Autowired
     private RoleService roleService;
 
-
-    @GetMapping("/{username}/users")
-    public String findAll(Model model, @PathVariable String username){
+    @GetMapping
+    public String findAll(Model model){
         List<User> users = userService.getAll();
         model.addAttribute("users", users);
-        model.addAttribute("currentUsername", username);
-        return "admin-user-list";
+        return "test_view_users";
     }
 
-    @GetMapping("/{currentUsername}/users/new")
-    public String newUser(User user, @PathVariable("currentUsername") String username, Model model) {
-        model.addAttribute("currentUsername", username);
-        return "admin-new-user";
+    @GetMapping("/new")
+    public String newUserForm() {
+        return "test_new_user";
     }
 
-    @PostMapping("/{currentUsername}/users/new")
-    public String createUser(User user, @PathVariable("currentUsername") String username) {
-        Set<Role> roles = user.getRoles();
-        Role role = roleService.getByName(ERole.USER);
-        roles.add(role);
-        user.setRoles(roles);
+    @PostMapping("/new")
+    public String createUser(User user) {
         userService.saveUser(user);
-        return "redirect:/" + username + "/users";
+        return "redirect:/users";
     }
 
-    @GetMapping("/{currentUsername}/users/{userId}/edit")
-    public String updateUserForm(@PathVariable("userId") Long id, Model model, @PathVariable("currentUsername") String username) {
+    @GetMapping("/{userId}/edit")
+    public String updateUserForm(@PathVariable("userId") Long id, Model model) {
         User user = userService.getUserById(id);
         model.addAttribute("user", user);
-        model.addAttribute("currentUsername", username);
-        return "admin-update-user";
+        model.addAttribute("isAdmin", user.getRoles().contains(new Role(ERole.ADMIN)));
+        return "test_edit_user";
     }
 
-    @PostMapping("/{currentUsername}/users/{userId}/edit")
-    public String updateUser(User user,
-                             @PathVariable("currentUsername") String username,
-                             @RequestParam(value = "isAdmin", required = false) boolean isAdmin) {
-
-        Set<Role> roles = user.getRoles();
-        Role role = roleService.getByName(ERole.USER);
-        roles.add(role);
-
-        if (isAdmin) {
-            roles.add(roleService.getByName(ERole.ADMIN));
-        }
-        user.setPhotoPath("");
-        user.setRoles(roles);
+    @PostMapping("/{userId}/edit")
+    public String updateUser(@PathVariable("userId") Long id,
+                             User user,
+                             @RequestParam(value = "isAdmin", required = false, defaultValue = "off")
+                             String isAdmin) {
+        user.getRoles().add(roleService.getRoleById(2L));
+        if (isAdmin.equals("on"))
+            user.getRoles().add(roleService.getRoleById(1L));
         userService.updateUser(user);
-        return "redirect:/" + username + "/users";
+        return "redirect:/users";
     }
 
-    @GetMapping("/{currentUsername}/users/{userId}/delete")
-    public String deleteUser(@PathVariable("currentUsername") String username, @PathVariable("userId") Long id) {
+    @GetMapping("/{userId}/delete")
+    public String deleteUser(@PathVariable("userId") Long id) {
         userService.deleteById(id);
-        return "redirect:/" + username + "/users";
+        return "redirect:/users";
     }
 
 }
