@@ -3,9 +3,6 @@ package com.ineri.ineri_lk.service.impl;
 import com.ineri.ineri_lk.model.User;
 import com.ineri.ineri_lk.repository.RoleRepository;
 import com.ineri.ineri_lk.repository.UserRepository;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,7 +13,6 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author Kozlov Alexander
@@ -27,9 +23,12 @@ public class UserService implements UserDetailsService {
 
     @PersistenceContext
     private EntityManager em;
+
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private RoleRepository roleRepository;
 
     public User getUserById(Long userId) {
         return userRepository.findById(userId).orElse(null);
@@ -40,15 +39,17 @@ public class UserService implements UserDetailsService {
     }
 
     public void saveUser(User user) {
-        Optional<User> userFromDB = userRepository.findByUsername(user.getUsername());
+        User userFromDB = userRepository.findByUsername(user.getUsername()).orElse(null);
+
         if (userFromDB == null) {
-            user.setPassword(user.getPassword());
+            user.setActive(true);
+            user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+            user.getRoles().add(roleRepository.findRoleById(2L));
             userRepository.save(user);
         }
     }
 
     public void updateUser(User user) {
-        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         userRepository.save(user);
     }
 
@@ -63,6 +64,9 @@ public class UserService implements UserDetailsService {
     public List<User> getAll() {
         return userRepository.findAll();
     }
+
+
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

@@ -6,6 +6,6 @@ package com.ineri.ineri_lk.model;
  */
 
 public enum ERole{
-    USER,
-    ADMIN
+    ROLE_USER,
+    ROLE_ADMIN
 }

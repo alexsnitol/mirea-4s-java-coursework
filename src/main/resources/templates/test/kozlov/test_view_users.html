@@ -36,13 +36,13 @@
                 <td>
                     <div th:each="role : ${user.roles}" th:text="${role.name}"></div>
                 </td>
-                <td><a th:href="@{'/'+${currentUsername}+'/users/'+${user.id}+'/edit'}">Редактировать</a></td>
-                <td><a th:href="@{'/'+${currentUsername}+'/users/'+${user.id}+'/delete'}">Удалить</a></td>
+                <td><a th:href="@{'/users/'+${user.id}+'/edit'}">Редактировать</a></td>
+                <td><a th:href="@{'/users/'+${user.id}+'/delete'}">Удалить</a></td>
             </tr>
             </tbody>
         </table>
     </div>
-    <p><a th:href="@{'/'+${currentUsername}+'/users/new'}">Создать пользователя</a></p>
+    <p><a th:href="@{'/users/new'}">Создать пользователя</a></p>
 </div>
 </body>
 </html>

@@ -67,8 +67,8 @@ public class AdvertisedController {
     public ModelAndView newAdvertised(Advertised advertised) {
         ModelAndView mv = new ModelAndView("test_new_advertised");
 
-        List<User> admins = userService.getAll().stream().filter(u -> u.getRoles().stream().anyMatch(r -> r.getName().equals(ERole.ADMIN))).collect(Collectors.toList());
-        List<User> users = userService.getAll().stream().filter(u -> u.getRoles().stream().noneMatch(r -> r.getName().equals(ERole.ADMIN))).collect(Collectors.toList());
+        List<User> admins = userService.getAll().stream().filter(u -> u.getRoles().stream().anyMatch(r -> r.getName().equals(ERole.ROLE_ADMIN))).collect(Collectors.toList());
+        List<User> users = userService.getAll().stream().filter(u -> u.getRoles().stream().noneMatch(r -> r.getName().equals(ERole.ROLE_ADMIN))).collect(Collectors.toList());
 
         mv.addObject("houseTypes", houseTypeService.getAll());
         mv.addObject("propertyTypes", propertyTypeService.getAll());
@@ -100,8 +100,8 @@ public class AdvertisedController {
     public ModelAndView editById(@PathVariable Long id) {
         ModelAndView mv = new ModelAndView("test_edit_advertised");
 
-        List<User> admins = userService.getAll().stream().filter(u -> u.getRoles().stream().anyMatch(r -> r.getName().equals(ERole.ADMIN))).collect(Collectors.toList());
-        List<User> users = userService.getAll().stream().filter(u -> u.getRoles().stream().noneMatch(r -> r.getName().equals(ERole.ADMIN))).collect(Collectors.toList());
+        List<User> admins = userService.getAll().stream().filter(u -> u.getRoles().stream().anyMatch(r -> r.getName().equals(ERole.ROLE_ADMIN))).collect(Collectors.toList());
+        List<User> users = userService.getAll().stream().filter(u -> u.getRoles().stream().noneMatch(r -> r.getName().equals(ERole.ROLE_ADMIN))).collect(Collectors.toList());
 
         mv.addObject("houseTypes", houseTypeService.getAll());
         mv.addObject("propertyTypes", propertyTypeService.getAll());

@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 /**
  * @author Kozlov Alexander
@@ -35,5 +36,18 @@ public class Role extends AbstractModel implements GrantedAuthority {
 
     public String getAuthority() {
         return this.name.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Role role = (Role) o;
+        return name.toString().equals(role.name.toString());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
