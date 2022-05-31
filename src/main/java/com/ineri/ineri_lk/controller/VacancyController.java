@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author Slotin Alexander (@alexsnitol)
@@ -32,7 +33,7 @@ public class VacancyController extends AbstractController {
 
     @GetMapping
     public ModelAndView getAll() {
-        ModelAndView mv = new ModelAndView("vacancies");
+        ModelAndView mv = new ModelAndView("view_vacancies");
 
         mv.addObject("vacancies", vacancyService.getAll());
 
@@ -41,17 +42,44 @@ public class VacancyController extends AbstractController {
 
     @GetMapping("/{id}")
     public ModelAndView getById(@PathVariable("id") Long id) {
-        ModelAndView mv = new ModelAndView("test_view_vacancy");
+        ModelAndView mv = new ModelAndView("view_vacancy");
 
         Vacancy vacancy = vacancyService.getById(id);
 
         mv.addObject("vacancy", vacancy);
-        mv.addObject("textDescription",      NewLineConverter.convert(vacancy.getTextDescription()));
-        mv.addObject("textFeatures",         NewLineConverter.convert(vacancy.getTextFeatures()));
-        mv.addObject("textRequirements",     NewLineConverter.convert(vacancy.getTextRequirements()));
-        mv.addObject("textResponsibilities", NewLineConverter.convert(vacancy.getTextResponsibilities()));
-        mv.addObject("textStudy",            NewLineConverter.convert(vacancy.getTextStudy()));
-        mv.addObject("textSummary",          NewLineConverter.convert(vacancy.getTextSummary()));
+
+        String textDescription = vacancy.getTextDescription();
+        String textFeatures = vacancy.getTextFeatures();
+        String textRequirements = vacancy.getTextRequirements();
+        String textResponsibilities = vacancy.getTextResponsibilities();
+        String textStudy = vacancy.getTextStudy();
+        String textSummary = vacancy.getTextSummary();
+
+        if (Objects.equals(textDescription, "")) {
+            textDescription = null;
+        }
+        if (Objects.equals(textFeatures, "")) {
+            textFeatures = null;
+        }
+        if (Objects.equals(textRequirements, "")) {
+            textRequirements = null;
+        }
+        if (Objects.equals(textResponsibilities, "")) {
+            textResponsibilities = null;
+        }
+        if (Objects.equals(textStudy, "")) {
+            textStudy = null;
+        }
+        if (Objects.equals(textSummary, "")) {
+            textSummary = null;
+        }
+
+        mv.addObject("textDescription",      NewLineConverter.convert(textDescription));
+        mv.addObject("textFeatures",         NewLineConverter.convert(textFeatures));
+        mv.addObject("textRequirements",     NewLineConverter.convert(textRequirements));
+        mv.addObject("textResponsibilities", NewLineConverter.convert(textResponsibilities));
+        mv.addObject("textStudy",            NewLineConverter.convert(textStudy));
+        mv.addObject("textSummary",          NewLineConverter.convert(textSummary));
 
         return mv;
     }
@@ -64,7 +92,7 @@ public class VacancyController extends AbstractController {
 
     @GetMapping("/new")
     public ModelAndView newVacancy(Vacancy vacancy) {
-        ModelAndView mv = new ModelAndView("test_new_vacancy");
+        ModelAndView mv = new ModelAndView("new_vacancy");
 
         List<City> cities = cityService.getAll();
         List<User> users = userService.getAll();
@@ -90,7 +118,7 @@ public class VacancyController extends AbstractController {
 
     @GetMapping("/{id}/edit")
     public ModelAndView editVacancy(@PathVariable("id") Long id) {
-        ModelAndView mv = new ModelAndView("test_edit_vacancy");
+        ModelAndView mv = new ModelAndView("edit_vacancy");
 
         List<City> cities = cityService.getAll();
         List<User> users = userService.getAll();

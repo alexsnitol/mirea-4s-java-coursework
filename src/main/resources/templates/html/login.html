@@ -1,102 +1,42 @@
 <!doctype html>
-<html lang="en" id="signinHtml"xmlns:th="http://www.thymeleaf.org">
+<html lang="en" id="signinHtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
+    <title>Войти - Агентство недвижимости в Москве ИНЕРИ</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <title>Sign-In</title>
-    <!-- CSS only -->
+    <meta name="description" content="Авторизация. Агентство недвижимости в Москве ИНЕРИ. Инвестиции в недвижимость. Выкуп объектов. Торги по банкротству.">
     <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css">
     <link rel="shortcut icon" th:href="@{/images/icon_INERI_1.svg}" type="image/x-icon">
-    <link th:href="@{/styles/bootstrap-formhelpers.min.css}" rel="stylesheet" type="text/css">
-    <script th:src="@{/scripts/charts.js}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
     <script th:src="@{/scripts/scrolling.js}"></script>
-    <script th:src="@{/scripts/bootstrap-formhelpers.min.js}"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/sign-in/">
-    <!-- Custom styles for this template -->
 </head>
-<body class="text-center pb-1" style="display: block;background-color: #061121;">
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script>
-    AOS.init({
-        // Global settings:
-        disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
-        startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
-        initClassName: 'aos-init', // class applied after initialization
-        animatedClassName: 'aos-animate', // class applied on animation
-        useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
-        disableMutationObserver: false, // disables automatic mutations' detections (advanced)
-        debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
-        throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
-
-
-        // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
-        offset: 0, // offset (in px) from the original trigger point
-        delay: 200, // values from 0 to 3000, with step 50ms
-        duration: 700, // values from 0 to 3000, with step 50ms
-        easing: 'ease', // default easing for AOS animations
-        once: false, // whether animation should happen only once - while scrolling down
-        mirror: true, // whether elements should animate out while scrolling past them
-        anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
-    });
-</script>
-<script type="text/javascript">
-    $( () => {
-        $('#menu-main').on('click', () => {
-            $('html,body').animate({
-                scrollTop: 0
-            },500);
-        });
-    });
-    $( () => {
-        $('#menu-main-mini').on('click', () => {
-            $('html,body').animate({
-                scrollTop: 0
-            },500);
-        });
-    });
-
-    /*$( () => {
-        $('#slide2-form-exit').on('click', () => {
-            $('#slide2-form').css({'display': 'none'});
-            $('#slide2-form').css({'opacity': '0'});
-            $('body').css({'overflow': 'auto'});
-        });
-    });
-    $( () => {
-        $('#index-button2').on('click', () => {
-            $('#slide2-form').css({'display': 'block'});
-            $('#slide2-form').css({'opacity': '1'});
-            $('body').css({'overflow': 'hidden'});
-        });
-    });*/
-</script>
+<body>
 
 <div th:replace="fragments/header :: header"></div>
-<main class="form-signin w-100 mt-5 m-auto">
-    <form action="#" th:action="@{/login}" th:object="${user}" method="post">
-        <h1 class="h3 mb-3 mt-5 fw-normal" style="color: white" >Авторизация</h1>
 
-        <div class="form-floating">
-            <input type="text" class="form-control" id="floatingLogin" placeholder="Логин" th:field="*{username}">
-            <label for="floatingLogin">Логин</label>
+    <div class="slide slide-darkblue">
+        <div class="content">
+            <form action="#" th:action="@{/login}" th:object="${user}" method="post">
+                <h1 class="h3 mb-3 mt-5 fw-normal" style="color: white" >Авторизация</h1>
+
+                <div class="mb-3">
+                    <label for="login" class="form-label">Имя пользователя</label>
+                    <input type="text" th:field="*{username}" class="form-control" id="login" aria-describedby="loginErrMsg">
+                    <div id="loginErrMsg" class="form-text">Error message</div>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Пароль</label>
+                    <input type="password" th:field="*{password}" class="form-control" id="password" aria-describedby="passwordErrMsg">
+                    <div id="passwordErrMsg" class="form-text">Error message</div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Войти</button>
+                <a th:href="@{'/sign-up'}" class="w-100 mt-1 btn btn-lg btn-secondary" role="button" aria-pressed="true">Создать аккаунт</a>
+            </form>
         </div>
-        <div class="form-floating pb--11">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Пароль"th:field="*{password}">
-            <label for="floatingPassword">Пароль</label>
-        </div>
-
-        <button class="w-100 btn btn-lg btn-primary mt-1" type="submit">Войти</button>
-        <a th:href="@{'/sign-up'}" class="w-100 mt-1 btn btn-lg btn-secondary" role="button" aria-pressed="true">Создать аккаунт</a>
-    </form>
-</main>
-
-
-</body>
+    </div>
 
 <div th:replace="fragments/footer :: footer"></div>
 
+</body>
 </html>

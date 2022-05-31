@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Страница не найдена - Агенство недвижимости в Москве ИНЕРИ</title>
+    <meta name="description" content="Страница не найдена. Агентство недвижимости в Москве ИНЕРИ. Инвестиции в недвижимость. Выкуп объектов. Торги по банкротству.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" th:href="@{/images/icon_INERI_1.svg}" type="image/x-icon">
+    <script th:src="@{/scripts/scrolling.js}"></script>
+</head>
+<body>
+
+    <div th:replace="fragments/header :: header"></div>
+
+    <div class="slide slide-darkblue">
+        <div class="content">
+            <div  style="width: 80%; text-align: left">
+                <div class="title" style="position: relative; text-align: left; top: 15%;">Извините, запрашиваемая страница не найдена.</div><br/>
+                <div class="text">Попробуйте открыть страницу в другой раз или свяжитесь с администрацией сайта.</div>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

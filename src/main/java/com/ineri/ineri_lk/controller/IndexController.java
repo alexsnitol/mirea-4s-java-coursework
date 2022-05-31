@@ -1,12 +1,7 @@
 package com.ineri.ineri_lk.controller;
 
-import com.ineri.ineri_lk.model.User;
-import com.ineri.ineri_lk.service.impl.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author Kozlov Alexander
@@ -22,12 +17,22 @@ public class IndexController {
 
     @GetMapping("/contacts")
     public String showContact() {
-        return "contacts";
+        return "view_contacts";
     }
 
     @GetMapping("/control")
     public String showControl() {
-        return "view-controller";
+        return "view_controller";
+    }
+
+    @GetMapping("/cookie")
+    public String showCookie() {
+        return "cookie";
+    }
+
+    @GetMapping("/template")
+    public String showTemplate() {
+        return "view_template";
     }
 
 }

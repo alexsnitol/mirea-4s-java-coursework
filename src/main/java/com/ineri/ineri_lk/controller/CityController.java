@@ -24,7 +24,7 @@ public class CityController {
 
     @GetMapping
     public ModelAndView getAll() {
-        ModelAndView mv = new ModelAndView("view-cities");
+        ModelAndView mv = new ModelAndView("view_cities");
 
         mv.addObject("cities", cityService.getAll());
         Boolean admin = false;
