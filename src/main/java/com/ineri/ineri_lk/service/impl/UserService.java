@@ -42,7 +42,6 @@ public class UserService implements UserDetailsService {
         User userFromDB = userRepository.findByUsername(user.getUsername()).orElse(null);
 
         if (userFromDB == null) {
-//            user.setActive(true);
             user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
             user.getRoles().add(roleRepository.findRoleById(2L));
             userRepository.save(user);
@@ -50,6 +49,7 @@ public class UserService implements UserDetailsService {
     }
 
     public void updateUser(User user) {
+        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         userRepository.save(user);
     }
 

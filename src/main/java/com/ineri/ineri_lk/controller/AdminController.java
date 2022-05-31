@@ -40,7 +40,8 @@ public class AdminController {
     }
 
     @GetMapping("/new")
-    public String newUserForm() {
+    public String newUserForm(Model model) {
+        model.addAttribute("user", new User());
         return "test_new_user";
     }
 
