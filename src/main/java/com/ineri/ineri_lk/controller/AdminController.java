@@ -36,7 +36,7 @@ public class AdminController {
     public String findAll(Model model){
         List<User> users = userService.getAll();
         model.addAttribute("users", users);
-        return "test_view_users";
+        return "view_users";
     }
 
     @GetMapping("/new")

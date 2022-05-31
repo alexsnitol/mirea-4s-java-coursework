@@ -1,180 +1,92 @@
-<!doctype html>
-<html class="no-js " lang="en" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title> Просмотр статуса объекта - Агенство недвижимости в Москве ИНЕРИ</title>
-    <link th:href="@{/styles/bootstrap.min.css}" rel="stylesheet" type="text/css">
+    <meta charset="UTF-8">
+    <title>Объекты недвижимости</title>
+    <meta name="description" content="Агентство недвижимости в Москве ИНЕРИ. Инвестиции в недвижимость. Выкуп объектов. Торги по банкротству.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css">
-    <link th:href="@{/styles/style-create.css}" rel="stylesheet" type="text/css">
     <link rel="shortcut icon" th:href="@{/images/icon_INERI_1.svg}" type="image/x-icon">
-
-    <script th:src="@{/scripts/scrolling.js}"></script>
-    <link rel="stylesheet" href="../../static/styles/bootstrap.min.css">
-    <link rel="stylesheet" href="../../static/styles/style-create.css">
-    <link rel="stylesheet" href="../../static/styles/style.css">
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link href="../../static/styles/style.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link rel="shortcut icon" href="../../static/images/icon_INERI_1.svg" type="image/x-icon">
-    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale-subtle.css" />
-    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/themes/light.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-    <script src="../../static/scripts/scrolling.js"></script>
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <script src="https://unpkg.com/tippy.js@6"></script>
+    <script th:src="@{/scripts/scrolling.js}"></script>
 </head>
-
-<body style="background-color: #061121">
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script>
-    AOS.init({
-        // Global settings:
-        disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
-        startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
-        initClassName: 'aos-init', // class applied after initialization
-        animatedClassName: 'aos-animate', // class applied on animation
-        useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
-        disableMutationObserver: false, // disables automatic mutations' detections (advanced)
-        debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
-        throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
-
-
-        // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
-        offset: 0, // offset (in px) from the original trigger point
-        delay: 200, // values from 0 to 3000, with step 50ms
-        duration: 700, // values from 0 to 3000, with step 50ms
-        easing: 'ease', // default easing for AOS animations
-        once: false, // whether animation should happen only once - while scrolling down
-        mirror: true, // whether elements should animate out while scrolling past them
-        anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
-    });
-</script>
-<script type="text/javascript">
-    $( () => {
-        $('#menu-main').on('click', () => {
-            $('html,body').animate({
-                scrollTop: 0
-            },500);
-        });
-    });
-    $( () => {
-        $('#menu-main-mini').on('click', () => {
-            $('html,body').animate({
-                scrollTop: 0
-            },500);
-        });
-    });
-
-    /*$( () => {
-        $('#slide2-form-exit').on('click', () => {
-            $('#slide2-form').css({'display': 'none'});
-            $('#slide2-form').css({'opacity': '0'});
-            $('body').css({'overflow': 'auto'});
-        });
-    });
-
-    $( () => {
-        $('#index-button2').on('click', () => {
-            $('#slide2-form').css({'display': 'block'});
-            $('#slide2-form').css({'opacity': '1'});
-            $('body').css({'overflow': 'hidden'});
-        });
-    });*/
-</script>
+<body>
 
 <div th:replace="fragments/header :: header"></div>
-<div class="container" style=" width: 100%">
-    <section class="content home">
-        <div class="block-header">
-            <div class="row">
-                <div class="p-4">
-                    <h1 style="color: white">Просмотр статуса объекта</h1>
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row clearfix">
-                <div class="col-lg-12">
 
-                    <div class="card" style="margin-bottom: 0; border-bottom-left-radius: 0;border-bottom-right-radius: 0">
-                        <div class="body">
-                            <div class="row clearfix">
-                                <div class="col-sm-6" style="width: 100%"th:switch="${estateObjects}">
-                                    <h2 th:case="null">NOT FOUND</h2>
-                                    <div class="form-group" th:case="*">
-                                        <h2></h2>
-                                        <table class="table">
-                                            <thead>
-                                            <tr>
-                                                <th>id</th>
-                                                <th>city</th>
-                                                <th>full_address</th>
-                                                <th>area</th>
-                                                <th>floor</th>
-                                                <th>max_floor</th>
-                                                <th>room_size</th>
-                                                <th>house_type</th>
-                                                <th>property_type</th>
-                                                <th>renovation_type</th>
-                                                <th>estate_object_type</th>
-                                                <th>datetime_created</th>
-                                                <th>actions</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr th:each="object : ${estateObjects}">
-                                                <td th:text="${object.id}"></td>
-                                                <td th:text="${object.address.city.name}"></td>
-                                                <td th:text="${object.address.fullAddress}"></td>
-                                                <td th:text="${object.area}"></td>
-                                                <td th:text="${object.floor}"></td>
-                                                <td th:text="${object.maxFloor}"></td>
-                                                <td th:text="${object.roomSize}"></td>
-                                                <td th:text="${object.houseType.name}"></td>
-                                                <td th:text="${object.propertyType.name}"></td>
-                                                <td th:text="${object.renovationType.name}"></td>
-                                                <td th:text="${object.estateObjectType.name}"></td>
-                                                <td th:text="${object.dateTimeCreated}"></td>
-                                                <td>
-                                                    <a th:if="${isAdmin}" th:href="@{'/estate-objects/' + ${object.id} + '/delete'}"><button class="btn-danger">Delete</button></a>
-                                                    <a th:if="${isAdmin}" th:href="@{'/estate-objects/' + ${object.id} + '/edit'}"><button class="btn-secondary">Edit</button></a>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <p><a th:if="${isAdmin}" href="/estate-objects/new"><button class="btn-primary">Create</button></a></p>
-                                </div>
-                            </div>
-                        </div>
+<div class="full-window-container bg-darkblue">
+    <div class="header-block"></div>
+    <div class="content">
+        <div class="sub-content" style="width: 95%">
+            <div class="subtitle" style="padding-bottom: 50px; position: sticky">Объекты недвижимости</div>
+            <div class="flex-table flex-table--11cols">
+                <div class="control-panel">
+                    <a class="button button-simple-type-1 button-color-add" href="/estate-object/new">Добавить новую запись</a>
+                </div>
+                <div class="head">
+                    <div class="cell" style="width: 50px">
+                        ID
                     </div>
-
+                    <div class="cell" style="flex-grow: 2">
+                        Адрес
+                    </div>
+                    <div class="cell" style="width: 100px">
+                        Площадь
+                    </div>
+                    <div class="cell" style="width: 100px">
+                        Этаж
+                    </div>
+                    <div class="cell" style="width: 100px">
+                        Кол-во
+                        комнат
+                    </div>
+                    <div class="cell" style="flex-grow: 1">
+                        Тип дома
+                    </div>
+                    <div class="cell" style="flex-grow: 1">
+                        Тип<br/>
+                        недвижимости
+                    </div>
+                    <div class="cell" style="flex-grow: 1">
+                        Тип<br/>
+                        ремонта
+                    </div>
+                    <div class="cell" style="flex-grow: 1">
+                        Тип объекта<br/>
+                        недвижимости
+                    </div>
+                    <div class="cell" style="width: 200px">
+                        Дата<br/>
+                        добавления
+                    </div>
+                    <div class="cell" style="width: 220px">
+                        Действия
+                    </div>
                 </div>
+                <div class="row" th:each="object : ${estateObjects}">
+                    <div class="cell" th:text="${object.id}" style="width: 50px"></div>
 
+                    <div class="cell" th:text="@{'г. ' + ${object.address.city.name} + ' ' + ${object.address.fullAddress}}" style="flex-grow: 2"></div>
+                    <div class="cell center" th:text="@{${object.area} + ' м²'}" style="width: 100px"></div>
+                    <div class="cell center" th:text="@{${object.floor} + '/' + ${object.maxFloor}}" style="width: 100px"></div>
+                    <div class="cell center" th:text="${object.roomSize}" style="width: 100px"></div>
+                    <div class="cell center" th:text="${object.houseType.name}" style="flex-grow: 1"></div>
+                    <div class="cell center" th:text="${object.propertyType.name}" style="flex-grow: 1"></div>
+                    <div class="cell center" th:text="${object.renovationType.name}" style="flex-grow: 1"></div>
+                    <div class="cell center" th:text="${object.estateObjectType.name}" style="flex-grow: 1"></div>
+                    <div class="cell center" th:text="${#temporals.format(object.dateTimeCreated, 'dd.MM.yyy HH:mm')}" style="width: 200px"></div>
+
+                    <div class="cell actions" style="width: 220px">
+                        <a class="button button-simple-type-1 button-color-change" th:href="@{'/estate-object/' + ${object.id} + '/edit'}">Изменить</a>
+                        <a class="button button-simple-type-1 button-color-delete" th:href="@{'/estate-object/' + ${object.id} + '/delete'}" style="margin-left: 10px">Удалить</a>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 </div>
 
 <div th:replace="fragments/footer :: footer"></div>
 
-<script src="../../static/scripts/jquery/libscripts.bundle.js"></script> <!-- Lib Scripts Plugin Js ( jquery.v3.2.1, Bootstrap4 js) -->
-<script src="../../static/scripts/jquery/vendorscripts.bundle.js"></script> <!-- slimscroll, waves Scripts Plugin Js -->
-
-<script src="../../static/scripts/jquery/dropzone.js"></script> <!-- Dropzone Plugin Js -->
-
-<script src="../../static/scripts/jquery/mainscripts.bundle.js"></script>
-<script th:src="@{/scripts/jquery/libscripts.js}"></script>
-
-<script th:src="@{/scripts/jquery/dropzone.js}"></script>
-<script th:src="@{/scripts/jquery/mainscripts.bundle.js}"></script>
 </body>
-
 </html>

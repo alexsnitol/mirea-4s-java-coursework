@@ -412,7 +412,8 @@ select {
 
 .full-window-container {
     width: 100%;
-    height: 100vh;
+    height: 100%;
+    min-height: 100vh;
 }
 
 .full-window-container > .content {
@@ -426,6 +427,7 @@ select {
     align-items: center;
 
     padding-top: 50px;
+    padding-bottom: 50px;
 
     transition: 0.1s;
 }
@@ -454,9 +456,14 @@ select {
 .sub-content {}
 
 .flex-table {
-    display: flex;
-    flex-direction: column;
+    display: inline-block;
 
+    width: max-content;
+    min-width: 600px;
+
+    overflow: auto;
+
+    text-align: center;
     font-size: 18px;
 }
 
@@ -469,7 +476,7 @@ select {
     display: flex;
 
     box-sizing: border-box;
-    flex-grow: 1;
+    /*flex-grow: 1;*/
     align-items: center;
     padding: 10px;
 
@@ -535,6 +542,11 @@ select {
     justify-content: center;
 }
 
+.flex-table > .row > .cell.center {
+    justify-content: center;
+    text-align: center;
+}
+
 .flex-table--2cols .cell  { width: calc(100%/2); }
 .flex-table--3cols .cell  { width: calc(100%/3); }
 .flex-table--4cols .cell  { width: calc(100%/4); }
@@ -544,6 +556,7 @@ select {
 .flex-table--8cols .cell  { width: calc(100%/8); }
 .flex-table--9cols .cell  { width: calc(100%/9); }
 .flex-table--10cols .cell  { width: calc(100%/10); }
+.flex-table--11cols .cell  { width: calc(100%/11); }
 
 .flex-table > .control-panel {
     padding-bottom: 10px;
@@ -1324,10 +1337,6 @@ a.button-simple-type-1:hover {
 
 #contacts-content-main-flex-left .heading-with-icon {
     margin-bottom: 18px;
-}
-
-#vacancies-main {
-    height: max(100vh, 100%);
 }
 
 #vacancies-main-content {

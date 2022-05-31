@@ -22,7 +22,7 @@ public class PropertyTypeController {
 
     @GetMapping
     public ModelAndView getAll() {
-        ModelAndView mv = new ModelAndView("view-property-types");
+        ModelAndView mv = new ModelAndView("view_property_types");
 
         mv.addObject("propertyTypes", propertyTypeService.getAll());
 
@@ -31,7 +31,7 @@ public class PropertyTypeController {
 
     @GetMapping("/new")
     public ModelAndView newPropertyType(PropertyType propertyType) {
-        return new ModelAndView("test_view_new_property_type");
+        return new ModelAndView("test_new_property_type");
     }
 
     @PostMapping("/new")

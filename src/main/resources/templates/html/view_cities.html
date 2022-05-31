@@ -47,7 +47,7 @@
     <div class="header-block"></div>
     <div class="content">
         <div class="sub-content" style="width: 80%">
-            <div class="subtitle" style="padding-bottom: 50px">Список городов</div>
+            <div class="subtitle" style="padding-bottom: 50px; position: sticky">Список городов</div>
             <div class="flex-table flex-table--3cols">
                 <div class="control-panel">
                     <a class="button button-simple-type-1 button-color-add" href="/cities/new">Добавить новую запись</a>
@@ -56,7 +56,7 @@
                     <div class="cell" style="width: 50px">
                         ID
                     </div>
-                    <div class="cell">
+                    <div class="cell" style="flex-grow: 1">
                         Название
                     </div>
                     <div class="cell" style="width: 220px">
@@ -65,7 +65,7 @@
                 </div>
                 <div class="row" th:each="city : ${cities}">
                     <div class="cell" th:text="${city.id}" style="width: 50px"></div>
-                    <div class="cell" th:text="${city.name}"></div>
+                    <div class="cell" th:text="${city.name}" style="flex-grow: 1"></div>
                     <div class="cell actions" style="width: 220px">
                         <a class="button button-simple-type-1 button-color-change" th:href="@{'/cities/' + ${city.id} + '/edit'}">Изменить</a>
                         <a class="button button-simple-type-1 button-color-delete" th:href="@{'/cities/' + ${city.id} + '/delete'}" style="margin-left: 10px">Удалить</a>

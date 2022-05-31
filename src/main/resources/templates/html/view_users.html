@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список пользователей</title>
+    <meta name="description" content="Агентство недвижимости в Москве ИНЕРИ. Инвестиции в недвижимость. Выкуп объектов. Торги по банкротству.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" th:href="@{/images/icon_INERI_1.svg}" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script th:src="@{/scripts/scrolling.js}"></script>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<div class="full-window-container bg-darkblue">
+    <div class="header-block"></div>
+    <div class="content">
+        <div class="sub-content" style="width: 80%">
+            <div class="subtitle" style="padding-bottom: 50px; position: sticky">Список пользователей</div>
+            <div class="flex-table flex-table--7cols">
+                <div class="control-panel">
+                    <a class="button button-simple-type-1 button-color-add" href="/users/new">Добавить новую запись</a>
+                </div>
+                <div class="head">
+                    <div class="cell" style="width: 50px">
+                        ID
+                    </div>
+                    <div class="cell" style="flex-grow: 1">
+                        Логин
+                    </div>
+                    <div class="cell" style="flex-grow: 1">
+                        ФИО
+                    </div>
+                    <div class="cell" style="flex-grow: 2">
+                        Эл. почта
+                    </div>
+                    <div class="cell" style="width: 220px">
+                        Номер телефона
+                    </div>
+                    <div class="cell" style="width: 200px">
+                        Дата создания
+                    </div>
+                    <div class="cell" style="width: 220px">
+                        Действия
+                    </div>
+                </div>
+                <div class="row" th:each="user : ${users}">
+                    <div class="cell" th:text="${user.id}" style="width: 50px"></div>
+                    <div class="cell" th:text="${user.username}" style="flex-grow: 1"></div>
+                    <div class="cell" th:text="@{${user.surname} + ' ' + ${user.name} + ' ' + ${user.patronymic}}" style="flex-grow: 1"></div>
+                    <div class="cell" th:text="${user.email}" style="flex-grow: 2"></div>
+                    <div class="cell" th:text="@{'+7 ' + ${user.phoneNumber}}" style="width: 220px"></div>
+                    <div class="cell" th:text="${#temporals.format(user.datetimeCreated, 'dd.MM.yyyy')}" style="width: 200px"></div>
+                    <div class="cell actions" style="width: 220px">
+                        <a class="button button-simple-type-1 button-color-change" th:href="@{'/users/' + ${user.id} + '/edit'}">Изменить</a>
+                        <a class="button button-simple-type-1 button-color-delete" th:href="@{'/users/' + ${user.id} + '/delete'}" style="margin-left: 10px">Удалить</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

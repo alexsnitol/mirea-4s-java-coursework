@@ -22,7 +22,7 @@ public class AdvertisedStatusController {
 
     @GetMapping
     public ModelAndView getAll() {
-        ModelAndView mv = new ModelAndView("test_view_advertised_statuses");
+        ModelAndView mv = new ModelAndView("view_advertised_statuses");
 
         mv.addObject("advertised-statuses", advertisedStatusService.getAll());
 
