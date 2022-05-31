@@ -2,11 +2,11 @@
 <html lang="en" xmlns:th="http://tymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Регистрация</title>
+    <title>Создание пользователя</title>
 </head>
 <body>
 <h1>Заполните поля</h1>
-<form th:action="@{'/'+${currentUsername}+'/users/new'}" th:object="${user}" method="post">
+<form th:action="@{'/users/new'}" th:object="${user}" method="post">
     <label for="username">Логин</label>
     <input type="text" th:field="*{username}" id="username">
     <br>
@@ -47,7 +47,7 @@
     <br>
     <br>
 
-    <input type="submit" value="Зарегистрироваться">
+    <input type="submit" value="Создать пользователя">
 </form>
 </body>
 </html>
