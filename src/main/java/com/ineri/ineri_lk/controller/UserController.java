@@ -1,16 +1,14 @@
 package com.ineri.ineri_lk.controller;
 
-import com.ineri.ineri_lk.model.ERole;
-import com.ineri.ineri_lk.model.Role;
 import com.ineri.ineri_lk.model.User;
 import com.ineri.ineri_lk.service.impl.RoleService;
 import com.ineri.ineri_lk.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.Set;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  * @author Kozlov Alexander

@@ -34,30 +34,18 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @NotBlank(message = "Поле не может быть пустым")
-//    @Length(max = 31, message = "В поле не может быть > 31")
     private String username;
 
-//    @NotBlank(message = "Поле не может быть пустым")
-//    @Length(max = 31, message = "В поле не может быть > 31")
     private String password;
 
-//    @NotBlank(message = "Поле не может быть пустым")
-//    @Length(max = 31, message = "В поле не может быть > 31")
     private String surname;
 
-//    @NotBlank(message = "Поле не может быть пустым")
-//    @Length(max = 31, message = "В поле не может быть > 31")
     private String name;
 
-//    @NotBlank(message = "Поле не может быть пустым")
     private String patronymic;
 
-//    @NotBlank(message = "Поле не может быть пустым")
-//    @Email(message = "Поле введено не верно")
     private String email;
 
-//    @NotBlank(message = "Поле должно содержать 13 цифр")
     private String phoneNumber;
 
     private String photoPath;
@@ -66,11 +54,7 @@ public class User implements UserDetails {
     private LocalDateTime datetimeCreated = LocalDateTime.now();
 
     @Transient
-    private Boolean isActive;
-
-    @Transient
     private String confirmPassword;
-
 
     @ManyToMany(fetch = FetchType.EAGER,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
@@ -109,10 +93,6 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return isActive;
-    }
-
-    public void setActive(Boolean active) {
-        this.isActive = active;
+        return true;
     }
 }

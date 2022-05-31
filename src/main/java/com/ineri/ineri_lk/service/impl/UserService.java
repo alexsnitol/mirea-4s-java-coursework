@@ -18,17 +18,17 @@ import java.util.List;
  * @author Kozlov Alexander
  */
 
-@Service
+@Service("userService")
 public class UserService implements UserDetailsService {
 
-    @PersistenceContext
-    private EntityManager em;
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private RoleRepository roleRepository;
+    public UserService(UserRepository userRepository, RoleRepository roleRepository) {
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+    }
 
     public User getUserById(Long userId) {
         return userRepository.findById(userId).orElse(null);
@@ -42,7 +42,7 @@ public class UserService implements UserDetailsService {
         User userFromDB = userRepository.findByUsername(user.getUsername()).orElse(null);
 
         if (userFromDB == null) {
-            user.setActive(true);
+//            user.setActive(true);
             user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
             user.getRoles().add(roleRepository.findRoleById(2L));
             userRepository.save(user);

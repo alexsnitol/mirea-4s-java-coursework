@@ -18,5 +18,4 @@ public class MVCConfig implements WebMvcConfigurer {
                 .addResourceLocations("classpath:/static/scripts/");
         registry.addResourceHandler("/html/**")
                 .addResourceLocations("classpath:/templates/html/");
-    }
-}
+    }}
