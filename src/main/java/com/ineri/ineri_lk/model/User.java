@@ -51,7 +51,7 @@ public class User implements UserDetails {
     private String photoPath;
 
     @Column(name = "datetime_created")
-    private LocalDateTime datetimeCreated = LocalDateTime.now();
+    private LocalDateTime datetimeCreated;
 
     @Transient
     private String confirmPassword;

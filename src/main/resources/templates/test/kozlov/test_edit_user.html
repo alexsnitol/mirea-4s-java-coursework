@@ -44,6 +44,9 @@
         <br>
         <br>
 
+        <input type="text" th:field="*{photoPath}" id="photoPath" hidden="hidden">
+        <input type="text" th:field="*{datetimeCreated}" id="datetimeCreated" hidden="hidden">
+
         <label>Сделать администратором:</label>
         <input type="checkbox" th:checked="${isAdmin}" name="isAdmin" id="isAdmin">
         <br>
