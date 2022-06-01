@@ -4,6 +4,7 @@ import com.ineri.ineri_lk.model.Form;
 import com.ineri.ineri_lk.service.impl.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class FormController {
     @Autowired
     private FormService formService;
+
     @Autowired
     private HouseTypeServiceImpl houseTypeService;
     @Autowired
@@ -33,10 +35,9 @@ public class FormController {
     @Autowired
     private CityServiceImpl cityService;
 
-
     @GetMapping
     public ModelAndView getAll(@PathVariable("username") String username) {
-        ModelAndView mv = new ModelAndView("k-list-forms");
+        ModelAndView mv = new ModelAndView("test_view_forms");
         mv.addObject("forms", formService.getAll());
         mv.addObject("username", username);
         return mv;
@@ -44,7 +45,7 @@ public class FormController {
 
     @GetMapping("/new")
     public ModelAndView newForm(@PathVariable("username") String username, Form form) {
-        ModelAndView mv = new ModelAndView("k-new-form");
+        ModelAndView mv = new ModelAndView("test_new_form");
 
         mv.addObject("houseTypes", houseTypeService.getAll());
         mv.addObject("propertyTypes", propertyTypeService.getAll());
@@ -66,14 +67,9 @@ public class FormController {
 
     @GetMapping("/{form_id}/edit")
     public ModelAndView edit(@PathVariable("username") String username, @PathVariable("form_id") Long id) {
-        ModelAndView mv = new ModelAndView("k-admin-edit-form");
+        ModelAndView mv = new ModelAndView("test_edit_form");
 
         mv.addObject("form", formService.getById(id));
-        mv.addObject("houseTypes", houseTypeService.getAll());
-        mv.addObject("propertyTypes", propertyTypeService.getAll());
-        mv.addObject("renovationTypes", renovationTypeService.getAll());
-        mv.addObject("estateObjectTypes", estateObjectTypeService.getAll());
-        mv.addObject("cities", cityService.getAll());
         mv.addObject("username", username);
 
         return mv;

@@ -1,10 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Анкеты</title>
 </head>
 <body>
-
+    <div th:switch="${forms}">
+        <h2 th:case="null">Анкеты не найдены!</h2>
+        <div th:case="*">
+            <h2>Список всех анкет</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Адрес</th>
+                    <th>Площадь</th>
+                    <th>Этаж / Количество этажей</th>
+                    <th>Количество комнат</th>
+                    <th>Статус</th>
+                    <th>Описание</th>
+                    <th>Цена</th>
+                    <th>Логин создателя</th>
+                    <th>Логин проверяющего администратора</th>
+                    <th>Тип дома</th>
+                    <th>Тип объекта недвижимости</th>
+                    <th>Тип ремонта</th>
+                    <th>Тип недвижимости</th>
+                    <th>Дата создания</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="form : ${forms}">
+                    <td th:text="${form.id}"></td>
+                    <td th:text="'г. ' + ${form.address.city.name} + ' ' + ${form.address.fullAddress}"></td>
+                    <td th:text="${form.area} + ' м²'"></td>
+                    <td th:text="${form.floor} + '/' + ${form.maxFloor}"></td>
+                    <td th:text="${form.roomSize}"></td>
+                    <td th:text="${form.state}"></td>
+                    <td th:text="${form.description}"></td>
+                    <td th:text="${form.price}"></td>
+                    <td th:text="${form.user.username}"></td>
+                    <td th:text="${form.admin.username}"></td>
+                    <td th:text="${form.houseType.name}"></td>
+                    <td th:text="${form.estateObjectType.name}"></td>
+                    <td th:text="${form.renovationType.name}"></td>
+                    <td th:text="${form.propertyType.name}"></td>
+                    <td th:text="${form.adminComment}"></td>
+                    <td th:text="${#temporals.format(form.dateTimeCreated, 'dd.MM.yyy HH:mm')}"></td>
+                    <td>
+                        <a th:href="@{'/'+${username}+'/forms/' + ${form.id} + '/edit'}"><button>Edit</button></a>
+                        <a th:href="@{'/'+${username}+'/forms/' + ${form.id} + '/delete'}"><button>Delete</button></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </body>
 </html>
