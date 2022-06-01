@@ -2,7 +2,7 @@
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title th:text="@{'Редактирование города - ' + ${city.name}}"></title>
+    <title th:text="@{'Добавление типа недвижимости'}"></title>
     <meta name="description" content="Агентство недвижимости в Москве ИНЕРИ. Инвестиции в недвижимость. Выкуп объектов. Торги по банкротству.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css">
@@ -19,15 +19,15 @@
     <div th:replace="fragments/control_panel_header :: control-panel-header"></div>
     <div class="content">
         <div class="sub-content" style="width: 80%">
-            <div class="subtitle" th:text="@{'Редактирование города - ' + ${city.name}}" style="padding-bottom: 50px"></div>
-            <form class="form" th:action="@{'/cities/' + ${city.id} + '/edit'}" th:object="${city}" method="post">
+            <div class="subtitle" th:text="@{'Добавление типа недвижимости'}" style="padding-bottom: 50px"></div>
+            <form class="form" th:action="@{/property-types/new}" th:object="${propertyType}" method="post">
                 <div class="form-content">
                     <div class="row">
                         <div class="label">Название:</div>
                         <div class="input-el"><input type="text" id="name" th:field="*{name}" style="width: 95%"></div>
                     </div>
                     <div class="row">
-                        <button class="button button-simple-type-1 button-color-default" type="submit">Применить</button>
+                        <button class="button button-simple-type-1 button-color-add" type="submit">Добавить</button>
                     </div>
                 </div>
             </form>

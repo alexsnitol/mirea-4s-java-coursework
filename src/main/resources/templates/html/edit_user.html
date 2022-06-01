@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="@{'Редактирование пользователя - ' + ${user.surname} + ' ' + ${user.name} + ' ' + ${user.patronymic}}"></title>
+    <meta name="description" content="Агентство недвижимости в Москве ИНЕРИ. Инвестиции в недвижимость. Выкуп объектов. Торги по банкротству.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" th:href="@{/images/icon_INERI_1.svg}" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script th:src="@{/scripts/scrolling.js}"></script>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<div class="full-window-container bg-darkblue">
+    <div class="header-block bg-darkblue4"></div>
+    <div th:replace="fragments/control_panel_header :: control-panel-header"></div>
+    <div class="content">
+        <div class="sub-content" style="width: 80%">
+            <div class="subtitle" th:text="@{'Редактирование пользователя - ' + ${user.surname} + ' ' + ${user.name} + ' ' + ${user.patronymic}}" style="padding-bottom: 50px"></div>
+            <form class="form" th:action="@{'/users/'+${user.id}+'/edit'}" th:object="${user}" method="post">
+
+                <input type="text" th:field="*{id}" id="id" hidden>
+
+                <div class="form-content">
+                    <div class="row">
+                        <div class="label">Имя пользователя:</div>
+                        <div class="input-el"><input type="text" th:field="*{username}" id="username" style="width: 95%"></div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Пароль:</div>
+                        <div class="input-el"><input type="password" th:field="*{password}" id="password" style="width: 95%"></div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Фамилия:</div>
+                        <div class="input-el"><input type="text" th:field="*{surname}" id="surname" style="width: 95%"></div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Имя:</div>
+                        <div class="input-el"><input type="text" th:field="*{name}" id="name" style="width: 95%"></div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Отчество:</div>
+                        <div class="input-el"><input type="text" th:field="*{patronymic}" id="patronymic" style="width: 95%"></div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Эл. почта:</div>
+                        <div class="input-el"><input type="email" th:field="*{email}" id="email" style="width: 95%"></div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Номер телефона:</div>
+                        <div class="input-el"><input type="tel" th:field="*{phoneNumber}" id="phoneNumber" style="width: 95%"></div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Сделать администратором:</div>
+                        <div class="input-el"><input type="checkbox" th:checked="${isAdmin}" name="isAdmin" id="isAdmin"></div>
+                    </div>
+                    <div class="row">
+                        <button class="button button-simple-type-1 button-color-default" type="submit">Применить</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

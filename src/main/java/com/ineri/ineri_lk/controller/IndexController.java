@@ -20,9 +20,9 @@ public class IndexController {
         return "view_contacts";
     }
 
-    @GetMapping("/control")
+    @GetMapping("/control-panel")
     public String showControl() {
-        return "view_controller";
+        return "redirect:/users";
     }
 
     @GetMapping("/cookie")
@@ -30,9 +30,19 @@ public class IndexController {
         return "cookie";
     }
 
-    @GetMapping("/template")
-    public String showTemplate() {
+    @GetMapping("/view-template")
+    public String showViewTemplate() {
         return "view_template";
+    }
+
+    @GetMapping("/edit-template")
+    public String showEditTemplate() {
+        return "edit_template";
+    }
+
+    @GetMapping("/add-template")
+    public String showAddTemplate() {
+        return "add_template";
     }
 
 }

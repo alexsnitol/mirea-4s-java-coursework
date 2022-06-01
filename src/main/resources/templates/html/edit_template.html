@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View template</title>
+    <meta name="description" content="Template. Агентство недвижимости в Москве ИНЕРИ. Инвестиции в недвижимость. Выкуп объектов. Торги по банкротству.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" th:href="@{/images/icon_INERI_1.svg}" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script th:src="@{/scripts/scrolling.js}"></script>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<div class="full-window-container bg-darkblue">
+    <div class="header-block bg-darkblue4"></div>
+    <div th:replace="fragments/control_panel_header :: control-panel-header"></div>
+    <div class="content">
+        <div class="sub-content" style="width: 80%">
+            <div class="subtitle" style="padding-bottom: 50px">TITLE</div>
+            <form class="form" action="mailto:sslotin74@gmail.com" enctype="text/plain" method="post">
+                <div class="form-content">
+                    <div class="row">
+                        <div class="label">Адрес объекта:</div>
+                        <div class="input-el"><input type="text" id="address" name="address" style="width: 95%"></div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Квартира (необязательно):</div>
+                        <div class="input-el"><input type="text" id="apartment" name="apartment" style="width: 50px; text-align: center;"></div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Площадь:</div>
+                        <div class="input-el"><input type="number" id="space" name="space" mix="0" style="width: 50px; text-align: center;"></div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Этаж:</div>
+                        <div class="input-el"><input type="number" id="floor" name="floor" min="0" max="100" style="width: 50px; text-align: center;"></div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Тип ремонта:</div>
+                        <div class="combobox">
+                            <select name="type_renovation">
+                                <option value="1">Без отделки</option>
+                                <option value="2">Советский</option>
+                                <option value="3">Обычный</option>
+                                <option value="4">Хороший</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Желаемый срок реализации (в месяцах):</div>
+                        <div class="input-el"><input type="number" id="deadline" name="deadline" min="0" max="8" style="width: 50px; text-align: center;"></div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Номер телефона:</div>
+                        <div class="input-el"><input type="text" id="tel" name="tel" style="width: 200px;"></div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Описание:</div>
+                        <div class="input-el"><textarea rows="5" style="width: 98%"></textarea></div>
+                    </div>
+                    <div class="row column">
+                        <div class="label">Чекбокс:</div>
+                        <div class="input-el"><input type="checkbox" id="" name="">check1</div>
+                        <div class="input-el"><input type="checkbox" id="" name="">check2</div>
+                    </div>
+                    <div class="row">
+                        <button class="button button-simple-type-1 button-color-default" type="submit">EDIT</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

@@ -35,14 +35,14 @@ public class EstateObjectController extends AbstractController {
 
     @GetMapping
     public ModelAndView getAll() {
-        ModelAndView mv = new ModelAndView("view-estate-objects");
+        ModelAndView mv = new ModelAndView("view_estate_objects");
         mv.addObject("estateObjects", estateObjectService.getAll());
         return mv;
     }
 
     @GetMapping("/new")
     public ModelAndView newEstateObject(EstateObject estateObject) {
-        ModelAndView mv = new ModelAndView("test_new_estate_object");
+        ModelAndView mv = new ModelAndView("new_estate_object");
 
         mv.addObject("houseTypes", houseTypeService.getAll());
         mv.addObject("propertyTypes", propertyTypeService.getAll());
@@ -63,7 +63,7 @@ public class EstateObjectController extends AbstractController {
 
     @GetMapping("/{id}/edit")
     public ModelAndView edit(@PathVariable Long id) {
-        ModelAndView mv = new ModelAndView("test_edit_estate_object");
+        ModelAndView mv = new ModelAndView("edit_estate_object");
 
         mv.addObject("estateObject", estateObjectService.getById(id));
         mv.addObject("houseTypes", houseTypeService.getAll());

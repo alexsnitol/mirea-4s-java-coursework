@@ -9,6 +9,10 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * @author Slotin Alexander (@alexsnitol)
+ */
+
 @Controller
 public class CustomErrorController implements ErrorController {
 

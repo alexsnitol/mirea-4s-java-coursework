@@ -2,7 +2,7 @@
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Тип объекта недвижимости</title>
+    <title>Статус объявления</title>
     <meta name="description" content="Агентство недвижимости в Москве ИНЕРИ. Инвестиции в недвижимость. Выкуп объектов. Торги по банкротству.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css">
@@ -19,10 +19,10 @@
     <div th:replace="fragments/control_panel_header :: control-panel-header"></div>
     <div class="content">
         <div class="sub-content" style="width: 80%">
-            <div class="subtitle" style="padding-bottom: 50px; position: sticky">Тип объекта недвижимости</div>
+            <div class="subtitle" style="padding-bottom: 50px; position: sticky">Статус объявления</div>
             <div class="flex-table flex-table--3cols">
                 <div class="control-panel">
-                    <a class="button button-simple-type-1 button-color-add" href="/estate-object-types/new">Добавить новую запись</a>
+                    <a class="button button-simple-type-1 button-color-add" href="/advertised-statuses/new">Добавить новую запись</a>
                 </div>
                 <div class="head">
                     <div class="cell" style="width: 50px">
@@ -35,12 +35,12 @@
                         Действия
                     </div>
                 </div>
-                <div class="row" th:each="type : ${estateObjectTypes}">
-                    <div class="cell" th:text="${type.id}" style="width: 50px"></div>
-                    <div class="cell" th:text="${type.name}" style="flex-grow: 1"></div>
+                <div class="row" th:each="status : ${advertisedStatuses}">
+                    <div class="cell" th:text="${status.id}" style="width: 50px"></div>
+                    <div class="cell" th:text="${status.name}" style="flex-grow: 1"></div>
                     <div class="cell actions" style="width: 220px">
-                        <a class="button button-simple-type-1 button-color-change" th:href="@{'/estate-object-types/' + ${type.id} + '/edit'}">Изменить</a>
-                        <a class="button button-simple-type-1 button-color-delete" th:href="@{'/estate-object-types/' + ${type.id} + '/delete'}" style="margin-left: 10px">Удалить</a>
+                        <a class="button button-simple-type-1 button-color-change" th:href="@{'/advertised-statuses/' + ${status.id} + '/edit'}">Изменить</a>
+                        <a class="button button-simple-type-1 button-color-delete" th:href="@{'/advertised-statuses/' + ${status.id} + '/delete'}" style="margin-left: 10px">Удалить</a>
                     </div>
                 </div>
             </div>

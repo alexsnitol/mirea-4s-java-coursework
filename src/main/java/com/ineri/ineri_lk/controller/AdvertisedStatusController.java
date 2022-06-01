@@ -22,16 +22,16 @@ public class AdvertisedStatusController {
 
     @GetMapping
     public ModelAndView getAll() {
-        ModelAndView mv = new ModelAndView("test_view_advertised_statuses");
+        ModelAndView mv = new ModelAndView("view_advertised_statuses");
 
-        mv.addObject("advertised-statuses", advertisedStatusService.getAll());
+        mv.addObject("advertisedStatuses", advertisedStatusService.getAll());
 
         return mv;
     }
 
     @GetMapping("/new")
     public ModelAndView newAdvertisedStatus(AdvertisedStatus advertisedStatus) {
-        return new ModelAndView("test_new_advertised_status");
+        return new ModelAndView("new_advertised_status");
     }
 
     @PostMapping("/new")
@@ -48,7 +48,7 @@ public class AdvertisedStatusController {
 
     @GetMapping("/{id}/edit")
     public ModelAndView editById(@PathVariable("id") Long id) {
-        ModelAndView mv = new ModelAndView("test_edit_advertised_status");
+        ModelAndView mv = new ModelAndView("edit_advertised_status");
         mv.addObject(advertisedStatusService.getById(id));
         return mv;
     }

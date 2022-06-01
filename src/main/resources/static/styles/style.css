@@ -88,14 +88,31 @@ a:hover {
 
 input {
     font-size: 18px;
-    font-width: 700;
-    color: #375660;
+    color: var(--dark-txt1);
 
-    border-radius: 15px;
+    border-radius: 6px;
 
-    background-color: #F4F4F4;
+    background-color: var(--light-fon);
 
-    padding: 10px;
+    padding: 5px 10px 5px 10px;
+
+    margin: 0 10px 0 10px;
+}
+
+textarea {
+    font-size: 18px;
+    color: var(--dark-txt1);
+
+    font-family: "Raleway", sans-serif;
+    font-variant-numeric: lining-nums;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    border-radius: 6px;
+
+    background-color: var(--light-fon);
+
+    padding: 5px 10px 5px 10px;
 }
 
 button {
@@ -104,14 +121,13 @@ button {
 
 select {
     font-size: 18px;
-    font-width: 700;
-    color: #375660;
+    color: var(--dark-txt1);
 
-    border-radius: 15px;
+    border-radius: 6px;
 
-    background-color: #F4F4F4;
+    background-color: var(--light-fon);
 
-    padding: 10px;
+    padding: 5px 10px 5px 10px;
 }
 
 .header {
@@ -264,6 +280,53 @@ select {
     display: none!important;
 }
 
+.page-header {
+    position: relative;
+    width: auto;
+    padding: 50px 5% 0 5%;
+}
+
+.page-header > .label {
+    text-align: left;
+    font-weight: 700;
+    font-size: 52px;
+    padding: 30px 0;
+}
+
+.page-header > .page-menu {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.page-header > .page-menu > .item {
+    padding: 0 15px;
+    font-size: 16px;
+    letter-spacing: .12ex;
+    line-height: 60px;
+
+    border-bottom: rgba(0, 0, 0, 0) solid 2px;
+
+    transition: 0s;
+}
+
+.page-header > .page-menu > .item:hover {
+    color: inherit;
+    border-bottom: var(--active) solid 2px;
+}
+
+.page-header > .page-menu > .item.current {
+    border-bottom: var(--current) solid 4px;
+    background-color: inherit;
+    transition: 0.1s;
+}
+
+.page-header > .page-menu > .item.current:hover {
+    background-color: inherit;
+    border-bottom: var(--hover-current) solid 4px;
+}
+
 .thin       {font-weight: 100!important;}
 .extralight {font-weight: 200!important;}
 .light      {font-weight: 300!important;}
@@ -412,7 +475,8 @@ select {
 
 .full-window-container {
     width: 100%;
-    height: 100vh;
+    height: 100%;
+    min-height: 100vh;
 }
 
 .full-window-container > .content {
@@ -426,6 +490,7 @@ select {
     align-items: center;
 
     padding-top: 50px;
+    padding-bottom: 50px;
 
     transition: 0.1s;
 }
@@ -436,6 +501,10 @@ select {
     color: #F4F4F4;
     text-align: center;
     background-color: #061121;
+}
+
+.bg-darkblue4 {
+    background-color: var(--dark-fon4);
 }
 
 .content {
@@ -454,9 +523,14 @@ select {
 .sub-content {}
 
 .flex-table {
-    display: flex;
-    flex-direction: column;
+    display: inline-block;
 
+    width: max-content;
+    min-width: 600px;
+
+    overflow: auto;
+
+    text-align: center;
     font-size: 18px;
 }
 
@@ -469,7 +543,7 @@ select {
     display: flex;
 
     box-sizing: border-box;
-    flex-grow: 1;
+    /*flex-grow: 1;*/
     align-items: center;
     padding: 10px;
 
@@ -535,6 +609,11 @@ select {
     justify-content: center;
 }
 
+.flex-table > .row > .cell.center {
+    justify-content: center;
+    text-align: center;
+}
+
 .flex-table--2cols .cell  { width: calc(100%/2); }
 .flex-table--3cols .cell  { width: calc(100%/3); }
 .flex-table--4cols .cell  { width: calc(100%/4); }
@@ -544,6 +623,7 @@ select {
 .flex-table--8cols .cell  { width: calc(100%/8); }
 .flex-table--9cols .cell  { width: calc(100%/9); }
 .flex-table--10cols .cell  { width: calc(100%/10); }
+.flex-table--11cols .cell  { width: calc(100%/11); }
 
 .flex-table > .control-panel {
     padding-bottom: 10px;
@@ -606,6 +686,7 @@ select {
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
+    cursor: pointer;
 }
 
 a.button:hover {
@@ -1049,6 +1130,27 @@ a.button-simple-type-1:hover {
 }
 
 .form {
+    display: inline-block;
+
+    width: max-content;
+    min-width: 600px;
+
+    padding: 30px;
+
+    overflow: auto;
+
+    text-align: center;
+    font-size: 18px;
+
+    border-radius: 8px;
+
+    color: var(--light-txt);
+    background-color: var(--dark-fon4);
+
+    transition: 0.1s;
+}
+
+.popup-form {
     display: none;
 
     position: fixed;
@@ -1056,7 +1158,11 @@ a.button-simple-type-1:hover {
     height: 100%;
     width: 100%;
 
+    padding: 30px;
+
     line-height: 130vh;
+
+    font-size: 24px;
 
     z-index: 1001;
 
@@ -1071,26 +1177,12 @@ a.button-simple-type-1:hover {
     position: relative;
     display: inline-block;
 
+    width: 100%;
     height: fit-content;
     line-height: normal;
-
-    padding: 30px;
-
-    border-radius: 26.5px;
-
-    font-size: 24px;
-
-    color: #F4F4F4;
-    background-color: rgba(19, 50, 100, 0.85);
-
-    border-color: #133264;
-    border-style: solid;
-    border-width: 2px;
-
-    transition: 0.1s;
 }
 
-.form-content .row {
+.form-content > .row {
     display: flex;
 
     flex-direction: row;
@@ -1102,17 +1194,23 @@ a.button-simple-type-1:hover {
     line-height: 45px;
 
     text-align: left;
-    font-size: 24px;
     font-weight: 600;
 }
 
-.form-content .row:last-child {
-    padding: 20px 0px 10px 0px;
+.form-content > .row:last-child {
+    padding-top: 10px;
 
+    text-align: right;
+
+    flex-direction: row-reverse;
     flex: 100%;
 }
 
-.form-content .row-name {
+.form-content > .row.column {
+    flex-direction: column;
+}
+
+.form-content > .row-name {
     display: flex;
 
     flex-direction: row;
@@ -1128,7 +1226,7 @@ a.button-simple-type-1:hover {
     font-weight: 600;
 }
 
-.form-content .row-name .name {
+.form-content > .row-name > .name {
     flex: 1;
 
     text-align: left;
@@ -1136,17 +1234,17 @@ a.button-simple-type-1:hover {
     font-size: 28px;
 }
 
-.form-content .row-name .icon-exit {
+.form-content > .row-name > .icon-exit {
     width: 24px;
     cursor: pointer;
 }
 
-.form-content .row .label {
+.form-content > .row > .label {
     display: inline-block;
     padding-right: 10px;
 }
 
-.form-content .row .textbox {
+.form-content > .row > .input-el {
     flex: 1;
 
     display: inline-block;
@@ -1324,10 +1422,6 @@ a.button-simple-type-1:hover {
 
 #contacts-content-main-flex-left .heading-with-icon {
     margin-bottom: 18px;
-}
-
-#vacancies-main {
-    height: max(100vh, 100%);
 }
 
 #vacancies-main-content {
@@ -1899,12 +1993,10 @@ a.button-simple-type-1:hover {
     .form-content {
         height: 100vh;
 
-        padding: 24px;
-
         font-size: 18px;
     }
 
-    .form-content .row {
+    .form-content > .row {
         padding-bottom: 10px;
         flex-direction: column;
 
@@ -1913,23 +2005,23 @@ a.button-simple-type-1:hover {
         font-weight: 600;
     }
 
-    .form-content .row:last-child {
+    .form-content > .row:last-child {
         padding: 20px 0px 10px 0px;
     }
 
-    .form-content .row-name {
+    .form-content > .row-name {
         margin-bottom: 14px;
     }
 
-    .form-content .row-name .name {
+    .form-content > .row-name > .name {
         font-size: 20px;
     }
 
-    .form-content .row-name .icon-exit {
+    .form-content > .row-name > .icon-exit {
         width: 22px;
     }
 
-    .form-content .row .label {
+    .form-content > .row > .label {
         padding-bottom: 5px;
     }
 }
@@ -1952,12 +2044,11 @@ a.button-simple-type-1:hover {
     }
 
     .form-content {
-        padding: 10px;
         font-size: 14px;
         width: 95%;
     }
 
-    .form-content .row {
+    .form-content > .row {
         flex-direction: row;
         padding-bottom: 0px;
         line-height: 23px;

@@ -4,7 +4,6 @@ import com.ineri.ineri_lk.model.City;
 import com.ineri.ineri_lk.service.impl.CityServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,7 +33,7 @@ public class CityController {
 
     @GetMapping("/new")
     public ModelAndView newCity(City city) {
-        return new ModelAndView("test_new_city");
+        return new ModelAndView("new_city");
     }
 
     @PostMapping("/new")
@@ -51,7 +50,7 @@ public class CityController {
 
     @GetMapping("/{id}/edit")
     public ModelAndView editById(@PathVariable("id") Long id) {
-        ModelAndView mv = new ModelAndView("test_edit_city");
+        ModelAndView mv = new ModelAndView("edit_city");
         mv.addObject(cityService.getById(id));
         return mv;
     }
