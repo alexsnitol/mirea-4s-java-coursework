@@ -23,6 +23,8 @@
             <form class="form" th:action="@{'/users/'+${user.id}+'/edit'}" th:object="${user}" method="post">
 
                 <input type="text" th:field="*{id}" id="id" hidden>
+                <input type="text" th:field="*{photoPath}" id="photoPath" hidden="hidden">
+                <input type="text" th:field="*{datetimeCreated}" id="datetimeCreated" hidden="hidden">
 
                 <div class="form-content">
                     <div class="row">
