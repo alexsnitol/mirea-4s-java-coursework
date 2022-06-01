@@ -42,10 +42,11 @@
                 <div class="menu-item-button" th:attrappend="class=${#httpServletRequest.requestURI == '/login'} ? ${' current'} : ${''}"><div class="icon icon-user filter-white" style="margin-right: 10px;"></div>Личный кабинет</div>
             </a>
             <div class="menu-dropdown">
-                <a class="item" th:href="@{'/' + ${curUserId} + '/favorites'}">Избранное</a>
-                <a class="item" th:href="@{'/' + ${curUserId} + '/forms'}">Анкеты</a>
+                <a class="item" th:href="@{'/' + ${curUserLogin} + '/'}">Мой профиль</a>
+                <a class="item" th:href="@{'/' + ${curUserLogin} + '/favorites'}">Избранное</a>
+                <a class="item" th:href="@{'/' + ${curUserLogin} + '/forms'}">Анкеты</a>
                 <a class="item" th:href="@{'/control-panel'}">Панель управления</a>
-                <a class="item" th:href="@{'/' + ${curUserId} + '/signout'}" style="border-radius: 0 0 20px 20px">Выйти</a>
+                <a class="item" th:href="@{'/' + ${curUserLogin} + '/logout'}" style="border-radius: 0 0 20px 20px">Выйти</a>
             </div>
         </div>
 
