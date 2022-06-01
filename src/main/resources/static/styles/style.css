@@ -473,6 +473,21 @@ select {
     color: #000000;
 }
 
+.msg-block {
+    border-radius: 8px;
+    padding: 5px;
+}
+
+.error-block-theme {
+    background-color: #ffbaab;
+    color: #bc4147;
+}
+
+.info-block-theme {
+    background-color: #9fdaff;
+    color: #445f8b;
+}
+
 .full-window-container {
     width: 100%;
     height: 100%;
@@ -1209,6 +1224,10 @@ a.button-simple-type-1:hover {
 
 .form-content > .row.column {
     flex-direction: column;
+}
+
+.form-content > .row.column input {
+    margin: 0;
 }
 
 .form-content > .row-name {

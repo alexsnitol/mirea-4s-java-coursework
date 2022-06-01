@@ -27,7 +27,7 @@ public class IndexController {
 
     @GetMapping("/cookie")
     public String showCookie() {
-        return "cookie";
+        return "view_cookie";
     }
 
     @GetMapping("/view-template")
