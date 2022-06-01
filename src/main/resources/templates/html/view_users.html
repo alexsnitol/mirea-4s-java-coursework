@@ -15,7 +15,8 @@
 <div th:replace="fragments/header :: header"></div>
 
 <div class="full-window-container bg-darkblue">
-    <div class="header-block"></div>
+    <div class="header-block bg-darkblue4"></div>
+    <div th:replace="fragments/control_panel_header :: control-panel-header"></div>
     <div class="content">
         <div class="sub-content" style="width: 80%">
             <div class="subtitle" style="padding-bottom: 50px; position: sticky">Список пользователей</div>
@@ -51,8 +52,8 @@
                     <div class="cell" th:text="${user.username}" style="flex-grow: 1"></div>
                     <div class="cell" th:text="@{${user.surname} + ' ' + ${user.name} + ' ' + ${user.patronymic}}" style="flex-grow: 1"></div>
                     <div class="cell" th:text="${user.email}" style="flex-grow: 2"></div>
-                    <div class="cell" th:text="@{'+7 ' + ${user.phoneNumber}}" style="width: 220px"></div>
-                    <div class="cell" th:text="${#temporals.format(user.datetimeCreated, 'dd.MM.yyyy')}" style="width: 200px"></div>
+                    <div class="cell center" th:text="@{'+7 ' + ${user.phoneNumber}}" style="width: 220px"></div>
+                    <div class="cell center" th:text="${#temporals.format(user.datetimeCreated, 'dd.MM.yyyy')}" style="width: 200px"></div>
                     <div class="cell actions" style="width: 220px">
                         <a class="button button-simple-type-1 button-color-change" th:href="@{'/users/' + ${user.id} + '/edit'}">Изменить</a>
                         <a class="button button-simple-type-1 button-color-delete" th:href="@{'/users/' + ${user.id} + '/delete'}" style="margin-left: 10px">Удалить</a>

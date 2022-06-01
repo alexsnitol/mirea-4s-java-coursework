@@ -32,7 +32,7 @@ public class HouseTypeController {
 
     @GetMapping("/new")
     public ModelAndView newHouseType(HouseType houseType) {
-        return new ModelAndView("test_new_house_type");
+        return new ModelAndView("new_house_type");
     }
 
     @PostMapping("/new")
@@ -49,7 +49,7 @@ public class HouseTypeController {
 
     @GetMapping("/{id}/edit")
     public ModelAndView editById(@PathVariable("id") Long id) {
-        ModelAndView mv = new ModelAndView("test_edit_house_type");
+        ModelAndView mv = new ModelAndView("edit_house_type");
         mv.addObject(houseTypeService.getById(id));
         return mv;
     }

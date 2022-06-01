@@ -31,7 +31,7 @@ public class EstateObjectTypeController {
 
     @GetMapping("/new")
     public ModelAndView newEstateObjectType(EstateObjectType estateObjectType) {
-        return new ModelAndView("test_new_estate_object_type");
+        return new ModelAndView("new_estate_object_type");
     }
 
     @PostMapping("/new")
@@ -48,7 +48,7 @@ public class EstateObjectTypeController {
 
     @GetMapping("/{id}/edit")
     public ModelAndView editById(@PathVariable("id") Long id) {
-        ModelAndView mv = new ModelAndView("test_edit_estate_object_type");
+        ModelAndView mv = new ModelAndView("edit_estate_object_type");
         mv.addObject(estateObjectTypeService.getById(id));
         return mv;
     }

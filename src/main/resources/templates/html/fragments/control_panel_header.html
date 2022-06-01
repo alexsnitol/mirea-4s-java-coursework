@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div class="page-header bg-darkblue4" style="padding-top: 50px" th:fragment="control-panel-header">
+        <div class="label">Панель управления</div>
+        <div class="page-menu">
+            <a class="item" th:href="@{'/users'}" th:attrappend="class=${#httpServletRequest.requestURI == '/users'} ? ${' current'} : ${''}">
+                Список пользователей
+            </a>
+            <a class="item" th:href="@{'/estate-objects'}" th:attrappend="class=${#httpServletRequest.requestURI == '/estate-objects'} ? ${' current'} : ${''}">
+                Объекты недвижимости
+            </a>
+            <a class="item" th:href="@{'/forms'}" th:attrappend="class=${#httpServletRequest.requestURI == '/forms'} ? ${' current'} : ${''}">
+                Анкеты
+            </a>
+            <a class="item" th:href="@{'/cities'}" th:attrappend="class=${#httpServletRequest.requestURI == '/cities'} ? ${' current'} : ${''}">
+                Список городов
+            </a>
+            <a class="item" th:href="@{'/renovation-types'}" th:attrappend="class=${#httpServletRequest.requestURI == '/renovation-types'} ? ${' current'} : ${''}">
+                Тип ремонта
+            </a>
+            <a class="item" th:href="@{'/house-types'}" th:attrappend="class=${#httpServletRequest.requestURI == '/house-types'} ? ${' current'} : ${''}">
+                Тип дома
+            </a>
+            <a class="item" th:href="@{'/estate-object-types'}" th:attrappend="class=${#httpServletRequest.requestURI == '/estate-object-types'} ? ${' current'} : ${''}">
+                Тип объекта недвижимости
+            </a>
+            <a class="item" th:href="@{'/property-types'}" th:attrappend="class=${#httpServletRequest.requestURI == '/property-types'} ? ${' current'} : ${''}">
+                Тип недвижимости
+            </a>
+            <a class="item" th:href="@{'/advertised-statuses'}" th:attrappend="class=${#httpServletRequest.requestURI == '/advertised-statuses'} ? ${' current'} : ${''}">
+                Статус объявления
+            </a>
+        </div>
+    </div>
+</body>
+</html>

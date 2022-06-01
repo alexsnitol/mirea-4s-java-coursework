@@ -31,7 +31,7 @@ public class RenovationTypeController {
 
     @GetMapping("/new")
     public ModelAndView newRenovationType(RenovationType renovationType) {
-        return new ModelAndView("test_new_renovation_type");
+        return new ModelAndView("new_renovation_type");
     }
 
     @PostMapping("/new")
@@ -48,7 +48,7 @@ public class RenovationTypeController {
 
     @GetMapping("/{id}/edit")
     public ModelAndView editById(@PathVariable("id") Long id) {
-        ModelAndView mv = new ModelAndView("test_edit_renovation_type");
+        ModelAndView mv = new ModelAndView("edit_renovation_type");
         mv.addObject(renovationTypeService.getById(id));
         return mv;
     }

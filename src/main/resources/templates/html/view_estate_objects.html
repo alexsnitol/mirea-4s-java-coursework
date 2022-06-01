@@ -15,13 +15,14 @@
 <div th:replace="fragments/header :: header"></div>
 
 <div class="full-window-container bg-darkblue">
-    <div class="header-block"></div>
+    <div class="header-block bg-darkblue4"></div>
+    <div th:replace="fragments/control_panel_header :: control-panel-header"></div>
     <div class="content">
         <div class="sub-content" style="width: 95%">
             <div class="subtitle" style="padding-bottom: 50px; position: sticky">Объекты недвижимости</div>
             <div class="flex-table flex-table--11cols">
                 <div class="control-panel">
-                    <a class="button button-simple-type-1 button-color-add" href="/estate-object/new">Добавить новую запись</a>
+                    <a class="button button-simple-type-1 button-color-add" href="/estate-objects/new">Добавить новую запись</a>
                 </div>
                 <div class="head">
                     <div class="cell" style="width: 50px">
@@ -77,8 +78,8 @@
                     <div class="cell center" th:text="${#temporals.format(object.dateTimeCreated, 'dd.MM.yyy HH:mm')}" style="width: 200px"></div>
 
                     <div class="cell actions" style="width: 220px">
-                        <a class="button button-simple-type-1 button-color-change" th:href="@{'/estate-object/' + ${object.id} + '/edit'}">Изменить</a>
-                        <a class="button button-simple-type-1 button-color-delete" th:href="@{'/estate-object/' + ${object.id} + '/delete'}" style="margin-left: 10px">Удалить</a>
+                        <a class="button button-simple-type-1 button-color-change" th:href="@{'/estate-objects/' + ${object.id} + '/edit'}">Изменить</a>
+                        <a class="button button-simple-type-1 button-color-delete" th:href="@{'/estate-objects/' + ${object.id} + '/delete'}" style="margin-left: 10px">Удалить</a>
                     </div>
                 </div>
             </div>

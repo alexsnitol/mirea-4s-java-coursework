@@ -42,7 +42,7 @@ public class AdminController {
     @GetMapping("/new")
     public String newUserForm(Model model) {
         model.addAttribute("user", new User());
-        return "test_new_user";
+        return "new_user";
     }
 
     @PostMapping("/new")
@@ -56,7 +56,7 @@ public class AdminController {
         User user = userService.getUserById(id);
         model.addAttribute("user", user);
         model.addAttribute("isAdmin", user.getRoles().contains(new Role(ERole.ROLE_ADMIN)));
-        return "test_edit_user";
+        return "edit_user";
     }
 
     @PostMapping("/{userId}/edit")

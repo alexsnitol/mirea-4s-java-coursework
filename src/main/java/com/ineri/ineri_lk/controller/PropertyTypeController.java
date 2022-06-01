@@ -31,7 +31,7 @@ public class PropertyTypeController {
 
     @GetMapping("/new")
     public ModelAndView newPropertyType(PropertyType propertyType) {
-        return new ModelAndView("test_new_property_type");
+        return new ModelAndView("new_property_type");
     }
 
     @PostMapping("/new")
@@ -48,7 +48,7 @@ public class PropertyTypeController {
 
     @GetMapping("/{id}/edit")
     public ModelAndView editById(@PathVariable("id") Long id) {
-        ModelAndView mv = new ModelAndView("test_edit_property_type");
+        ModelAndView mv = new ModelAndView("edit_property_type");
         mv.addObject(propertyTypeService.getById(id));
         return mv;
     }
