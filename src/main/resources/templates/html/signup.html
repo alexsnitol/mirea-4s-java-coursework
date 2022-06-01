@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация - Агенство недвижимости в Москве ИНЕРИ</title>
+    <meta name="description" content="Авторизация. Агентство недвижимости в Москве ИНЕРИ. Инвестиции в недвижимость. Выкуп объектов. Торги по банкротству.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" th:href="@{/images/icon_INERI_1.svg}" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script th:src="@{/scripts/scrolling.js}"></script>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<div class="full-window-container bg-darkblue">
+    <div class="header-block"></div>
+    <div class="content">
+        <div class="sub-content" style="width: 80%">
+            <div class="subtitle" style="padding-bottom: 50px">Регистрация</div>
+            <form class="form" th:action="@{/signup}" th:object="${user}" method="post" style="min-width: 400px">
+                <div class="form-content">
+
+                    <div class="row column">
+                        <div class="label">Имя пользователя</div>
+                        <div class="input-el"><input type="text" th:field="*{username}" id="username" style="width: 95%"></div>
+                    </div>
+                    <div class="row column">
+                        <div class="label">Пароль</div>
+                        <div class="input-el"><input type="password" th:field="*{password}" id="password" style="width: 95%"></div>
+                    </div>
+                    <div class="row column">
+                        <div class="label">Подтверждение пароля</div>
+                        <div class="input-el"><input type="password" th:field="*{confirmPassword}" id="confirmPassword" style="width: 95%"></div>
+                    </div>
+                    <div class="row column">
+                        <div class="label">Фамилия</div>
+                        <div class="input-el"><input type="text" th:field="*{surname}" id="surname" style="width: 95%"></div>
+                    </div>
+                    <div class="row column">
+                        <div class="label">Имя</div>
+                        <div class="input-el"><input type="text" th:field="*{name}" id="name" style="width: 95%"></div>
+                    </div>
+                    <div class="row column">
+                        <div class="label">Отчество</div>
+                        <div class="input-el"><input type="text" th:field="*{patronymic}" id="patronymic" style="width: 95%"></div>
+                    </div>
+                    <div class="row column">
+                        <div class="label">Эл. почта</div>
+                        <div class="input-el"><input type="email" th:field="*{email}" id="email" style="width: 95%"></div>
+                    </div>
+                    <div class="row column">
+                        <div class="label">Телефон</div>
+                        <div class="input-el"><input type="tel" th:field="*{phoneNumber}" id="phoneNumber" style="width: 95%"></div>
+                    </div>
+
+
+                    <div class="row" style="justify-content: center;">
+                        <button class="button button-simple-type-1 button-color-default" type="submit">Зарегистрироваться</button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>
