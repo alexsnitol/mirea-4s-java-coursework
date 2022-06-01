@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="@{'Редактирование вакансии - ' + ${vacancy.name}}"></title>
+    <meta name="description" content="Template. Агентство недвижимости в Москве ИНЕРИ. Инвестиции в недвижимость. Выкуп объектов. Торги по банкротству.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" th:href="@{/images/icon_INERI_1.svg}" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script th:src="@{/scripts/scrolling.js}"></script>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<div class="full-window-container bg-darkblue">
+    <div class="header-block bg-darkblue4"></div>
+    <div th:replace="fragments/control_panel_header :: control-panel-header"></div>
+    <div class="content">
+        <div class="sub-content" style="width: 80%">
+            <div class="subtitle" th:text="@{'Редактирование вакансии - ' + ${vacancy.name}}" style="padding-bottom: 50px"></div>
+            <form class="form" th:action="@{'/vacancies/' + ${vacancy.id} + '/edit'}" th:object="${vacancy}" method="post">
+                <div class="form-content">
+                    <div class="row">
+                        <div class="label">Название:</div>
+                        <div class="input-el"><input type="text" id="name" th:field="*{name}" style="width: 95%"></div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Ключевые слова:</div>
+                        <div class="input-el"><textarea id="keywords" th:field="*{keywords}" placeholder="Знания MS Office;Общительность;Оперативность;" rows="5" style="width: 98%"></textarea></div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Город:</div>
+                        <div class="combobox">
+                            <select name="city" id="city">
+                                <option th:each="city : ${cities}" th:value="${city.id}" th:text="${city.name}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Заработная плата (кратко):</div>
+                        <div class="input-el"><input type="text" id="summary" th:field="*{summary}" style="width: 95%"></div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Контактное лицо:</div>
+                        <div class="combobox">
+                            <select name="user" id="contactUser" th:field="*{contactUser}">
+                                <option th:each="user : ${users}" th:value="${user.id}" th:text="@{${user.surname} + ' ' + ${user.name} + ' ' + ${user.patronymic} + ' (+7 ' + ${user.phoneNumber} + ')'}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row column">
+                        <div class="label">Описание:</div>
+                        <div class="input-el"><textarea name="textDescription" id="textDescription" th:field="*{textDescription}" rows="5" style="width: 98%"></textarea></div>
+                    </div>
+                    <div class="row column">
+                        <div class="label">Чему можно научиться:</div>
+                        <div class="input-el"><textarea name="textStudy" id="textStudy" th:field="*{textStudy}" rows="5" style="width: 98%"></textarea></div>
+                    </div>
+                    <div class="row column">
+                        <div class="label">Обязанности:</div>
+                        <div class="input-el"><textarea name="textResponsibilities" id="textResponsibilities" th:field="*{textResponsibilities}" rows="5" style="width: 98%"></textarea></div>
+                    </div>
+                    <div class="row column">
+                        <div class="label">Требования:</div>
+                        <div class="input-el"><textarea name="textRequirements" id="textRequirements" th:field="*{textRequirements}" rows="5" style="width: 98%"></textarea></div>
+                    </div>
+                    <div class="row column">
+                        <div class="label">Возможности:</div>
+                        <div class="input-el"><textarea name="textFeatures" id="textFeatures" th:field="*{textFeatures}" rows="5" style="width: 98%"></textarea></div>
+                    </div>
+                    <div class="row column">
+                        <div class="label">Заработная плата:</div>
+                        <div class="input-el"><textarea name="textSummary" id="textSummary" th:field="*{textSummary}" rows="5" style="width: 98%"></textarea></div>
+                    </div>
+                    <div class="row column">
+                        <div class="label">Видимость:</div>
+                        <div class="input-el"><input type="checkbox" id="activeStatus" th:field="*{active}"></div>
+                    </div>
+                    <div class="row">
+                        <button class="button button-simple-type-1 button-color-default" type="submit">Применить</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>
