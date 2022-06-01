@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Objects;
 
@@ -85,9 +86,9 @@ public class VacancyController extends AbstractController {
     }
 
     @GetMapping("/{id}/set-active")
-    public String setActiveStatus(@PathVariable("id") Long id, @RequestParam("is-active") boolean activeStatus) {
+    public String setActiveStatus(@PathVariable("id") Long id, @RequestParam("is-active") boolean activeStatus, HttpServletRequest request) {
         vacancyService.setActiveStatus(id, activeStatus);
-        return "redirect:/vacancies/" + id;
+        return "redirect:" + request.getHeader("Referer");
     }
 
     @GetMapping("/new")

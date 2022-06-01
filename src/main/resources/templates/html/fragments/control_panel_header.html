@@ -8,7 +8,7 @@
         <div class="label">Панель управления</div>
         <div class="page-menu">
             <a class="item" th:href="@{'/users'}" th:attrappend="class=${#httpServletRequest.requestURI == '/users'} ? ${' current'} : ${''}">
-                Список пользователей
+                Пользователи
             </a>
             <a class="item" th:href="@{'/estate-objects'}" th:attrappend="class=${#httpServletRequest.requestURI == '/estate-objects'} ? ${' current'} : ${''}">
                 Объекты недвижимости
@@ -20,19 +20,19 @@
                 Список городов
             </a>
             <a class="item" th:href="@{'/renovation-types'}" th:attrappend="class=${#httpServletRequest.requestURI == '/renovation-types'} ? ${' current'} : ${''}">
-                Тип ремонта
+                Типы ремонта
             </a>
             <a class="item" th:href="@{'/house-types'}" th:attrappend="class=${#httpServletRequest.requestURI == '/house-types'} ? ${' current'} : ${''}">
-                Тип дома
+                Типы дома
             </a>
             <a class="item" th:href="@{'/estate-object-types'}" th:attrappend="class=${#httpServletRequest.requestURI == '/estate-object-types'} ? ${' current'} : ${''}">
-                Тип объекта недвижимости
+                Типы объекта недвижимости
             </a>
             <a class="item" th:href="@{'/property-types'}" th:attrappend="class=${#httpServletRequest.requestURI == '/property-types'} ? ${' current'} : ${''}">
-                Тип недвижимости
+                Типы недвижимости
             </a>
             <a class="item" th:href="@{'/advertised-statuses'}" th:attrappend="class=${#httpServletRequest.requestURI == '/advertised-statuses'} ? ${' current'} : ${''}">
-                Статус объявления
+                Статусы объявления
             </a>
         </div>
     </div>
