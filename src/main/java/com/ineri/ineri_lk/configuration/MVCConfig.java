@@ -18,4 +18,10 @@ public class MVCConfig implements WebMvcConfigurer {
                 .addResourceLocations("classpath:/static/scripts/");
         registry.addResourceHandler("/html/**")
                 .addResourceLocations("classpath:/templates/html/");
-    }}
+    }
+
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/login").setViewName("test_login");
+    }
+}

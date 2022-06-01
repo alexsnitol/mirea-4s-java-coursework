@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -42,6 +43,7 @@ public class UserService implements UserDetailsService {
         User userFromDB = userRepository.findByUsername(user.getUsername()).orElse(null);
 
         if (userFromDB == null) {
+            user.setDatetimeCreated(LocalDateTime.now());
             user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
             user.getRoles().add(roleRepository.findRoleById(2L));
             userRepository.save(user);
