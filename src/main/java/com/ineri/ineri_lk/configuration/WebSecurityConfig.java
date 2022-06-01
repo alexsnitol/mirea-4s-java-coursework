@@ -60,7 +60,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .failureUrl("/login?error")
                     .permitAll()
                 .and()
-                    .logout();
+                    .logout()
+                    .logoutSuccessUrl("/catalog");
     }
 
     @Autowired
