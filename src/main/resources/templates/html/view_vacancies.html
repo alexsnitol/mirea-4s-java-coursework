@@ -59,6 +59,9 @@
         <div id="vacancies-main-content" class="content">
             <div class="title-big" data-aos="fade-up" data-aos-delay="200" style="position: relative; text-align: left; top: 15%">Вакансии</div><br/>
             <div id="vacancies-main-content-list" style="position: relative; top: 15%">
+                <div style="display: flex; justify-content: flex-start;">
+                    <a th:href="@{'/vacancies/add'}" class="button button-simple-type-1 button-color-add" style="margin-bottom: 10px" data-aos="fade-up" data-aos-delay="200">Добавить новую запись</a>
+                </div>
                 <div class="list-element" data-aos="fade-up" data-aos-delay="300" th:each="vacancy : ${vacancies}">
                     <div class="first-row-flex">
                         <div class="name"><a th:text="${vacancy.name}" th:href="@{'/vacancies/' + ${vacancy.id}}"></a></div>
@@ -71,6 +74,11 @@
                         <div class="salary">
                             <div class="salary-content" th:text="${vacancy.summary}"></div>
                         </div>
+                    </div>
+                    <div th:switch="${vacancy.active}" style="display: flex; justify-content: flex-end; margin-top: 10px">
+                        <a th:case="true" th:href="@{'/vacancies/' + ${vacancy.id} + '/set-active/?is-active=false'}" class="button button-simple-type-1 button-color-change">Деактивировать</a>
+                        <a th:case="false" th:href="@{'/vacancies/' + ${vacancy.id} + '/set-active/?is-active=true'}" class="button button-simple-type-1 button-color-default">Активировать</a>
+                        <a class="button button-simple-type-1 button-color-delete" th:href="@{'/vacancies/' + ${vacancy.id} + '/delete'}" style="margin-left: 10px">Удалить</a>
                     </div>
                 </div>
             </div>

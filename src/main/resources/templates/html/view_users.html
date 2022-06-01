@@ -2,7 +2,7 @@
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Список пользователей</title>
+    <title>Пользователи</title>
     <meta name="description" content="Агентство недвижимости в Москве ИНЕРИ. Инвестиции в недвижимость. Выкуп объектов. Торги по банкротству.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css">
@@ -19,7 +19,7 @@
     <div th:replace="fragments/control_panel_header :: control-panel-header"></div>
     <div class="content">
         <div class="sub-content" style="width: 80%">
-            <div class="subtitle" style="padding-bottom: 50px; position: sticky">Список пользователей</div>
+            <div class="subtitle" style="padding-bottom: 50px; position: sticky">Пользователи</div>
             <div class="flex-table flex-table--7cols">
                 <div class="control-panel">
                     <a class="button button-simple-type-1 button-color-add" href="/users/new">Добавить новую запись</a>
@@ -41,6 +41,9 @@
                         Номер телефона
                     </div>
                     <div class="cell" style="width: 200px">
+                        Роли
+                    </div>
+                    <div class="cell" style="width: 200px">
                         Дата создания
                     </div>
                     <div class="cell" style="width: 220px">
@@ -53,6 +56,9 @@
                     <div class="cell" th:text="@{${user.surname} + ' ' + ${user.name} + ' ' + ${user.patronymic}}" style="flex-grow: 1"></div>
                     <div class="cell" th:text="${user.email}" style="flex-grow: 2"></div>
                     <div class="cell center" th:text="@{'+7 ' + ${user.phoneNumber}}" style="width: 220px"></div>
+                    <div class="cell" style="flex-grow: 2">
+                        <div th:each="role : ${user.roles}" th:text="${role.name}"></div>
+                    </div>
                     <div class="cell center" th:text="${#temporals.format(user.datetimeCreated, 'dd.MM.yyyy')}" style="width: 200px"></div>
                     <div class="cell actions" style="width: 220px">
                         <a class="button button-simple-type-1 button-color-change" th:href="@{'/users/' + ${user.id} + '/edit'}">Изменить</a>

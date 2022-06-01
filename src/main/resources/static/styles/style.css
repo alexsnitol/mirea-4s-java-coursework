@@ -543,9 +543,10 @@ select {
     display: flex;
 
     box-sizing: border-box;
-    /*flex-grow: 1;*/
     align-items: center;
     padding: 10px;
+
+    overflow-wrap: anywhere;
 
     border-width: 1.5px;
     border-style: solid;
