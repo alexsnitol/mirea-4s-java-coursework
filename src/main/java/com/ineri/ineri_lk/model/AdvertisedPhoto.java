@@ -30,4 +30,6 @@ public class AdvertisedPhoto extends AbstractModel {
     @JoinColumn(name = "advertised_id")
     private Advertised advertised;
 
+    String path;
+
 }
