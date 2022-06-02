@@ -1,18 +1,17 @@
 package com.ineri.ineri_lk.controller;
 
-import com.ineri.ineri_lk.model.Advertised;
-import com.ineri.ineri_lk.model.ERole;
-import com.ineri.ineri_lk.model.Role;
-import com.ineri.ineri_lk.model.User;
+import com.ineri.ineri_lk.model.*;
 import com.ineri.ineri_lk.service.impl.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -45,6 +44,8 @@ public class AdvertisedController {
     AddressServiceImpl addressService;
     @Autowired
     private AdvertisedStatusServiceImpl advertisedStatusService;
+    @Autowired
+    private FavoriteServiceImpl favoriteService;
 
     @GetMapping
     public ModelAndView getAll() {
@@ -97,6 +98,18 @@ public class AdvertisedController {
         return "redirect:/catalog/" + advertised.getId();
     }
 
+    @PostMapping("/{id}/add-to-favorites")
+    public String addToFavorites(@PathVariable Long id, HttpServletRequest request) {
+
+        //TODO: загрузить сюда юзера
+        User user = null;
+        Advertised advertised = advertisedService.getById(id);
+
+        favoriteService.save(new Favorite(user, advertised));
+
+        return "redirect:" + request.getHeader("Referer");
+    }
+
     @GetMapping("/{id}/delete")
     public String deleteById(@PathVariable Long id) {
         advertisedService.deleteById(id);
@@ -111,6 +124,7 @@ public class AdvertisedController {
         List<User> users = userService.getAll().stream().filter(u -> u.getRoles().stream().noneMatch(r -> r.getName().equals(ERole.ROLE_ADMIN))).collect(Collectors.toList());
 
         mv.addObject("lightTheme", true);
+        mv.addObject("isAdmin", true);
 
         mv.addObject("houseTypes", houseTypeService.getAll());
         mv.addObject("propertyTypes", propertyTypeService.getAll());

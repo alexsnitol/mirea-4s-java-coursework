@@ -31,4 +31,9 @@ public class Favorite extends AbstractModel {
     @JoinColumn(name = "advertised_id")
     private Advertised advertised;
 
+    public Favorite(User user, Advertised advertised) {
+        this.user = user;
+        this.advertised = advertised;
+    }
+
 }
