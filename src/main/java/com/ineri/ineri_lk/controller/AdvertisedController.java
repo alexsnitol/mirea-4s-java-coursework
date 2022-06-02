@@ -48,27 +48,34 @@ public class AdvertisedController {
 
     @GetMapping
     public ModelAndView getAll() {
-        ModelAndView mv = new ModelAndView("catalog");
+        ModelAndView mv = new ModelAndView("view_advertiseds");
+
+        mv.addObject("lightTheme", true);
 
         mv.addObject("advertiseds", advertisedService.getAll());
-
 
         return mv;
     }
 
     @GetMapping("/{id}")
     public ModelAndView getById(@PathVariable Long id) {
-        ModelAndView mv = new ModelAndView("advertised");
+        ModelAndView mv = new ModelAndView("view_advertised");
+
+        mv.addObject("lightTheme", true);
+
         mv.addObject("advertised", advertisedService.getById(id));
+
         return mv;
     }
 
     @GetMapping("/new")
     public ModelAndView newAdvertised(Advertised advertised) {
-        ModelAndView mv = new ModelAndView("test_new_advertised");
+        ModelAndView mv = new ModelAndView("new_advertised");
 
         List<User> admins = userService.getAll().stream().filter(u -> u.getRoles().stream().anyMatch(r -> r.getName().equals(ERole.ROLE_ADMIN))).collect(Collectors.toList());
         List<User> users = userService.getAll().stream().filter(u -> u.getRoles().stream().noneMatch(r -> r.getName().equals(ERole.ROLE_ADMIN))).collect(Collectors.toList());
+
+        mv.addObject("lightTheme", true);
 
         mv.addObject("houseTypes", houseTypeService.getAll());
         mv.addObject("propertyTypes", propertyTypeService.getAll());
@@ -98,10 +105,12 @@ public class AdvertisedController {
 
     @GetMapping("/{id}/edit")
     public ModelAndView editById(@PathVariable Long id) {
-        ModelAndView mv = new ModelAndView("test_edit_advertised");
+        ModelAndView mv = new ModelAndView("edit_advertised");
 
         List<User> admins = userService.getAll().stream().filter(u -> u.getRoles().stream().anyMatch(r -> r.getName().equals(ERole.ROLE_ADMIN))).collect(Collectors.toList());
         List<User> users = userService.getAll().stream().filter(u -> u.getRoles().stream().noneMatch(r -> r.getName().equals(ERole.ROLE_ADMIN))).collect(Collectors.toList());
+
+        mv.addObject("lightTheme", true);
 
         mv.addObject("houseTypes", houseTypeService.getAll());
         mv.addObject("propertyTypes", propertyTypeService.getAll());

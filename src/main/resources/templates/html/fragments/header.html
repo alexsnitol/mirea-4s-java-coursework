@@ -41,7 +41,7 @@
             <a th:href="@{'/login'}">
                 <div class="menu-item-button" th:attrappend="class=${#httpServletRequest.requestURI == '/' + curUserLogin + '/'} ? ${' current'} : ${''}"><div class="icon icon-user filter-white" style="margin-right: 10px;"></div>Личный кабинет</div>
             </a>
-            <div class="menu-dropdown">
+            <div th:if="${isAdmin}" class="menu-dropdown">
                 <a class="item" th:href="@{'/' + ${curUserLogin} + '/'}">Мой профиль</a>
                 <a class="item" th:href="@{'/' + ${curUserLogin} + '/favorites'}">Избранное</a>
                 <a class="item" th:href="@{'/' + ${curUserLogin} + '/forms'}">Анкеты</a>
