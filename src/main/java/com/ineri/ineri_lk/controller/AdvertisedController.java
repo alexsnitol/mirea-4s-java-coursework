@@ -2,7 +2,6 @@ package com.ineri.ineri_lk.controller;
 
 import com.ineri.ineri_lk.model.Advertised;
 import com.ineri.ineri_lk.model.ERole;
-import com.ineri.ineri_lk.model.Role;
 import com.ineri.ineri_lk.model.User;
 import com.ineri.ineri_lk.service.impl.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.text.NumberFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,7 +26,7 @@ public class AdvertisedController {
     @Autowired
     private AdvertisedServiceImpl advertisedService;
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userServiceImpl;
     @Autowired
     EstateObjectServiceImpl estateObjectService;
     @Autowired
@@ -67,8 +65,8 @@ public class AdvertisedController {
     public ModelAndView newAdvertised(Advertised advertised) {
         ModelAndView mv = new ModelAndView("test_new_advertised");
 
-        List<User> admins = userService.getAll().stream().filter(u -> u.getRoles().stream().anyMatch(r -> r.getName().equals(ERole.ROLE_ADMIN))).collect(Collectors.toList());
-        List<User> users = userService.getAll().stream().filter(u -> u.getRoles().stream().noneMatch(r -> r.getName().equals(ERole.ROLE_ADMIN))).collect(Collectors.toList());
+        List<User> admins = userServiceImpl.getAll().stream().filter(u -> u.getRoles().stream().anyMatch(r -> r.getName().equals(ERole.ROLE_ADMIN))).collect(Collectors.toList());
+        List<User> users = userServiceImpl.getAll().stream().filter(u -> u.getRoles().stream().noneMatch(r -> r.getName().equals(ERole.ROLE_ADMIN))).collect(Collectors.toList());
 
         mv.addObject("houseTypes", houseTypeService.getAll());
         mv.addObject("propertyTypes", propertyTypeService.getAll());
@@ -100,8 +98,8 @@ public class AdvertisedController {
     public ModelAndView editById(@PathVariable Long id) {
         ModelAndView mv = new ModelAndView("test_edit_advertised");
 
-        List<User> admins = userService.getAll().stream().filter(u -> u.getRoles().stream().anyMatch(r -> r.getName().equals(ERole.ROLE_ADMIN))).collect(Collectors.toList());
-        List<User> users = userService.getAll().stream().filter(u -> u.getRoles().stream().noneMatch(r -> r.getName().equals(ERole.ROLE_ADMIN))).collect(Collectors.toList());
+        List<User> admins = userServiceImpl.getAll().stream().filter(u -> u.getRoles().stream().anyMatch(r -> r.getName().equals(ERole.ROLE_ADMIN))).collect(Collectors.toList());
+        List<User> users = userServiceImpl.getAll().stream().filter(u -> u.getRoles().stream().noneMatch(r -> r.getName().equals(ERole.ROLE_ADMIN))).collect(Collectors.toList());
 
         mv.addObject("houseTypes", houseTypeService.getAll());
         mv.addObject("propertyTypes", propertyTypeService.getAll());

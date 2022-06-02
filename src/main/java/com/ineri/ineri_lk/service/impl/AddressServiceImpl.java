@@ -1,7 +1,6 @@
 package com.ineri.ineri_lk.service.impl;
 
 import com.ineri.ineri_lk.model.Address;
-import com.ineri.ineri_lk.model.Advertised;
 import com.ineri.ineri_lk.model.EstateObject;
 import com.ineri.ineri_lk.model.Form;
 import com.ineri.ineri_lk.repository.AddressRepository;
@@ -23,7 +22,7 @@ public class AddressServiceImpl extends AbstractServiceImpl<Address, AddressRepo
     EstateObjectServiceImpl estateObjectService;
     @Autowired
     @Lazy
-    FormService formService;
+    FormServiceImpl formServiceImpl;
 
     @PostConstruct
     public void init() {
@@ -33,7 +32,7 @@ public class AddressServiceImpl extends AbstractServiceImpl<Address, AddressRepo
     public void deleteById(Long id) {
 
         List<EstateObject> estateObjectList = estateObjectService.getAllByAddressId(id);
-        List<Form> formList = formService.getAllByAddressId(id);
+        List<Form> formList = formServiceImpl.getAllByAddressId(id);
 
         if (!estateObjectList.isEmpty()) {
             for (EstateObject estateObject : estateObjectList) {
@@ -43,7 +42,7 @@ public class AddressServiceImpl extends AbstractServiceImpl<Address, AddressRepo
 
         if (!formList.isEmpty()) {
             for (Form form : formList) {
-                formService.deleteById(form.getId());
+                formServiceImpl.deleteById(form.getId());
             }
         }
 

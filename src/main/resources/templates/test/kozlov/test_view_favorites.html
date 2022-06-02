@@ -1,10 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Избранное</title>
 </head>
 <body>
+<div th:switch="${favorites}">
+    <h2 th:case="null">Ничего не найдено.</h2>
+    <div th:case="*">
+        <h2>Избранное</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Фотографии</th>
+                <th>Адрес</th>
+                <th>Стоимость</th>
+                <th>Тип объекта недвижимости</th>
+                <th>Площадь</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="favorite : ${favorites}">
+                <td th:text="Фотография"></td>
+                <td th:text="${favorite.advertised.estateObject.address.city.name}+', '+
+                ${favorite.advertised.estateObject.address.fullAddress}"></td>
+                <td th:text="${favorite.advertised.price}"></td>
+                <td th:text="${favorite.advertised.estateObject.estateObjectType.name}"></td>
+                <td th:text="${favorite.advertised.estateObject.area}"></td>
 
+                <td><a th:href="@{'/catalog/' + ${favorite.advertised.id}}"><button>Объявление</button></a></td>
+                <td><a th:href="@{'/' + ${username} + '/favorites/' + ${favorite.id} + '/delete'}"><button>Удалить</button></a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 </body>
 </html>

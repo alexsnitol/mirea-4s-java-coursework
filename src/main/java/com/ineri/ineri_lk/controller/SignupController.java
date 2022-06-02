@@ -1,7 +1,7 @@
 package com.ineri.ineri_lk.controller;
 
 import com.ineri.ineri_lk.model.User;
-import com.ineri.ineri_lk.service.impl.UserService;
+import com.ineri.ineri_lk.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class SignupController {
 
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userServiceImpl;
 
     @GetMapping("/signup")
     public String registration(Model model) {
@@ -27,13 +27,13 @@ public class SignupController {
 
     @PostMapping("/signup")
     public String saveUser(@ModelAttribute("user") User user, Model model) {
-        User userDB = userService.getUserByUsername(user.getUsername());
+        User userDB = userServiceImpl.getUserByUsername(user.getUsername());
 
         if (!user.getPassword().equals(user.getConfirmPassword())) {
             model.addAttribute("passwordError", "Пароли не совпадают!");
             return "test_signup";
         } else {
-            userService.saveUser(user);
+            userServiceImpl.saveUser(user);
             return "redirect:/catalog";
         }
     }

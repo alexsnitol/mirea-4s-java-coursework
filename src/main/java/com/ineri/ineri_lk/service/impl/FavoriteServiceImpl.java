@@ -23,4 +23,12 @@ public class FavoriteServiceImpl extends AbstractServiceImpl<Favorite, FavoriteR
         return favoriteRepository.findAllByAdvertisedId(id);
     }
 
+    public List<Favorite> getUserFavorites(String username) {
+        return favoriteRepository.findAllByUser_Username(username);
+    }
+
+    public void deleteByUsernameAndFavoriteId(String username, Long id) {
+        favoriteRepository.deleteByUser_UsernameAndAdvertised_Id(username, id);
+    }
+
 }

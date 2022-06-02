@@ -13,6 +13,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -61,6 +62,10 @@ public class User implements UserDetails {
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
+
+//    @ElementCollection(targetClass = ERole.class, fetch = FetchType.EAGER)
+//    @CollectionTable(name = "roles", joinColumns = @JoinColumn(name = "id"))
+//    @Enumerated(EnumType.STRING)
     private Set<Role> roles = new HashSet<>();
 
     @OneToMany(mappedBy = "advertised", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -95,4 +100,5 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }

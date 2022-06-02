@@ -4,7 +4,7 @@ import com.ineri.ineri_lk.model.City;
 import com.ineri.ineri_lk.model.User;
 import com.ineri.ineri_lk.model.Vacancy;
 import com.ineri.ineri_lk.service.impl.CityServiceImpl;
-import com.ineri.ineri_lk.service.impl.UserService;
+import com.ineri.ineri_lk.service.impl.UserServiceImpl;
 import com.ineri.ineri_lk.service.impl.VacancyServiceImpl;
 import com.ineri.ineri_lk.util.NewLineConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ public class VacancyController extends AbstractController {
     CityServiceImpl cityService;
 
     @Autowired
-    UserService userService;
+    UserServiceImpl userServiceImpl;
 
     @GetMapping
     public ModelAndView getAll() {
@@ -96,7 +96,7 @@ public class VacancyController extends AbstractController {
         ModelAndView mv = new ModelAndView("new_vacancy");
 
         List<City> cities = cityService.getAll();
-        List<User> users = userService.getAll();
+        List<User> users = userServiceImpl.getAll();
         vacancy.setActive(true);
 
         mv.addObject("cities", cities);
@@ -122,7 +122,7 @@ public class VacancyController extends AbstractController {
         ModelAndView mv = new ModelAndView("edit_vacancy");
 
         List<City> cities = cityService.getAll();
-        List<User> users = userService.getAll();
+        List<User> users = userServiceImpl.getAll();
 
         mv.addObject(vacancyService.getById(id));
         mv.addObject("cities", cities);

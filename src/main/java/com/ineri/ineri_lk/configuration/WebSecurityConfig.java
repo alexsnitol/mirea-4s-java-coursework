@@ -1,6 +1,6 @@
 package com.ineri.ineri_lk.configuration;
 
-import com.ineri.ineri_lk.service.impl.UserService;
+import com.ineri.ineri_lk.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -27,10 +27,10 @@ import javax.sql.DataSource;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userServiceImpl;
 
     @Autowired
-    DataSource dataSource;
+    private DataSource dataSource;
 
     @Override
     public void configure(WebSecurity web) throws Exception {
@@ -49,7 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .disable()
                 .authorizeRequests()
                     .antMatchers("/signup").not().fullyAuthenticated()
-                    .antMatchers("/", "/contacts", "/vacancies/**", "/catalog/**").permitAll()
+                    .antMatchers("/", "/contacts", "/vacancies/**", "/catalog/**", "/cookie", "/error").permitAll()
                     .antMatchers("/users/**").hasRole("ADMIN")
                     .antMatchers("/estate-objects/**").hasRole("ADMIN")
                     .anyRequest().authenticated()
@@ -82,7 +82,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //        auth.jdbcAuthentication()
 //                .dataSource(dataSource)
 //                .passwordEncoder(new BCryptPasswordEncoder())
-//                .usersByUsernameQuery("select username, password, active from usr where username=?")
+//                .usersByUsernameQuery("select username, password from users where username=?")
 //                .authoritiesByUsernameQuery("select u.username, ur.roles from users u inner join user_role ur on u.id = ur.user_id where u.username=?");
 //    }
 

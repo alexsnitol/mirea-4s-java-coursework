@@ -2,7 +2,6 @@ package com.ineri.ineri_lk.service.impl;
 
 import com.ineri.ineri_lk.model.Advertised;
 import com.ineri.ineri_lk.model.EstateObject;
-import com.ineri.ineri_lk.model.Form;
 import com.ineri.ineri_lk.repository.AdvertisedRepository;
 import com.ineri.ineri_lk.repository.EstateObjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -34,7 +32,7 @@ public class EstateObjectServiceImpl extends AbstractServiceImpl<EstateObject, E
     AdvertisedServiceImpl advertisedService;
     @Autowired
     @Lazy
-    FormService formService;
+    FormServiceImpl formServiceImpl;
 
     @PostConstruct
     public void init() {

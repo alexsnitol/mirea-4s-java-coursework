@@ -17,7 +17,6 @@
                     <th>Площадь</th>
                     <th>Этаж / Количество этажей</th>
                     <th>Количество комнат</th>
-                    <th>Статус</th>
                     <th>Описание</th>
                     <th>Цена</th>
                     <th>Логин создателя</th>
@@ -26,6 +25,7 @@
                     <th>Тип объекта недвижимости</th>
                     <th>Тип ремонта</th>
                     <th>Тип недвижимости</th>
+                    <th>Статус</th>
                     <th>Дата создания</th>
                 </tr>
                 </thead>
@@ -36,7 +36,6 @@
                     <td th:text="${form.area} + ' м²'"></td>
                     <td th:text="${form.floor} + '/' + ${form.maxFloor}"></td>
                     <td th:text="${form.roomSize}"></td>
-                    <td th:text="${form.state}"></td>
                     <td th:text="${form.description}"></td>
                     <td th:text="${form.price}"></td>
                     <td th:text="${form.user.username}"></td>
@@ -46,6 +45,7 @@
                     <td th:text="${form.renovationType.name}"></td>
                     <td th:text="${form.propertyType.name}"></td>
                     <td th:text="${form.adminComment}"></td>
+                    <td th:text="${form.state}"></td>
                     <td th:text="${#temporals.format(form.dateTimeCreated, 'dd.MM.yyy HH:mm')}"></td>
                     <td>
                         <a th:href="@{'/'+${username}+'/forms/' + ${form.id} + '/edit'}"><button>Edit</button></a>
