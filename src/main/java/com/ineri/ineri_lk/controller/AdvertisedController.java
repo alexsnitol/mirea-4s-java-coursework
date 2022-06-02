@@ -27,21 +27,21 @@ public class AdvertisedController {
     @Autowired
     private AdvertisedServiceImpl advertisedService;
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userService;
     @Autowired
-    EstateObjectServiceImpl estateObjectService;
+    private EstateObjectServiceImpl estateObjectService;
     @Autowired
-    HouseTypeServiceImpl houseTypeService;
+    private HouseTypeServiceImpl houseTypeService;
     @Autowired
-    PropertyTypeServiceImpl propertyTypeService;
+    private PropertyTypeServiceImpl propertyTypeService;
     @Autowired
-    RenovationTypeServiceImpl renovationTypeService;
+    private RenovationTypeServiceImpl renovationTypeService;
     @Autowired
-    EstateObjectTypeServiceImpl estateObjectTypeService;
+    private EstateObjectTypeServiceImpl estateObjectTypeService;
     @Autowired
-    CityServiceImpl cityService;
+    private CityServiceImpl cityService;
     @Autowired
-    AddressServiceImpl addressService;
+    private AddressServiceImpl addressService;
     @Autowired
     private AdvertisedStatusServiceImpl advertisedStatusService;
     @Autowired
@@ -52,6 +52,7 @@ public class AdvertisedController {
         ModelAndView mv = new ModelAndView("view_advertiseds");
 
         mv.addObject("lightTheme", true);
+        mv.addObject("isAdmin", true);
 
         mv.addObject("advertiseds", advertisedService.getAll());
 
