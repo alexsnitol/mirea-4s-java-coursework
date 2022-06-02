@@ -46,7 +46,7 @@
             <div class="title" th:text="${vacancy.city.name}" data-aos="fade-up" data-aos-delay="200" style="position: relative; text-align: left; top: -40px; padding-bottom: 20px; font-weight: 600">Москва</div>
             <div id="vacancies-main-content-list" style="position: relative; top: 0%">
 
-                <div th:switch="${vacancy.active}"  style="display: flex; justify-content: flex-start; margin-bottom: 10px" data-aos="fade-up" data-aos-delay="250">
+                <div th:if="${isAdmin}" th:switch="${vacancy.active}"  style="display: flex; justify-content: flex-start; margin-bottom: 10px" data-aos="fade-up" data-aos-delay="250">
                     <a class="button button-simple-type-1 button-color-change" th:href="@{'/vacancies/' + ${vacancy.id} + '/edit'}">Изменить</a>
                     <a th:case="true" th:href="@{'/vacancies/' + ${vacancy.id} + '/set-active/?is-active=false'}" class="button button-simple-type-1 button-color-change" style="margin-left: 10px">Деактивировать</a>
                     <a th:case="false" th:href="@{'/vacancies/' + ${vacancy.id} + '/set-active/?is-active=true'}" class="button button-simple-type-1 button-color-default" style="margin-left: 10px">Активировать</a>

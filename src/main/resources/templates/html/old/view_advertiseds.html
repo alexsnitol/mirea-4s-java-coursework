@@ -1,0 +1,104 @@
+<!Doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Объявления - Агенство недвижимости в Москве ИНЕРИ</title>
+        <meta name="description" content="Контакты. Агентство недвижимости в Москве ИНЕРИ. Инвестиции в недвижимость. Выкуп объектов. Торги по банкротству.">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link th:href="@{/styles/style.css}" rel="stylesheet" />
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+        <link rel="shortcut icon" th:href="@{/images/icon_INERI_1.svg}" type="image/x-icon">
+        <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale-subtle.css" />
+        <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/themes/light.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+        <script th:src="@{/scripts/scrolling.js}"></script>
+        <script src="https://unpkg.com/@popperjs/core@2"></script>
+        <script src="https://unpkg.com/tippy.js@6"></script>
+    </head>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            // Global settings:
+            disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
+            startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
+            initClassName: 'aos-init', // class applied after initialization
+            animatedClassName: 'aos-animate', // class applied on animation
+            useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
+            disableMutationObserver: false, // disables automatic mutations' detections (advanced)
+            debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
+            throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
+
+
+            // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
+            offset: 0, // offset (in px) from the original trigger point
+            delay: 200, // values from 0 to 3000, with step 50ms
+            duration: 700, // values from 0 to 3000, with step 50ms
+            easing: 'ease', // default easing for AOS animations
+            once: true, // whether animation should happen only once - while scrolling down
+            mirror: true, // whether elements should animate out while scrolling past them
+            anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
+        });
+    </script>
+    <script type="text/javascript">
+        $( () => {
+            $('#menu-vacancies').on('click', () => {
+                $('html,body').animate({
+                    scrollTop: 0
+                },500);
+            });
+        });
+        $( () => {
+            $('#menu-vacancies-mini').on('click', () => {
+                $('html,body').animate({
+                    scrollTop: 0
+                },500);
+            });
+        });
+    </script>
+
+    <div th:replace="fragments/header :: header"></div>
+    <body style="position: relative; min-height: 100%; top: 0px;"><div class="skiptranslate" style="display: none;"><iframe id=":0.container" class="goog-te-banner-frame skiptranslate" frameborder="0" src="javascript:''" style="visibility:visible"></iframe></div><span id="warning-container"><i data-reactroot=""></i></span>
+        <main style="background-color: #061121">
+            <section class="py-5 text-center container" style="background-color: #061121">
+                <div class="row py-lg-5">
+                    <div class="col-lg-6 col-md-8 mx-auto">
+
+                        <h1 class="fw-light mt-4" style="color: white;width: 100%;font-weight: 700;font-size: 52px;">Объявления о продаже недвижимости</h1>
+                    </div>
+                </div>
+            </section>
+            <div class="album py-5 bg-light" >
+                <div class="container">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                            <div class="col" th:each="advertised : ${advertiseds}">
+                                <div class="card shadow-sm">
+                                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Миниатюра" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Миниатюра</text></svg>
+                                    <div class="card-body">
+                                        <h4 th:text="${advertised.estateObject.address.city.name}" ></h4>
+                                        <h6 th:text="${advertised.estateObject.area +'м²'}" ></h6>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+
+                                                <a class="btn btn-sm btn-outline-secondary" th:text="${advertised.estateObject.address.fullAddress}" th:href="@{'/catalog/' + ${advertised.id}}"></a>
+                                                <button type="submit" class="btn btn-sm btn-outline-secondary">В избранное</button>
+                                            </div>
+                                            <small th:text="@{${#numbers.formatDecimal(advertised.price, 1, 'WHITESPACE', 0, 'COMMA')} + ' ₽'}" class="text-muted"></small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </main>
+        <script src="/docs/5.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    </body>
+    <div th:replace="fragments/footer :: footer"></div>
+</html>

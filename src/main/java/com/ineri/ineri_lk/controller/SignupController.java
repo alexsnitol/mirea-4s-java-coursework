@@ -22,7 +22,7 @@ public class SignupController {
     @GetMapping("/signup")
     public String registration(Model model) {
         model.addAttribute("user", new User());
-        return "test_signup";
+        return "signup";
     }
 
     @PostMapping("/signup")
@@ -31,7 +31,7 @@ public class SignupController {
 
         if (!user.getPassword().equals(user.getConfirmPassword())) {
             model.addAttribute("passwordError", "Пароли не совпадают!");
-            return "test_signup";
+            return "signup";
         } else {
             userServiceImpl.saveUser(user);
             return "redirect:/catalog";

@@ -1,9 +1,9 @@
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
-<div id="footer" class="footer" th:fragment="footer">
+<div id="footer" class="footer" th:attrappend="class=${lightTheme} ? ${' bg-darkblue2'} : ${' bg-light'}" th:fragment="footer">
     <div class="footer-container-column">
         <div class="footer-container-row">
             <div class="footer-item">
-                <div class="logo-INERI filter-black noselect" id="logo" style="margin-bottom: 25px"></div>
+                <div class="logo-INERI noselect" th:attrappend="class=${lightTheme} ? ${''} : ${' filter-black'}" id="logo" style="margin-bottom: 25px"></div>
                 <a class="link-underline" th:href="@{'/'}">Главная</a><br/>
                 <a class="link-underline" th:href="@{'/catalog'}">Каталог</a><br/>
                 <a class="link-underline" th:href="@{'/contacts'}">Контакты</a><br/>

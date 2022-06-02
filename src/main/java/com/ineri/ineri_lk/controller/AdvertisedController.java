@@ -1,17 +1,18 @@
 package com.ineri.ineri_lk.controller;
 
-import com.ineri.ineri_lk.model.Advertised;
-import com.ineri.ineri_lk.model.ERole;
-import com.ineri.ineri_lk.model.User;
+import com.ineri.ineri_lk.model.*;
 import com.ineri.ineri_lk.service.impl.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import java.text.NumberFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,7 +27,7 @@ public class AdvertisedController {
     @Autowired
     private AdvertisedServiceImpl advertisedService;
     @Autowired
-    private UserServiceImpl userServiceImpl;
+    private UserService userService;
     @Autowired
     EstateObjectServiceImpl estateObjectService;
     @Autowired
@@ -43,30 +44,39 @@ public class AdvertisedController {
     AddressServiceImpl addressService;
     @Autowired
     private AdvertisedStatusServiceImpl advertisedStatusService;
+    @Autowired
+    private FavoriteServiceImpl favoriteService;
 
     @GetMapping
     public ModelAndView getAll() {
-        ModelAndView mv = new ModelAndView("catalog");
+        ModelAndView mv = new ModelAndView("view_advertiseds");
+
+        mv.addObject("lightTheme", true);
 
         mv.addObject("advertiseds", advertisedService.getAll());
-
 
         return mv;
     }
 
     @GetMapping("/{id}")
     public ModelAndView getById(@PathVariable Long id) {
-        ModelAndView mv = new ModelAndView("advertised");
+        ModelAndView mv = new ModelAndView("view_advertised");
+
+        mv.addObject("lightTheme", true);
+
         mv.addObject("advertised", advertisedService.getById(id));
+
         return mv;
     }
 
     @GetMapping("/new")
     public ModelAndView newAdvertised(Advertised advertised) {
-        ModelAndView mv = new ModelAndView("test_new_advertised");
+        ModelAndView mv = new ModelAndView("new_advertised");
 
-        List<User> admins = userServiceImpl.getAll().stream().filter(u -> u.getRoles().stream().anyMatch(r -> r.getName().equals(ERole.ROLE_ADMIN))).collect(Collectors.toList());
-        List<User> users = userServiceImpl.getAll().stream().filter(u -> u.getRoles().stream().noneMatch(r -> r.getName().equals(ERole.ROLE_ADMIN))).collect(Collectors.toList());
+        List<User> admins = userService.getAll().stream().filter(u -> u.getRoles().stream().anyMatch(r -> r.getName().equals(ERole.ROLE_ADMIN))).collect(Collectors.toList());
+        List<User> users = userService.getAll().stream().filter(u -> u.getRoles().stream().noneMatch(r -> r.getName().equals(ERole.ROLE_ADMIN))).collect(Collectors.toList());
+
+        mv.addObject("lightTheme", true);
 
         mv.addObject("houseTypes", houseTypeService.getAll());
         mv.addObject("propertyTypes", propertyTypeService.getAll());
@@ -88,6 +98,18 @@ public class AdvertisedController {
         return "redirect:/catalog/" + advertised.getId();
     }
 
+    @PostMapping("/{id}/add-to-favorites")
+    public String addToFavorites(@PathVariable Long id, HttpServletRequest request) {
+
+        //TODO: загрузить сюда юзера
+        User user = null;
+        Advertised advertised = advertisedService.getById(id);
+
+        favoriteService.save(new Favorite(user, advertised));
+
+        return "redirect:" + request.getHeader("Referer");
+    }
+
     @GetMapping("/{id}/delete")
     public String deleteById(@PathVariable Long id) {
         advertisedService.deleteById(id);
@@ -96,10 +118,13 @@ public class AdvertisedController {
 
     @GetMapping("/{id}/edit")
     public ModelAndView editById(@PathVariable Long id) {
-        ModelAndView mv = new ModelAndView("test_edit_advertised");
+        ModelAndView mv = new ModelAndView("edit_advertised");
 
-        List<User> admins = userServiceImpl.getAll().stream().filter(u -> u.getRoles().stream().anyMatch(r -> r.getName().equals(ERole.ROLE_ADMIN))).collect(Collectors.toList());
-        List<User> users = userServiceImpl.getAll().stream().filter(u -> u.getRoles().stream().noneMatch(r -> r.getName().equals(ERole.ROLE_ADMIN))).collect(Collectors.toList());
+        List<User> admins = userService.getAll().stream().filter(u -> u.getRoles().stream().anyMatch(r -> r.getName().equals(ERole.ROLE_ADMIN))).collect(Collectors.toList());
+        List<User> users = userService.getAll().stream().filter(u -> u.getRoles().stream().noneMatch(r -> r.getName().equals(ERole.ROLE_ADMIN))).collect(Collectors.toList());
+
+        mv.addObject("lightTheme", true);
+        mv.addObject("isAdmin", true);
 
         mv.addObject("houseTypes", houseTypeService.getAll());
         mv.addObject("propertyTypes", propertyTypeService.getAll());
