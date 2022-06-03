@@ -1,15 +1,14 @@
 package com.ineri.ineri_lk.controller;
 
-import com.ineri.ineri_lk.model.ERole;
 import com.ineri.ineri_lk.model.Role;
 import com.ineri.ineri_lk.model.User;
-import com.ineri.ineri_lk.service.impl.RoleServiceImpl;
 import com.ineri.ineri_lk.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -22,9 +21,6 @@ public class AdminController {
 
     @Autowired
     private UserServiceImpl userServiceImpl;
-
-    @Autowired
-    private RoleServiceImpl roleServiceImpl;
 
     @Autowired
     private AuthController authController;
@@ -52,7 +48,7 @@ public class AdminController {
     public String updateUserForm(@PathVariable("userId") Long id, Model model) {
         User user = userServiceImpl.getUserById(id);
         model.addAttribute("user", user);
-        model.addAttribute("isAdmin", user.getRoles().contains(new Role(ERole.ROLE_ADMIN)));
+        model.addAttribute("isAdmin", user.getRoles().contains(Role.ROLE_ADMIN));
         return "edit_user";
     }
 
@@ -61,9 +57,9 @@ public class AdminController {
                              User user,
                              @RequestParam(value = "isAdmin", required = false, defaultValue = "off")
                              String isAdmin) {
-        user.getRoles().add(roleServiceImpl.getRoleById(2L));
+        user.getRoles().add(Role.ROLE_USER);
         if (isAdmin.equals("on"))
-            user.getRoles().add(roleServiceImpl.getRoleById(1L));
+            user.getRoles().add(Role.ROLE_ADMIN);
         userServiceImpl.updateUser(user);
         return "redirect:/users";
     }

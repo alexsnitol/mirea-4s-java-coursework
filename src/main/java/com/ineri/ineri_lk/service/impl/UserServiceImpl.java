@@ -1,11 +1,7 @@
 package com.ineri.ineri_lk.service.impl;
 
-import com.ineri.ineri_lk.model.ERole;
-import com.ineri.ineri_lk.model.Favorite;
 import com.ineri.ineri_lk.model.Role;
 import com.ineri.ineri_lk.model.User;
-import com.ineri.ineri_lk.repository.FavoriteRepository;
-import com.ineri.ineri_lk.repository.RoleRepository;
 import com.ineri.ineri_lk.repository.UserRepository;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +11,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,12 +25,10 @@ import java.util.Optional;
 public class UserServiceImpl implements UserDetailsService {
 
     private UserRepository userRepository;
-    private RoleRepository roleRepository;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
+    public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
     }
 
     public User getUserById(Long userId) {
@@ -52,7 +45,7 @@ public class UserServiceImpl implements UserDetailsService {
         if (userFromDB == null) {
             user.setDatetimeCreated(LocalDateTime.now());
             user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-            user.getRoles().add(roleRepository.findRoleById(2L));
+            user.getRoles().add(Role.ROLE_USER);
             userRepository.save(user);
         }
     }
@@ -79,7 +72,7 @@ public class UserServiceImpl implements UserDetailsService {
         if (userOptional.isEmpty())
             return false;
         User user = userOptional.get();
-        return user.getRoles().stream().anyMatch(r -> r.getName().equals(ERole.ROLE_ADMIN));
+        return user.getRoles().stream().anyMatch(r -> r.getAuthority().equals(Role.ROLE_ADMIN.getAuthority()));
     }
 
     @Override
