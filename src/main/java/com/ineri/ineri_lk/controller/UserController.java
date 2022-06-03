@@ -67,7 +67,8 @@ public class UserController {
             @PathVariable("username") String username,
             @PathVariable("advertisedId") Long advertisedId)
     {
-        favoriteServiceImpl.deleteByUsernameAndFavoriteId(username, advertisedId);
+        User user = userServiceImpl.getUserByUsername(username);
+        favoriteServiceImpl.deleteByUserIdAndFavoriteId(user.getId(), advertisedId);
         return "redirect:/" + username + "/favorites";
     }
 

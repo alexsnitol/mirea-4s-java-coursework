@@ -4,15 +4,15 @@ import com.ineri.ineri_lk.model.*;
 import com.ineri.ineri_lk.service.impl.*;
 import com.ineri.ineri_lk.util.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
-import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.text.NumberFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,9 +25,12 @@ import java.util.stream.Collectors;
 public class AdvertisedController {
 
     @Autowired
+    private AuthController authController;
+
+    @Autowired
     private AdvertisedServiceImpl advertisedService;
     @Autowired
-    private UserServiceImpl userService;
+    private UserServiceImpl userServiceImpl;
     @Autowired
     private EstateObjectServiceImpl estateObjectService;
     @Autowired
@@ -51,6 +54,7 @@ public class AdvertisedController {
     public ModelAndView getAll() {
         ModelAndView mv = new ModelAndView("view_advertiseds");
 
+        mv = authController.setupUser(mv);
         mv.addObject("lightTheme", true);
         mv.addObject("isAdmin", true);
 
@@ -63,6 +67,7 @@ public class AdvertisedController {
     public ModelAndView getById(@PathVariable Long id) {
         ModelAndView mv = new ModelAndView("view_advertised");
 
+        mv = authController.setupUser(mv);
         mv.addObject("lightTheme", true);
 
         mv.addObject("advertised", advertisedService.getById(id));
@@ -74,9 +79,10 @@ public class AdvertisedController {
     public ModelAndView newAdvertised(Advertised advertised) {
         ModelAndView mv = new ModelAndView("new_advertised");
 
-        List<User> admins = userService.getAll().stream().filter(u -> u.getRoles().stream().anyMatch(r -> r.getAuthority().equals(Role.ROLE_ADMIN.getAuthority()))).collect(Collectors.toList());
-        List<User> users = userService.getAll().stream().filter(u -> u.getRoles().stream().noneMatch(r -> r.getAuthority().equals(Role.ROLE_ADMIN.getAuthority()))).collect(Collectors.toList());
+        List<User> admins = userServiceImpl.getAll().stream().filter(u -> u.getRoles().stream().anyMatch(r -> r.getAuthority().equals(Role.ROLE_ADMIN.getAuthority()))).collect(Collectors.toList());
+        List<User> users = userServiceImpl.getAll().stream().filter(u -> u.getRoles().stream().noneMatch(r -> r.getAuthority().equals(Role.ROLE_ADMIN.getAuthority()))).collect(Collectors.toList());
 
+        mv = authController.setupUser(mv);
         mv.addObject("lightTheme", true);
 
         mv.addObject("houseTypes", houseTypeService.getAll());
@@ -101,9 +107,10 @@ public class AdvertisedController {
 
     @PostMapping("/{id}/add-to-favorites")
     public String addToFavorites(@PathVariable Long id, HttpServletRequest request) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        User user = userServiceImpl.getUserByUsername(username);
 
-        //TODO: загрузить сюда юзера
-        User user = null;
         Advertised advertised = advertisedService.getById(id);
 
         favoriteService.save(new Favorite(user, advertised));
@@ -121,9 +128,10 @@ public class AdvertisedController {
     public ModelAndView editById(@PathVariable Long id) {
         ModelAndView mv = new ModelAndView("edit_advertised");
 
-        List<User> admins = userService.getAll().stream().filter(u -> u.getRoles().stream().anyMatch(r -> r.getAuthority().equals(Role.ROLE_ADMIN.getAuthority()))).collect(Collectors.toList());
-        List<User> users = userService.getAll().stream().filter(u -> u.getRoles().stream().noneMatch(r -> r.getAuthority().equals(Role.ROLE_ADMIN.getAuthority()))).collect(Collectors.toList());
+        List<User> admins = userServiceImpl.getAll().stream().filter(u -> u.getRoles().stream().anyMatch(r -> r.getAuthority().equals(Role.ROLE_ADMIN.getAuthority()))).collect(Collectors.toList());
+        List<User> users = userServiceImpl.getAll().stream().filter(u -> u.getRoles().stream().noneMatch(r -> r.getAuthority().equals(Role.ROLE_ADMIN.getAuthority()))).collect(Collectors.toList());
 
+        mv = authController.setupUser(mv);
         mv.addObject("lightTheme", true);
         mv.addObject("isAdmin", true);
 
