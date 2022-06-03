@@ -1,10 +1,9 @@
 package com.ineri.ineri_lk.controller;
 
 import com.ineri.ineri_lk.model.Favorite;
+import com.ineri.ineri_lk.model.Role;
 import com.ineri.ineri_lk.model.User;
-import com.ineri.ineri_lk.repository.FavoriteRepository;
 import com.ineri.ineri_lk.service.impl.FavoriteServiceImpl;
-import com.ineri.ineri_lk.service.impl.RoleServiceImpl;
 import com.ineri.ineri_lk.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,8 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author Kozlov Alexander
@@ -27,9 +26,6 @@ public class UserController {
 
     @Autowired
     private UserServiceImpl userServiceImpl;
-
-    @Autowired
-    private RoleServiceImpl roleServiceImpl;
 
     @Autowired
     private FavoriteServiceImpl favoriteServiceImpl;
@@ -46,7 +42,7 @@ public class UserController {
 
     @PostMapping("/edit")
     public String updateUser(User user){
-        user.getRoles().add(roleServiceImpl.getRoleById(2L));
+        user.setRoles(Collections.singleton(Role.ROLE_USER));
         userServiceImpl.updateUser(user);
         return "redirect:/" + user.getUsername();
     }

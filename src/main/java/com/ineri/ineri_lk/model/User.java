@@ -4,16 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
-import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -57,15 +51,9 @@ public class User implements UserDetails {
     @Transient
     private String confirmPassword;
 
-    @ManyToMany(fetch = FetchType.EAGER,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinTable(name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-
-//    @ElementCollection(targetClass = ERole.class, fetch = FetchType.EAGER)
-//    @CollectionTable(name = "roles", joinColumns = @JoinColumn(name = "id"))
-//    @Enumerated(EnumType.STRING)
+    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
+    @Enumerated(EnumType.STRING)
     private Set<Role> roles = new HashSet<>();
 
     @OneToMany(mappedBy = "advertised", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
