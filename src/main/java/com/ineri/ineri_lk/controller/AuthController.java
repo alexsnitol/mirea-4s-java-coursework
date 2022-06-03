@@ -22,6 +22,11 @@ public class AuthController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
         User user = userServiceImpl.getUserByUsername(username);
+
+        if (user == null) {
+            return mv;
+        }
+
         String fio = user.getSurname()+ " " + user.getName().charAt(0) + ". " + user.getPatronymic().charAt(0) + ".";
         mv.addObject("username", username);
         mv.addObject("isAdmin", userServiceImpl.checkAdminRole(username));

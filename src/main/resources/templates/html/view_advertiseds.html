@@ -43,11 +43,11 @@
 <div class="full-window-container bg-light">
     <div class="header-block"></div>
 
-    <img th:src="@{/images/photo_catalog_main.jpg}" style="position: absolute; top: 0; width: 100%; height: 250px; object-position: center; object-fit: cover;"></img>
+    <img th:src="@{/images/photo_catalog_main.jpg}" style="position: absolute; top: 0; width: 100%; height: 200px; object-position: center; object-fit: cover;">
 
     <div class="content">
-        <div class="sub-content" style="width: 80%">
-            <div class="title-big text-white" data-aos="fade-up" data-aos-delay="200" style="position: relative; text-align: left; top: 15%; text-shadow: 0px 5px 4px rgb(0 0 0 / 60%);">Каталог</div><br/>
+        <div class="sub-content" style="width: 80%; margin-top: 120px">
+            <div class="title-big" data-aos="fade-up" data-aos-delay="200" style="position: relative; text-align: left; top: 15%;">Каталог</div>
             <div class="control-panel" data-aos="fade-up" data-aos-delay="300" style="flex-grow: 1">
                 <a class="button button-simple-type-1 button-color-add" th:href="@{'/catalog/new'}">Добавить новую запись</a>
             </div>
@@ -58,7 +58,7 @@
                             <a th:case="0" th:href="@{'/catalog/' + ${advertised.id}}"><img class="noselect" th:src="@{images/image_no_image_available.jpg}" style="object-fit: contain;"></a>
                             <a th:case="*" th:href="@{'/catalog/' + ${advertised.id}}"><img class="noselect" th:src="${advertised.advertisedPhoto[0].path}"></a>
                             <div class="info">
-                                <div class="summary" th:text="@{${#numbers.formatDecimal(advertised.price, 1, 'WHITESPACE', 0, 'COMMA')} + ' ₽'}"></div>
+                                <div class="price" th:text="@{${#numbers.formatDecimal(advertised.price, 1, 'WHITESPACE', 0, 'COMMA')} + ' ₽'}"></div>
                                 <div class="attributes">
                                     <div class="value" th:text="${advertised.estateObject.estateObjectType.name}"></div>
                                     <div class="value" th:text="@{${advertised.estateObject.floor} + '/' + ${advertised.estateObject.maxFloor}}"></div>
@@ -68,8 +68,8 @@
                             </div>
                         </div>
                         <div class="actions">
-                            <a class="button button-simple-type-1 button-color-change" th:if="${isAdmin}" th:href="@{'/catalog/' + ${advertised.id} + '/delete'}" style="margin-bottom: 10px">Изменить</a>
-                            <a class="button button-simple-type-1 button-color-delete" th:if="${isAdmin}" th:href="@{'/catalog/' + ${advertised.id} + '/edit'}" style="margin-bottom: 10px">Удалить</a>
+                            <a class="button button-simple-type-1 button-color-change" th:if="${isAdmin}" th:href="@{'/catalog/' + ${advertised.id} + '/edit'}" style="margin-bottom: 10px">Изменить</a>
+                            <a class="button button-simple-type-1 button-color-delete" th:if="${isAdmin}" th:href="@{'/catalog/' + ${advertised.id} + '/delete'}" style="margin-bottom: 10px">Удалить</a>
                             <a class="add-to-favorite button button-simple-type-1 button-color-default" th:href="@{'/catalog/' + ${advertised.id} + '/add-to-favotites'}">Добавить в избранное</a>
                         </div>
                     </div>

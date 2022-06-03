@@ -2,7 +2,7 @@
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title th:text="@{'Редактирование объекта недвижимости - г. ' + ${estateObject.address.city.name} + ' ' + ${estateObject.address.fullAddress}}"></title>
+    <title th:text="@{'Редактирование объекта недвижимости - г. ' + ${estateObject.address.city.name} + ', ' + ${estateObject.address.fullAddress}}"></title>
     <meta name="description" content="Агентство недвижимости в Москве ИНЕРИ. Инвестиции в недвижимость. Выкуп объектов. Торги по банкротству.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css">
@@ -19,7 +19,7 @@
     <div th:replace="fragments/control_panel_header :: control-panel-header"></div>
     <div class="content">
         <div class="sub-content" style="width: 80%">
-            <div class="subtitle" th:text="@{'Редактирование объекта недвижимости - г. ' + ${estateObject.address.city.name} + ' ' + ${estateObject.address.fullAddress}}" style="padding-bottom: 50px"></div>
+            <div class="subtitle" th:text="@{'Редактирование объекта недвижимости - г. ' + ${estateObject.address.city.name} + ', ' + ${estateObject.address.fullAddress}}" style="padding-bottom: 50px"></div>
             <form class="form" th:action="@{'/estate-objects/' + ${estateObject.id} + '/edit'}" th:object="${estateObject}" method="post">
                 <div class="form-content">
                     <div class="row">
@@ -36,7 +36,7 @@
                     </div>
                     <div class="row">
                         <div class="label">Площадь:</div>
-                        <div class="input-el"><input type="number" id="area" th:field="*{area}" mix="0" style="width: 50px; text-align: center;"></div>
+                        <div class="input-el"><input type="number" id="area" th:field="*{area}" min="0" style="width: 50px; text-align: center;"></div>
                     </div>
                     <div class="row">
                         <div class="label">Этаж:</div>
