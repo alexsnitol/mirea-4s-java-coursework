@@ -25,6 +25,7 @@
                     <th>Тип объекта недвижимости</th>
                     <th>Тип ремонта</th>
                     <th>Тип недвижимости</th>
+                    <th>Комментарий</th>
                     <th>Статус</th>
                     <th>Дата создания</th>
                 </tr>
@@ -48,8 +49,14 @@
                     <td th:text="${form.state}"></td>
                     <td th:text="${#temporals.format(form.dateTimeCreated, 'dd.MM.yyy HH:mm')}"></td>
                     <td>
-                        <a th:href="@{'/'+${username}+'/forms/' + ${form.id} + '/edit'}"><button>Edit</button></a>
-                        <a th:href="@{'/'+${username}+'/forms/' + ${form.id} + '/delete'}"><button>Delete</button></a>
+                        <!--Для всех пользователей-->
+                        <a th:href="@{'/'+${username}+'/forms/' + ${form.id} + '/delete'}"><button>Удалить</button></a>
+
+                        <!--Для админа-->
+                        <a th:href="@{'/'+${username}+'/forms/' + ${form.id} + '/edit'}"><button>Редактировать</button></a>
+                        <a th:href="@{'/'+${username}+'/forms/' + ${form.id} + '/publish'}"><button>Опубликовать</button></a>
+                        <a th:href="@{'/'+${username}+'/forms/' + ${form.id} + '/reject'}"><button>Отклонить</button></a>
+                        <a th:href="@{'/'+${username}+'/forms/' + ${form.id}}"><button>Просмотреть подробную информацию</button></a>
                     </td>
                 </tr>
                 </tbody>

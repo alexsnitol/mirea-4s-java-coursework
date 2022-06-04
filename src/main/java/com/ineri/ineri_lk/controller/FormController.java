@@ -1,5 +1,6 @@
 package com.ineri.ineri_lk.controller;
 
+import com.ineri.ineri_lk.model.EFormState;
 import com.ineri.ineri_lk.model.Form;
 import com.ineri.ineri_lk.service.impl.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,8 @@ public class FormController {
     private AddressServiceImpl addressService;
     @Autowired
     private CityServiceImpl cityService;
+    @Autowired
+    private UserServiceImpl userService;
 
     @GetMapping
     public ModelAndView getAll(@PathVariable("username") String username) {
@@ -78,13 +81,38 @@ public class FormController {
         mv.addObject("cities", cityService.getAll());
         mv.addObject("form", formServiceImpl.getById(id));
         mv.addObject("address", addressService.getAll());
-
         return mv;
     }
 
     @PostMapping("/{form_id}/edit")
-    public String update(@PathVariable("username") String username, Form form) {
+    public String update(@PathVariable("username") String username, Form form, @PathVariable("form_id") Long id) {
         formServiceImpl.save(form);
+        return "redirect:/" + username + "/forms";
+    }
+
+    @GetMapping("/{form_id}")
+    public ModelAndView showForm(@PathVariable("username") String username, Form form, @PathVariable("form_id") Long id) {
+        ModelAndView mv = new ModelAndView("test_view_form");
+
+        mv = authController.setupUser(mv);
+        mv.addObject("form", form);
+
+        return mv;
+    }
+
+    @GetMapping("/{form_id}/publish")
+    public String publishForm(@PathVariable("username") String username, @PathVariable("form_id") Long id) {
+//        Form form = formServiceImpl.getById(id);
+//        form.setState(EFormState.ACCEPTED);
+//        formServiceImpl.save(form);
+        return "redirect:/" + username + "/forms";
+    }
+
+    @GetMapping("/{form_id}/reject")
+    public String rejectForm(@PathVariable("username") String username, @PathVariable("form_id") Long id) {
+//        Form form = formServiceImpl.getById(id);
+//        form.setState(EFormState.DENIED);
+//        formServiceImpl.save(form);
         return "redirect:/" + username + "/forms";
     }
 

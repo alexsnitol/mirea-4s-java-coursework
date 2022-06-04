@@ -1,10 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Форма анкеты</title>
 </head>
 <body>
+<h2>Анкета</h2>
 
+<h3>city</h3>
+<div th:text="${form.estateObject.address.city.name}"></div>
+<br/><br/>
+
+<h3>full_address</h3>
+<div th:text="${form.estateObject.address.fullAddress}"></div>
+<br/><br/>
+
+<h3>area</h3>
+<div th:text="${form.estateObject.area}"></div>
+<br/><br/>
+
+<h3>floor</h3>
+<div th:text="${form.estateObject.floor}"></div>
+<br/><br/>
+
+<h3>max_floor</h3>
+<div th:text="${form.estateObject.maxFloor}"></div>
+<br/><br/>
+
+<h3>room_size</h3>
+<div th:text="${form.estateObject.roomSize}"></div>
+<br/><br/>
+
+<h3>house_type</h3>
+<div th:text="${form.estateObject.houseType.name}"></div>
+<br/><br/>
+
+<h3>property_type</h3>
+<div th:text="${form.estateObject.propertyType.name}"></div>
+<br/><br/>
+
+<h3>renovation_type</h3>
+<div th:text="${form.estateObject.renovationType.name}"></div>
+<br/><br/>
+
+<h3>estate_object_type</h3>
+<div th:text="${form.estateObject.estateObjectType.name}"></div>
+<br/><br/>
+
+<h3>description</h3>
+<div th:text="${form.description}"></div>
+<br/><br/>
+
+<h3>price</h3>
+<div th:text="@{${#numbers.formatDecimal(advertised.price, 1, 'WHITESPACE', 0, 'COMMA')} + ' ₽'}"></div>
+<br/><br/>
+
+<h3>fio</h3>
+<div th:text="@{${form.admin.surname} + ' ' + ${form.admin.name} + ' ' + ${form.admin.patronymic}}"></div>
+
+<h3>contact_phone</h3>
+<div th:text="@{'+7 ' + ${form.admin.phoneNumber}}"></div>
+
+<h3>status</h3>
+<div th:text="${form.advertisedStatus.name}"></div>
+<br/><br/>
+
+<h3>datetime_created</h3>
+<div th:text="${#temporals.format(form.dateTimeCreated, 'dd.MM.yyy')}"></div>
+<br/><br/>
+
+<p><a th:href="@{'/' + ${username} + '/forms'}"><button>Вернуться к списку всех анкет</button></a></p>
 </body>
 </html>

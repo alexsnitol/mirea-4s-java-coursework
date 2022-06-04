@@ -5,7 +5,7 @@
     <title>Создание анкеты</title>
 </head>
 <body>
-<form th:action="@{'/catalog/new'}" th:object="${advertised}" method="post">
+<form th:action="@{'/' + ${username} + '/forms/new'}" th:object="${forms}" method="post">
     <h3>city</h3>
     <select id="city" th:field="*{estateObject.address.city}">
         <option th:each="city : ${cities}" th:value="${city.id}" th:text="${city.name}"></option>
@@ -74,13 +74,7 @@
         <option th:each="u : ${users}" th:value="${u.id}" th:text="@{${u.surname} + ' ' + ${u.name} + ' ' + ${u.patronymic}}"></option>
     </select>
 
-    <h3>status</h3>
-    <select name="advertisedStatus" id="advertisedStatus" th:field="*{advertisedStatus}">
-        <option th:each="status : ${advertisedStatuses}" th:value="${status.id}" th:text="${status.name}"></option>
-    </select>
-    <br/><br/>
-
-    <p><button type="submit">ADD</button></a></p>
+    <p><button type="submit">Создать</button></a></p>
 </form>
 </body>
 </html>

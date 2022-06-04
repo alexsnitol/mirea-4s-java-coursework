@@ -31,6 +31,7 @@
                 <td><a th:href="@{'/catalog/' + ${favorite.advertised.id}}"><button>Объявление</button></a></td>
                 <td><a th:href="@{'/' + ${username} + '/favorites/' + ${favorite.id} + '/delete'}"><button>Удалить</button></a></td>
             </tr>
+            <td><a th:href="'/catalog'"><button>Вернуться в каталог</button></a></td>
             </tbody>
         </table>
     </div>
