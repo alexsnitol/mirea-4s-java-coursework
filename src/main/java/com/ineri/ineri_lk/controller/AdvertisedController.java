@@ -45,6 +45,8 @@ public class AdvertisedController {
     @Autowired
     private AdvertisedStatusServiceImpl advertisedStatusService;
     @Autowired
+    private AdvertisedPhotoServiceImpl advertisedPhotoService;
+    @Autowired
     private FavoriteServiceImpl favoriteService;
 
     @GetMapping
@@ -76,8 +78,6 @@ public class AdvertisedController {
 
         List<User> admins = userService.getAll().stream().filter(u -> u.getRoles().stream().anyMatch(r -> r.getAuthority().equals(Role.ROLE_ADMIN.getAuthority()))).collect(Collectors.toList());
         List<User> users = userService.getAll().stream().filter(u -> u.getRoles().stream().noneMatch(r -> r.getAuthority().equals(Role.ROLE_ADMIN.getAuthority()))).collect(Collectors.toList());
-
-        mv.addObject("lightTheme", true);
 
         mv.addObject("houseTypes", houseTypeService.getAll());
         mv.addObject("propertyTypes", propertyTypeService.getAll());
@@ -124,7 +124,6 @@ public class AdvertisedController {
         List<User> admins = userService.getAll().stream().filter(u -> u.getRoles().stream().anyMatch(r -> r.getAuthority().equals(Role.ROLE_ADMIN.getAuthority()))).collect(Collectors.toList());
         List<User> users = userService.getAll().stream().filter(u -> u.getRoles().stream().noneMatch(r -> r.getAuthority().equals(Role.ROLE_ADMIN.getAuthority()))).collect(Collectors.toList());
 
-        mv.addObject("lightTheme", true);
         mv.addObject("isAdmin", true);
 
         mv.addObject("houseTypes", houseTypeService.getAll());
@@ -144,11 +143,12 @@ public class AdvertisedController {
     @PostMapping("/{id}/edit")
     public String update(Advertised advertised, @RequestParam("image") MultipartFile multipartFile) {
 
-        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-        String uploadDir = "/images/userdata/" + advertised.getId() + "-0.jpg";
+        String fileName = advertised.getId() + "-0.jpg";
+        String uploadDir = "src/main/resources/static/images/userdata";
 
         try {
             FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+            advertisedPhotoService.saveAdvertisedPhoto(advertised, "/images/userdata/" + fileName);
         } catch (Exception e) {
             e.printStackTrace();
         }

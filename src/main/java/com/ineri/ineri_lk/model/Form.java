@@ -23,8 +23,9 @@ public class Form {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "state_enum")
     @Enumerated(EnumType.STRING)
-    private EState state;
+    private EFormState state;
     private String adminComment;
     private Double area;
     private Integer floor;
