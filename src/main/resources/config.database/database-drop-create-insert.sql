@@ -157,7 +157,7 @@ CREATE TABLE favorites (
 -- Author: Kozlov A.V.
 CREATE TABLE forms (
                        id                   SERIAL PRIMARY KEY,
-                       state_enum           VARCHAR(10) NOT NULL,
+                       state           VARCHAR(10) NOT NULL,
                        admin_comment        VARCHAR(127),
                        area                 INT(10) UNSIGNED NOT NULL,
                        floor                INT(10) UNSIGNED NOT NULL,
@@ -376,7 +376,7 @@ VALUES (2, 1),
        (1, 3),
        (1, 1);
 
-INSERT INTO forms(state_enum, admin_comment, area, floor, max_floor, room_size, description, price, datetime_created, user_id, admin_id, house_type_id, property_type_id, renovation_type_id, estate_object_type_id, address_id)
+INSERT INTO forms(state, admin_comment, area, floor, max_floor, room_size, description, price, datetime_created, user_id, admin_id, house_type_id, property_type_id, renovation_type_id, estate_object_type_id, address_id)
 VALUES (0, 'test0',
         39, 9, 15, 2,
         'Описание',

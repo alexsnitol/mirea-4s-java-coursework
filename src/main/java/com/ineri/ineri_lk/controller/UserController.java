@@ -6,6 +6,7 @@ import com.ineri.ineri_lk.model.User;
 import com.ineri.ineri_lk.service.impl.FavoriteServiceImpl;
 import com.ineri.ineri_lk.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,6 +33,15 @@ public class UserController {
 
     @Autowired
     private AuthController authController;
+
+    @GetMapping("/profile")
+    public ModelAndView showProfile(@PathVariable("username") String username) {
+        ModelAndView mv = new ModelAndView("test_view_profile");
+        mv = authController.setupUser(mv);
+        mv.addObject("user", userServiceImpl.getUserByUsername(username));
+        return mv;
+    }
+
 
     @GetMapping("/edit")
     public ModelAndView updateUserForm(@PathVariable("username") String username) {
