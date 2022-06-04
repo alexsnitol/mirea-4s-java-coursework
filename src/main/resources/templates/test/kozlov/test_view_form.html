@@ -8,43 +8,43 @@
 <h2>Анкета</h2>
 
 <h3>city</h3>
-<div th:text="${form.estateObject.address.city.name}"></div>
+<div th:text="${form.address.city.name}"></div>
 <br/><br/>
 
 <h3>full_address</h3>
-<div th:text="${form.estateObject.address.fullAddress}"></div>
+<div th:text="${form.address.fullAddress}"></div>
 <br/><br/>
 
 <h3>area</h3>
-<div th:text="${form.estateObject.area}"></div>
+<div th:text="${form.area}"></div>
 <br/><br/>
 
 <h3>floor</h3>
-<div th:text="${form.estateObject.floor}"></div>
+<div th:text="${form.floor}"></div>
 <br/><br/>
 
 <h3>max_floor</h3>
-<div th:text="${form.estateObject.maxFloor}"></div>
+<div th:text="${form.maxFloor}"></div>
 <br/><br/>
 
 <h3>room_size</h3>
-<div th:text="${form.estateObject.roomSize}"></div>
+<div th:text="${form.roomSize}"></div>
 <br/><br/>
 
 <h3>house_type</h3>
-<div th:text="${form.estateObject.houseType.name}"></div>
+<div th:text="${form.houseType.name}"></div>
 <br/><br/>
 
 <h3>property_type</h3>
-<div th:text="${form.estateObject.propertyType.name}"></div>
+<div th:text="${form.propertyType.name}"></div>
 <br/><br/>
 
 <h3>renovation_type</h3>
-<div th:text="${form.estateObject.renovationType.name}"></div>
+<div th:text="${form.renovationType.name}"></div>
 <br/><br/>
 
 <h3>estate_object_type</h3>
-<div th:text="${form.estateObject.estateObjectType.name}"></div>
+<div th:text="${form.estateObjectType.name}"></div>
 <br/><br/>
 
 <h3>description</h3>
@@ -62,7 +62,7 @@
 <div th:text="@{'+7 ' + ${form.admin.phoneNumber}}"></div>
 
 <h3>status</h3>
-<div th:text="${form.advertisedStatus.name}"></div>
+<div th:text="${form.state}"></div>
 <br/><br/>
 
 <h3>datetime_created</h3>

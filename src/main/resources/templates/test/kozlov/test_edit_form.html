@@ -73,15 +73,8 @@
     <input type="text" id="admin" th:field="*{admin.username}">
     <br/><br/>
 
-
     <h3>Статус: </h3>
     <textarea id="state" th:field="*{state}"></textarea>
-    <br/><br/>
-
-    <h3>status</h3>
-    <select name="state" id="state" th:field="*{state}">
-        <option th:each="status : ${advertisedStatuses}" th:value="${status.id}" th:text="${status.name}"></option>
-    </select>
     <br/><br/>
 
     <input type="submit" value="Внести изменения">
