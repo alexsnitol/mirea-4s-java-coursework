@@ -5,7 +5,7 @@ package com.ineri.ineri_lk.model;
  * @version 1.0
  */
 
-public enum EState {
+public enum EFormState {
     DENIED,
     NOT_CHECK,
     ACCEPTED

@@ -4,15 +4,15 @@ import com.ineri.ineri_lk.model.*;
 import com.ineri.ineri_lk.service.impl.*;
 import com.ineri.ineri_lk.util.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
+import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.NumberFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -47,6 +47,8 @@ public class AdvertisedController {
     private AddressServiceImpl addressService;
     @Autowired
     private AdvertisedStatusServiceImpl advertisedStatusService;
+    @Autowired
+    private AdvertisedPhotoServiceImpl advertisedPhotoService;
     @Autowired
     private FavoriteServiceImpl favoriteService;
 
@@ -152,11 +154,12 @@ public class AdvertisedController {
     @PostMapping("/{id}/edit")
     public String update(Advertised advertised, @RequestParam("image") MultipartFile multipartFile) {
 
-        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-        String uploadDir = "/images/userdata/" + advertised.getId() + "-0.jpg";
+        String fileName = advertised.getId() + "-0.jpg";
+        String uploadDir = "src/main/resources/static/images/userdata";
 
         try {
             FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+            advertisedPhotoService.saveAdvertisedPhoto(advertised, "/images/userdata/" + fileName);
         } catch (Exception e) {
             e.printStackTrace();
         }

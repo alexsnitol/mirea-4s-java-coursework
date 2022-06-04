@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title th:text="@{'Обьявление - г. ' + ${advertised.estateObject.address.city.name} + ', ' + ${advertised.estateObject.address.fullAddress} + ' - Агентство недвижимости в Москве ИНЕРИ'}"></title>
@@ -10,22 +10,29 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
     <link th:href="@{/styles/owl.carousel.css}" rel="stylesheet" />
     <link th:href="@{/styles/owl.theme.css}" rel="stylesheet" />
-    <link th:href="@{/styles/owl.transitions.css}" rel="stylesheet" />
-    <script th:src="@{/scripts/scrolling.js}"></script>
+<!--    <link th:href="@{/styles/owl.transitions.css}" rel="stylesheet" />-->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <script th:src="@{/scripts/scrolling.js}"></script>
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.0.0-beta.3/assets/owl.carousel.min.css">-->
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.0.0-beta.3/assets/owl.theme.default.min.css">-->
+
+
+
+<!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>-->
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+<!--    <script src="https://unpkg.com/@popperjs/core@2"></script>-->
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>-->
+
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.0.0-beta.3/owl.carousel.min.js"></script>-->
+
+<!--    <script th:src="@{/scripts/scrolling.js}"></script>-->
     <script th:src="@{/scripts/jquery/jquery.min.js}"></script>
-    <script th:src="@{/scripts/jquery/jquery.isotope.min.js}"></script>
+<!--    <script th:src="@{/scripts/jquery/jquery.isotope.min.js}"></script>-->
+<!--    <script th:src="@{/scripts/jquery/jquery.magnific-popup.min.js}"></script>-->
+<!--    <script th:src="@{/scripts/jquery/jquery.smartsticky.min.js}"></script>-->
+<!--    <script th:src="@{/scripts/jquery/enquire.min.js}"></script>-->
     <script th:src="@{/scripts/jquery/owl.carousel.js}"></script>
-    <script th:src="@{/scripts/jquery/OwlCarousel2Thumbs.min.js}"></script>
-    <script th:src="@{/scripts/jquery/jquery.magnific-popup.min.js}"></script>
-    <script th:src="@{/scripts/jquery/enquire.min.js}"></script>
-    <script th:src="@{/scripts/jquery/jquery.smartsticky.min.js}"></script>
-    <script th:src="@{/scripts/jquery/designesia.js}"></script>
+<!--    <script th:src="@{/scripts/jquery/OwlCarousel2Thumbs.min.js}"></script>-->
+<!--    <script th:src="@{/scripts/jquery/designesia.js}"></script>-->
 
 </head>
 <body>
@@ -70,12 +77,20 @@
             <div class="subtitle" data-aos="fade-up" data-aos-delay="200" th:text="@{'г. ' + ${advertised.estateObject.address.city.name} + ', ' + ${advertised.estateObject.address.fullAddress}}" style="position: relative; text-align: left;">Каталог</div>
             <div class="flex-blocks-container" style="margin-top: 30px; justify-content: flex-start;">
                 <div class="block-advertised-images" data-aos="fade-up" data-aos-delay="300">
-                    <div id="slider-carousel" class="owl-carousel" th:switch="${advertised.advertisedPhoto.size}">
+                    <div id="sync1" class="owl-carousel owl-theme" th:switch="${advertised.advertisedPhoto.size}" style="height: calc(100% - 100px)">
                         <div th:case="0" th:remove="tag">
                             <img class="item" th:src="@{/images/image_no_image_available.jpg}">
                         </div>
-                        <div th:case="*" th:each="photo :${advertised.advertisedPhoto}" th:remove="tag">
-                            <img class="item" th:src="${photo.path}">
+                        <div th:case="*" th:remove="tag">
+                            <img class="item" th:each="photo : ${advertised.advertisedPhoto}" th:src="${photo.path}">
+                        </div>
+                    </div>
+                    <div id="sync2" class="owl-carousel owl-theme" th:switch="${advertised.advertisedPhoto.size}" style="height: 100px">
+                        <div th:case="0" th:remove="tag">
+                            <img class="item" th:src="@{/images/image_no_image_available.jpg}">
+                        </div>
+                        <div th:case="*" th:remove="tag">
+                            <img class="item" th:each="photo : ${advertised.advertisedPhoto}" th:src="${photo.path}">
                         </div>
                     </div>
                 </div>
@@ -127,6 +142,89 @@
 </div>
 
 <div th:replace="fragments/footer :: footer"></div>
+
+<script>
+        $(document).ready(function() {
+
+        var sync1 = $("#sync1");
+        var sync2 = $("#sync2");
+        var slidesPerPage = 6; //globaly define number of elements per page
+        var syncedSecondary = true;
+
+        sync1.owlCarousel({
+        items: 1,
+        slideSpeed: 2000,
+        nav: false,
+        autoplay: false,
+        dots: false,
+        loop: true,
+        responsiveRefreshRate: 200,
+        navText: ['<svg width="100%" height="100%" viewBox="0 0 11 20"><path style="fill:none;stroke-width: 1px;stroke: #000;" d="M9.554,1.001l-8.607,8.607l8.607,8.606"/></svg>', '<svg width="100%" height="100%" viewBox="0 0 11 20" version="1.1"><path style="fill:none;stroke-width: 1px;stroke: #000;" d="M1.054,18.214l8.606,-8.606l-8.606,-8.607"/></svg>'],
+    }).on('changed.owl.carousel', syncPosition);
+
+        sync2
+        .on('initialized.owl.carousel', function() {
+        sync2.find(".owl-item").eq(0).addClass("current");
+    })
+        .owlCarousel({
+        items: slidesPerPage,
+        dots: false,
+        nav: false,
+        // loop: true,
+        smartSpeed: 200,
+        slideSpeed: 500,
+        slideBy: slidesPerPage, //alternatively you can slide by 1, this way the active slide will stick to the first item in the second carousel
+        responsiveRefreshRate: 100
+    }).on('changed.owl.carousel', syncPosition2);
+
+        function syncPosition(el) {
+        //if you set loop to false, you have to restore this next line
+        //var current = el.item.index;
+
+        //if you disable loop you have to comment this block
+        var count = el.item.count - 1;
+        var current = Math.round(el.item.index - (el.item.count / 2) - .5);
+
+        if (current < 0) {
+        current = count;
+    }
+        if (current > count) {
+        current = 0;
+    }
+
+        //end block
+
+        sync2
+        .find(".owl-item")
+        .removeClass("current")
+        .eq(current)
+        .addClass("current");
+        var onscreen = sync2.find('.owl-item.active').length - 1;
+        var start = sync2.find('.owl-item.active').first().index();
+        var end = sync2.find('.owl-item.active').last().index();
+
+        if (current > end) {
+        sync2.data('owl.carousel').to(current, 100, true);
+    }
+        if (current < start) {
+        sync2.data('owl.carousel').to(current - onscreen, 100, true);
+    }
+    }
+
+        function syncPosition2(el) {
+        if (syncedSecondary) {
+        var number = el.item.index;
+        sync1.data('owl.carousel').to(number, 100, true);
+    }
+    }
+
+        sync2.on("click", ".owl-item", function(e) {
+        e.preventDefault();
+        var number = $(this).index();
+        sync1.data('owl.carousel').to(number, 300, true);
+    });
+    });
+</script>
 
 </body>
 </html>
