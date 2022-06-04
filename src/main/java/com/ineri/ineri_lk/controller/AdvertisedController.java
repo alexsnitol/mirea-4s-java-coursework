@@ -4,6 +4,8 @@ import com.ineri.ineri_lk.model.*;
 import com.ineri.ineri_lk.service.impl.*;
 import com.ineri.ineri_lk.util.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.HttpRequestHandler;

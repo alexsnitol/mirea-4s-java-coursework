@@ -1,10 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Создание анкеты</title>
 </head>
 <body>
+<form th:action="@{'/catalog/new'}" th:object="${advertised}" method="post">
+    <h3>city</h3>
+    <select id="city" th:field="*{estateObject.address.city}">
+        <option th:each="city : ${cities}" th:value="${city.id}" th:text="${city.name}"></option>
+    </select>
+    <br/><br/>
 
+    <h3>full_address</h3>
+    <textarea name="fullAddress" id="fullAddress" th:field="*{estateObject.address.fullAddress}"></textarea>
+    <br/><br/>
+
+    <h3>area</h3>
+    <input type="number" id="area" th:field="*{estateObject.area}">
+    <br/><br/>
+
+    <h3>floor</h3>
+    <input type="number" id="floor" th:field="*{estateObject.floor}">
+    <br/><br/>
+
+    <h3>max_floor</h3>
+    <input type="number" id="maxFloor" th:field="*{estateObject.maxFloor}">
+    <br/><br/>
+
+    <h3>room_size</h3>
+    <input type="number" id="roomSize" th:field="*{estateObject.roomSize}">
+    <br/><br/>
+
+    <h3>house_type</h3>
+    <select name="houseType" id="houseType" th:field="*{estateObject.houseType}">
+        <option th:each="type : ${houseTypes}" th:value="${type.id}" th:text="${type.name}"></option>
+    </select>
+    <br/><br/>
+
+    <h3>property_type</h3>
+    <select name="propertyType" id="propertyType" th:field="*{estateObject.propertyType}">
+        <option th:each="type : ${propertyTypes}" th:value="${type.id}" th:text="${type.name}"></option>
+    </select>
+    <br/><br/>
+
+    <h3>renovation_type</h3>
+    <select name="renovationType" id="renovationType" th:field="*{estateObject.renovationType}">
+        <option th:each="type : ${renovationTypes}" th:value="${type.id}" th:text="${type.name}"></option>
+    </select>
+    <br/><br/>
+
+    <h3>estate_object_type</h3>
+    <select name="estateObjectType" id="estateObjectType" th:field="*{estateObject.estateObjectType}">
+        <option th:each="type : ${estateObjectTypes}" th:value="${type.id}" th:text="${type.name}"></option>
+    </select>
+    <br/><br/>
+
+    <h3>description</h3>
+    <textarea id="description" th:field="*{description}"></textarea>
+    <br/><br/>
+
+    <h3>price</h3>
+    <input type="number" id="price" th:field="*{price}"> ₽
+    <br/><br/>
+
+    <h3>contact face</h3>
+    <select name="admin" id="admin" th:field="*{admin}">
+        <option th:each="a : ${admins}" th:value="${a.id}" th:text="@{${a.surname} + ' ' + ${a.name} + ' ' + ${a.patronymic} + ' (+7 ' + ${a.phoneNumber} + ')'}"></option>
+    </select>
+
+    <h3>property owner</h3>
+    <select name="user" id="user" th:field="*{user}">
+        <option th:each="u : ${users}" th:value="${u.id}" th:text="@{${u.surname} + ' ' + ${u.name} + ' ' + ${u.patronymic}}"></option>
+    </select>
+
+    <h3>status</h3>
+    <select name="advertisedStatus" id="advertisedStatus" th:field="*{advertisedStatus}">
+        <option th:each="status : ${advertisedStatuses}" th:value="${status.id}" th:text="${status.name}"></option>
+    </select>
+    <br/><br/>
+
+    <p><button type="submit">ADD</button></a></p>
+</form>
 </body>
 </html>
