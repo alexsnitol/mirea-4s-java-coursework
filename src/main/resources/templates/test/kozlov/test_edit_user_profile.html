@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование профиля</title>
+</head>
+<body>
+<h1>Измените данные</h1>
+<form th:action="@{'/' + ${username} + '/profile/edit'}" th:object="${user}" method="post">
+    <input type="text" th:field="*{id}" id="id" hidden>
+
+    <label for="username">Логин</label>
+    <input type="text" th:field="*{username}" id="username">
+    <br>
+    <br>
+
+    <label for="password">Пароль</label>
+    <input type="password" th:field="*{password}" id="password">
+    <br>
+    <br>
+
+    <label for="surname">Фамилия</label>
+    <input type="text" th:field="*{surname}" id="surname">
+    <br>
+    <br>
+
+    <label for="name">Имя</label>
+    <input type="text" th:field="*{name}" id="name">
+    <br>
+    <br>
+
+    <label for="patronymic">Отчество</label>
+    <input type="text" th:field="*{patronymic}" id="patronymic">
+    <br>
+    <br>
+
+    <label for="email">Email</label>
+    <input type="email" th:field="*{email}" id="email">
+    <br>
+    <br>
+
+    <label for="phoneNumber">Номер телефона</label>
+    <input type="text" th:field="*{phoneNumber}" id="phoneNumber">
+    <br>
+    <br>
+
+    <input type="text" th:field="*{photoPath}" id="photoPath" hidden="hidden">
+    <input type="text" th:field="*{datetimeCreated}" id="datetimeCreated" hidden="hidden">
+
+    <input type="submit" value="Внести изменения">
+</form>
+</body>
+</html>

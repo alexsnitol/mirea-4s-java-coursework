@@ -8,30 +8,30 @@
     <div th:switch="${user}">
         <h2 th:case="null">NOT FOUND</h2>
         <div th:case="*">
-            <h2>Здесь должно быть фото</h2>
+            <h4>Здесь должно быть фото</h4>
+            <br>
 
-            <h2>Логин:</h2>
+            <h4>Логин:</h4>
             <th th:text="*{username}"></th>
             <br>
             <br>
 
-            <h2>ФИО:</h2>
+            <h4>ФИО:</h4>
             <th th:text="*{user.surname} + ' ' + *{user.name} + ' ' + *{user.patronymic}"></th>
             <br>
             <br>
 
-            <h2>Email:</h2>
+            <h4>Email:</h4>
             <th th:text="*{user.email}"></th>
             <br>
             <br>
 
-            <h2>Телефон</h2>
+            <h4>Телефон</h4>
             <th th:text="'+7' + *{user.phoneNumber}"></th>
             <br>
             <br>
         </div>
-        <p><a th:href="@{'/' + ${username} +'/edit'}"><button>Редактировать профиль</button></a></p>
-        <p><a th:href="@{'/' + ${username} +'/delete'}"><button>Удалить профиль</button></a></p>
+        <p><a th:href="@{'/' + ${username} +'/profile/edit'}"><button>Редактировать профиль</button></a></p>
     </div>
 </body>
 </html>

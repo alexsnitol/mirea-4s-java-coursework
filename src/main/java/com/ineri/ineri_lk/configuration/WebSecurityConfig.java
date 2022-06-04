@@ -48,6 +48,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                     .antMatchers("/signup").not().fullyAuthenticated()
                     .antMatchers("/", "/contacts", "/vacancies/**", "/catalog/**", "/cookie", "/error").permitAll()
+                    .antMatchers("/**/profile/**").hasAnyRole("USER", "ADMIN")
                     .antMatchers("/users/**").hasRole("ADMIN")
                     .antMatchers("/estate-objects/**").hasRole("ADMIN")
                     .anyRequest().authenticated()
