@@ -168,7 +168,7 @@ CREATE TABLE forms (
                        datetime_created     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
                        user_id              BIGINT(10) UNSIGNED NOT NULL,
-                       admin_id             BIGINT(10) UNSIGNED NOT NULL,
+                       admin_id             BIGINT(10) UNSIGNED,
                        house_type_id        BIGINT(10) UNSIGNED NOT NULL,
                        property_type_id     BIGINT(10) UNSIGNED NOT NULL,
                        renovation_type_id   BIGINT(10) UNSIGNED NOT NULL,

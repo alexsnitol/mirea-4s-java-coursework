@@ -32,6 +32,10 @@ public class FormServiceImpl {
         return formRepository.findAll();
     }
 
+    public List<Form> getAllByUsername(String username) {
+        return formRepository.findAllByUser_Username(username);
+    }
+
     public Form getById(Long id) {
         return formRepository.getById(id);
     }
