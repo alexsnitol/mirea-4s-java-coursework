@@ -36,7 +36,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/scripts/**")
                 .antMatchers("/styles/**")
                 .antMatchers("/images/**")
-                .antMatchers("/font/**");
+                .antMatchers("/font/**")
+                .antMatchers("/upload/**");
     }
 
     @Override

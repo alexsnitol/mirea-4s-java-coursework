@@ -4,6 +4,8 @@ import com.ineri.ineri_lk.model.*;
 import com.ineri.ineri_lk.service.impl.*;
 import com.ineri.ineri_lk.util.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.HttpRequestHandler;
@@ -13,6 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -148,20 +153,48 @@ public class AdvertisedController {
         mv.addObject("advertisedStatuses", advertisedStatusService.getAll());
         mv.addObject("advertised", advertisedService.getById(id));
 
+//        List<Long> photoIdList = new ArrayList<>();
+//        advertisedService.getById(id).getAdvertisedPhoto().stream().forEach(e -> photoIdList.add(e.getId()));
+//
+//        mv.addObject("photoIdList", photoIdList);
+
         return mv;
     }
 
     @PostMapping("/{id}/edit")
-    public String update(Advertised advertised, @RequestParam("image") MultipartFile multipartFile) {
+    public String update(Advertised advertised, @RequestParam("images") List<MultipartFile> multipartFileList, @RequestParam(name = "photoIdList", defaultValue = "") ArrayList<Long> photoIdList) {
 
-        String fileName = advertised.getId() + "-0.jpg";
-        String uploadDir = "src/main/resources/static/images/userdata";
+        Advertised advertisedBeforeChanges = advertisedService.getById(advertised.getId());
+        List<AdvertisedPhoto> advertisedPhotoListCurrent = advertisedBeforeChanges.getAdvertisedPhoto();
+        advertised.setAdvertisedPhoto(advertisedPhotoListCurrent);
 
-        try {
-            FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
-            advertisedPhotoService.saveAdvertisedPhoto(advertised, "/images/userdata/" + fileName);
-        } catch (Exception e) {
-            e.printStackTrace();
+        //Delete photos
+
+        List<AdvertisedPhoto> advertisedPhotoListForDelete = advertisedPhotoListCurrent.stream().filter(ph -> !photoIdList.contains(ph.getId())).collect(Collectors.toList());
+        for (AdvertisedPhoto advertisedPhoto : advertisedPhotoListForDelete) {
+            FileUploadUtil.deleteFile("src/main/resources/" + advertisedPhoto.getPath());
+            advertisedPhotoService.deleteById(advertisedPhoto.getId());
+        }
+
+        List<AdvertisedPhoto> advertisedPhotoListAfterDelete = advertisedPhotoListCurrent.stream().filter(ph -> photoIdList.contains(ph.getId())).collect(Collectors.toList());
+        advertised.setAdvertisedPhoto(advertisedPhotoListAfterDelete);
+
+        // Upload new photos
+
+        if (!multipartFileList.get(0).getResource().getFilename().equals("")) {
+            String fileName;
+            String uploadDir = "src/main/resources/upload/catalog";
+            int i = advertised.getAdvertisedPhoto().size();
+
+            try {
+                for (MultipartFile file : multipartFileList) {
+                    fileName = advertised.getId() + "-" + i++ + ".jpg";
+                    FileUploadUtil.saveFile(uploadDir, fileName, file);
+                    advertisedPhotoService.saveAdvertisedPhoto(advertised, "/upload/catalog/" + fileName);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         advertisedService.save(advertised);

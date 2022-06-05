@@ -4,6 +4,7 @@ import com.ineri.ineri_lk.model.Advertised;
 import com.ineri.ineri_lk.model.AdvertisedPhoto;
 import com.ineri.ineri_lk.repository.AdvertisedPhotoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -32,7 +33,9 @@ public class AdvertisedPhotoServiceImpl extends AbstractServiceImpl<AdvertisedPh
         AdvertisedPhoto advertisedPhoto = new AdvertisedPhoto();
         advertisedPhoto.setAdvertised(advertised);
         advertisedPhoto.setPath(path);
-        advertisedPhotoRepository.save(advertisedPhoto);
+        if (!advertisedPhotoRepository.exists(Example.of(advertisedPhoto))) {
+            advertisedPhotoRepository.save(advertisedPhoto);
+        }
     }
 
 }
