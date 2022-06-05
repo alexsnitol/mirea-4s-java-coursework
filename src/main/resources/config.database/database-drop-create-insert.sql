@@ -197,6 +197,7 @@ INSERT INTO users(username, password, email, phone_number, surname, name, patron
 VALUES ('admin', '$2a$10$bcOFylacDUj0gLPhDDOeGuC8Kaq8kYQxm3dz4X5YPfG8g2esF.2tu', 'admin@ineri.ru', '900 000-00-00', 'admin_surname', 'admin_name', 'admin_patronymic', '/upload/userdata/1.jpg', '2022-05-31 18:29:06'),
        ('user', '$2a$10$PqbBaR/BlRoYQb2g4v9PJeyDPbOVBZhWktSwW4g/6G3bZnmxz20Da', 'ivan@gmail.com', '921 167-69-55', 'Иванов', 'Иван', 'Иванович', null, '2022-05-31 18:29:06'),
        ('kozlov24', '$2a$10$XyqL5fTB3bncQJit3/H80u.ERacspN6p1fh3AoxrD.FsYt9aHPI4e', 'kozlov@mail.ru', '954 883-56-98', 'Козлов', 'Александр', 'Витальевич', '/upload/userdata/3.jpg', '2022-05-31 18:29:06'),
+       ('alexsnitol', '$2a$10$IvGQwrdfYXqdWbKL98uLKeIeYX7g0Grn9gkECFxyhwPQ93gnMOdXe', 'sslotin74@gmail.com', '953 266-07-98', 'Слотин', 'Александр', 'Сергеевич', '/upload/userdata/4.gif', '2022-05-31 00:00:00'),
        ('mila.naberejneva', '$2a$10$KC.wugq9cGhB6Q7bbI6MI.jwt.casZ1L.ObSZ7yDRtQ2Le0KalJVK', 'mila.naberejneva@hotmail.com', '973 762-51-24', 'Набережнева', 'Мила', 'Евгеньевна', null, '2022-05-31 18:29:06'),
        ('maryamna09011968', '$2a$10$EXdBkFS3lgQU8L50dqigjer9xmCXDp8WqlsLuoYpJQd/18y0cesN2', 'maryamna09011968@gmail.com', '946 950-24-24', 'Мерзлякова', 'Марьямна', 'Егоровна', null, '2022-05-31 18:29:06'),
        ('serafim1988', '$2a$10$lbBw2GyIZBEti2ZK9Ygm2OY.eJzk/D91Xe0GTcsYL08.7JFStiYpa', 'serafim1988@yandex.ru', '926 965-36-70', 'Баева', 'Серафим', 'Павлович', null, '2022-05-31 18:29:06'),
