@@ -30,12 +30,15 @@ public class VacancyController extends AbstractController {
     CityServiceImpl cityService;
 
     @Autowired
+    private AuthController authController;
+
+    @Autowired
     UserServiceImpl userServiceImpl;
 
     @GetMapping
     public ModelAndView getAll() {
         ModelAndView mv = new ModelAndView("view_vacancies");
-
+        mv = authController.setupUser(mv);
         mv.addObject("vacancies", vacancyService.getAll());
 
         return mv;
@@ -47,6 +50,7 @@ public class VacancyController extends AbstractController {
 
         Vacancy vacancy = vacancyService.getById(id);
 
+        mv = authController.setupUser(mv);
         mv.addObject("vacancy", vacancy);
 
         String textDescription = vacancy.getTextDescription();
@@ -94,6 +98,7 @@ public class VacancyController extends AbstractController {
     @GetMapping("/new")
     public ModelAndView newVacancy(Vacancy vacancy) {
         ModelAndView mv = new ModelAndView("new_vacancy");
+        mv = authController.setupUser(mv);
 
         List<City> cities = cityService.getAll();
         List<User> users = userServiceImpl.getAll();
@@ -120,6 +125,7 @@ public class VacancyController extends AbstractController {
     @GetMapping("/{id}/edit")
     public ModelAndView editVacancy(@PathVariable("id") Long id) {
         ModelAndView mv = new ModelAndView("edit_vacancy");
+        mv = authController.setupUser(mv);
 
         List<City> cities = cityService.getAll();
         List<User> users = userServiceImpl.getAll();

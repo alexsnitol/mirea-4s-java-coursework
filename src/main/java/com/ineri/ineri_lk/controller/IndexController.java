@@ -20,8 +20,10 @@ public class IndexController {
     private UserServiceImpl userServiceImpl;
 
     @GetMapping("/")
-    public String index() {
-        return "index";
+    public ModelAndView index() {
+        ModelAndView mv = new ModelAndView("index");
+        mv = authController.setupUser(mv);
+        return mv;
     }
 
     @GetMapping("/contacts")

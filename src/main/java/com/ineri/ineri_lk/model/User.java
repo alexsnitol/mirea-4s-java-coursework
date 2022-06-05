@@ -13,7 +13,6 @@ import java.util.*;
 
 /**
  * @author Kozlov Alexander
- * @version 2.0
  * Примечание: следует добавить валидацию форм с помощью @Valid в контроллере!
  */
 

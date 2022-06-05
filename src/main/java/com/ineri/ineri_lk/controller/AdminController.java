@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Collections;
 import java.util.List;
@@ -26,16 +27,21 @@ public class AdminController {
     private AuthController authController;
 
     @GetMapping
-    public String findAll(Model model){
+    public ModelAndView findAll(){
+        ModelAndView mv = new ModelAndView("view_users");
         List<User> users = userServiceImpl.getAll();
-        model.addAttribute("users", users);
-        return "view_users";
+
+        mv = authController.setupUser(mv);
+        mv.addObject("users", users);
+        return mv;
     }
 
     @GetMapping("/new")
-    public String newUserForm(Model model) {
-        model.addAttribute("user", new User());
-        return "new_user";
+    public ModelAndView newUserForm() {
+        ModelAndView mv = new ModelAndView("test_new_user");
+        mv = authController.setupUser(mv);
+        mv.addObject("user", new User());
+        return mv;
     }
 
     @PostMapping("/new")
@@ -45,11 +51,13 @@ public class AdminController {
     }
 
     @GetMapping("/{userId}/edit")
-    public String updateUserForm(@PathVariable("userId") Long id, Model model) {
+    public ModelAndView updateUserForm(@PathVariable("userId") Long id) {
+        ModelAndView mv = new ModelAndView("edit_user");
+        mv = authController.setupUser(mv);
         User user = userServiceImpl.getUserById(id);
-        model.addAttribute("user", user);
-        model.addAttribute("isAdmin", user.getRoles().contains(Role.ROLE_ADMIN));
-        return "edit_user";
+        mv.addObject("user", user);
+        mv.addObject("isAdmin", user.getRoles().contains(Role.ROLE_ADMIN));
+        return mv;
     }
 
     @PostMapping("/{userId}/edit")

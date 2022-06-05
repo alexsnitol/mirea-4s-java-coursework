@@ -38,29 +38,22 @@ public class UserController {
     public ModelAndView showProfile(@PathVariable("username") String username) {
         ModelAndView mv = new ModelAndView("test_view_profile");
         mv = authController.setupUser(mv);
+        return mv;
+    }
+
+    @GetMapping("/profile/edit")
+    public ModelAndView updateUserForm(@PathVariable("username") String username) {
+        ModelAndView mv = new ModelAndView("test_edit_user_profile");
+        mv.addObject("username", username);
         mv.addObject("user", userServiceImpl.getUserByUsername(username));
         return mv;
     }
 
-
-    @GetMapping("/edit")
-    public ModelAndView updateUserForm(@PathVariable("username") String username) {
-        ModelAndView mv = new ModelAndView("test_edit_user");
-        mv = authController.setupUser(mv);
-        return mv;
-    }
-
-    @PostMapping("/edit")
+    @PostMapping("/profile/edit")
     public String updateUser(User user){
-        user.setRoles(Collections.singleton(Role.ROLE_USER));
+        user.getRoles().add(Role.ROLE_USER);
         userServiceImpl.updateUser(user);
-        return "redirect:/" + user.getUsername();
-    }
-
-    @GetMapping("/delete")
-    public String deleteUser(@PathVariable("username") String username) {
-        userServiceImpl.deleteByUsername(username);
-        return "redirect:/";
+        return "redirect:/" + user.getUsername() + "/profile";
     }
 
     @GetMapping("/favorites")

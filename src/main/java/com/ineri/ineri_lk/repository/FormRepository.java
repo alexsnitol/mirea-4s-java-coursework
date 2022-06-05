@@ -16,5 +16,5 @@ import java.util.List;
 public interface FormRepository extends JpaRepository<Form, Long> {
 
     List<Form> findAllByAddressId(Long id);
-
+    List<Form> findAllByUser_Username(String username);
 }

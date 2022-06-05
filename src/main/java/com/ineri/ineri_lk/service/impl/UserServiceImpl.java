@@ -51,16 +51,18 @@ public class UserServiceImpl implements UserDetailsService {
     }
 
     public void updateUser(User user) {
-        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+        User userFromDB = userRepository.findById(user.getId()).orElse(null);
+        if (userFromDB == null)
+            return;
+        if (user.getPassword().equals(""))
+            user.setPassword(userFromDB.getPassword());
+        else
+            user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         userRepository.save(user);
     }
 
     public void deleteById(Long id) {
         userRepository.deleteById(id);
-    }
-
-    public void deleteByUsername(String username) {
-        userRepository.deleteByUsername(username);
     }
 
     public List<User> getAll() {

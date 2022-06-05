@@ -32,7 +32,7 @@ public class FavoriteServiceImpl extends AbstractServiceImpl<Favorite, FavoriteR
     public void deleteByUserIdAndFavoriteId(Long userId, Long advertisedId) {
         List<Favorite> favorites = favoriteRepository.findByUser_Id(userId);
         Optional<Favorite> favoriteToDelete = favorites.stream().filter(favorite -> favorite.getAdvertised().getId() == advertisedId).findFirst();
-        favoriteRepository.deleteById(favoriteToDelete.get().getId());
+        favoriteToDelete.ifPresent(favorite -> favoriteRepository.deleteById(favorite.getId()));
     }
 
 }
