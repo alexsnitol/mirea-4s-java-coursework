@@ -194,7 +194,7 @@ CREATE TABLE advertised_photos (
 );
 
 INSERT INTO users(username, password, email, phone_number, surname, name, patronymic, photo_path, datetime_created)
-VALUES ('admin', '$2a$10$bcOFylacDUj0gLPhDDOeGuC8Kaq8kYQxm3dz4X5YPfG8g2esF.2tu', 'admin@ineri.ru', '900 000-00-00', 'admin_surname', 'admin_name', 'admin_patronymic', null, '2022-05-31 18:29:06'),
+VALUES ('admin', '$2a$10$bcOFylacDUj0gLPhDDOeGuC8Kaq8kYQxm3dz4X5YPfG8g2esF.2tu', 'admin@ineri.ru', '900 000-00-00', 'admin_surname', 'admin_name', 'admin_patronymic', '/upload/userdata/1.jpg', '2022-05-31 18:29:06'),
        ('user', '$2a$10$PqbBaR/BlRoYQb2g4v9PJeyDPbOVBZhWktSwW4g/6G3bZnmxz20Da', 'ivan@gmail.com', '921 167-69-55', 'Иванов', 'Иван', 'Иванович', null, '2022-05-31 18:29:06'),
        ('kozlov24', '$2a$10$XyqL5fTB3bncQJit3/H80u.ERacspN6p1fh3AoxrD.FsYt9aHPI4e', 'kozlov@mail.ru', '954 883-56-98', 'Козлов', 'Александр', 'Витальевич', '/upload/userdata/3.jpg', '2022-05-31 18:29:06'),
        ('mila.naberejneva', '$2a$10$KC.wugq9cGhB6Q7bbI6MI.jwt.casZ1L.ObSZ7yDRtQ2Le0KalJVK', 'mila.naberejneva@hotmail.com', '973 762-51-24', 'Набережнева', 'Мила', 'Евгеньевна', null, '2022-05-31 18:29:06'),
