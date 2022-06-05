@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="@{'Анкеты'}"></title>
+    <meta name="description" content="Анкеты. Агентство недвижимости в Москве ИНЕРИ. Инвестиции в недвижимость. Выкуп объектов. Торги по банкротству.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" th:href="@{/images/icon_INERI_1.svg}" type="image/x-icon">
+    <script th:src="@{/scripts/scrolling.js}"></script>
+    <script th:src="@{/scripts/jquery/jquery.min.js}"></script>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<div class="full-window-container bg-darkblue">
+    <div class="header-block bg-darkblue4"></div>
+    <div th:replace="fragments/control_panel_header :: control-panel-header"></div>
+
+    <div class="content">
+        <div class="sub-content" th:switch="${forms}" style="width: 95%;">
+            <div class="subtitle" style="padding-bottom: 50px; position: sticky">Анкеты</div>
+            <div th:case="null" class="comment" data-aos="fade-up" data-aos-delay="200">Ничего не найдено</div>
+            <div th:case="*" class="flex-table flex-table--11cols" data-aos="fade-up" data-aos-delay="200">
+                <div class="control-panel">
+                    <a class="button button-simple-type-1 button-color-add" th:href="@{'/'+${username}+'/forms/new'}">Создать новую анкету</a>
+                </div>
+                <div class="head">
+                    <div class="cell" style="flex-grow: 2">
+                        Адрес
+                    </div>
+                    <div class="cell" style="width: 100px">
+                        Площадь
+                    </div>
+                    <div class="cell" style="width: 100px">
+                        Этаж
+                    </div>
+                    <div class="cell" style="width: 100px">
+                        Кол-во
+                        комнат
+                    </div>
+                    <div class="cell" style="flex-grow: 1">
+                        Тип дома
+                    </div>
+                    <div class="cell" style="flex-grow: 1">
+                        Тип<br/>
+                        недвижимости
+                    </div>
+                    <div class="cell" style="flex-grow: 1">
+                        Тип<br/>
+                        ремонта
+                    </div>
+                    <div class="cell" style="flex-grow: 1">
+                        Тип объекта<br/>
+                        недвижимости
+                    </div>
+                    <div class="cell" style="width: 200px">
+                        Дата<br/>
+                        добавления
+                    </div>
+                    <div class="cell" style="width: 150px">
+                        Статус
+                    </div>
+                    <div class="cell" style="width: 150px">
+                        Стоимость
+                    </div>
+                    <div class="cell" style="width: 220px">
+                        Действия
+                    </div>
+                </div>
+                <div class="row" th:each="form : ${forms}">
+                    <div class="cell" th:text="@{'г. ' + ${form.address.city.name} + ' ' + ${form.address.fullAddress}}" style="flex-grow: 2"></div>
+                    <div class="cell center" th:text="@{${form.area} + ' м²'}" style="width: 100px"></div>
+                    <div class="cell center" th:text="@{${form.floor} + '/' + ${form.maxFloor}}" style="width: 100px"></div>
+                    <div class="cell center" th:text="${form.roomSize}" style="width: 100px"></div>
+                    <div class="cell center" th:text="${form.houseType.name}" style="flex-grow: 1"></div>
+                    <div class="cell center" th:text="${form.propertyType.name}" style="flex-grow: 1"></div>
+                    <div class="cell center" th:text="${form.renovationType.name}" style="flex-grow: 1"></div>
+                    <div class="cell center" th:text="${form.estateObjectType.name}" style="flex-grow: 1"></div>
+                    <div class="cell center" th:text="${#temporals.format(form.dateTimeCreated, 'dd.MM.yyy HH:mm')}" style="width: 200px"></div>
+                    <div class="cell center" th:text="${form.state}" style="width: 150px"></div>
+                    <div class="cell center" th:text="@{${#numbers.formatDecimal(form.price, 1, 'WHITESPACE', 0, 'COMMA')} + ' ₽'}" style="width: 150px"></div>
+
+                    <div class="cell actions" style="width: 220px">
+                        <a class="button button-simple-type-1 button-color-delete" th:href="@{'/'+${username}+'/forms/' + ${form.id} + '/delete'}">Удалить</a>
+
+                        <th:block th:if="${isAdmin}">
+                            <a class="button button-simple-type-1 button-color-add" th:href="@{'/'+${username}+'/forms/' + ${form.id} + '/publish'}">Опубликовать</a>
+                            <a class="button button-simple-type-1 button-color-delete" th:href="@{'/'+${username}+'/forms/' + ${form.id} + '/reject'}">Отклонить</a>
+                            <a class="button button-simple-type-1 button-color-default" th:href="@{'/'+${username}+'/forms/' + ${form.id}}">Предпросмотр</a>
+                        </th:block>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

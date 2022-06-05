@@ -1,10 +1,19 @@
 package com.ineri.ineri_lk.controller;
 
+import com.ineri.ineri_lk.model.Form;
+import com.ineri.ineri_lk.model.Role;
+import com.ineri.ineri_lk.model.User;
+import com.ineri.ineri_lk.service.impl.FormServiceImpl;
 import com.ineri.ineri_lk.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 /**
  * @author Kozlov Alexander
@@ -18,6 +27,9 @@ public class IndexController {
 
     @Autowired
     private UserServiceImpl userServiceImpl;
+
+    @Autowired
+    private FormServiceImpl formService;
 
     @GetMapping("/")
     public ModelAndView index() {
@@ -63,6 +75,26 @@ public class IndexController {
     public ModelAndView showAddTemplate() {
         ModelAndView mv = new ModelAndView("add_template");
         mv = authController.setupUser(mv);
+        return mv;
+    }
+
+    @GetMapping("/forms")
+    public ModelAndView getAll() {
+        ModelAndView mv = new ModelAndView("view_admin_forms");
+        mv = authController.setupUser(mv);
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+
+        List<Form> forms;
+        if (userServiceImpl.getUserByUsername(username).getRoles().contains(Role.ROLE_ADMIN)) {
+            forms = formService.getAll();
+        }
+        else {
+            forms = formService.getAllByUsername(username);
+        }
+
+        mv.addObject("forms", forms);
         return mv;
     }
 
