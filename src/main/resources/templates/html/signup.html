@@ -45,9 +45,20 @@
     <div class="content">
         <div class="sub-content" style="width: 80%">
             <div class="subtitle" data-aos="fade-up" data-aos-delay="200" style="padding-bottom: 50px">Регистрация</div>
-            <form class="form" th:action="@{/signup}" th:object="${user}" method="post" data-aos="fade-up" data-aos-delay="300" style="min-width: 400px">
+            <form class="form" th:action="@{/signup}" th:object="${user}" method="post" enctype="multipart/form-data" data-aos="fade-up" data-aos-delay="300" style="min-width: 400px">
                 <div class="form-content">
 
+                    <div class="row column">
+                        <div class="label">Фотография:</div>
+                        <div class="avatar">
+                            <th:block th:switch="${user.photoPath}">
+                                <img th:case="null" th:src="@{'/images/default_user_avatar.png'}">
+                                <img th:case="*" th:src="${user.photoPath}">
+                            </th:block>
+                        </div>
+                        <div class="input-el"><input type="file" name="image" accept="image/jpeg"/></div>
+                        <input type="text" th:field="*{photoPath}" id="photoPath" hidden="hidden">
+                    </div>
                     <div class="row column">
                         <div class="label">Имя пользователя</div>
                         <div class="input-el"><input type="text" th:field="*{username}" id="username" style="width: 95%"></div>
