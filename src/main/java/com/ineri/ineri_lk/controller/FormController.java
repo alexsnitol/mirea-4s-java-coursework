@@ -50,7 +50,14 @@ public class FormController {
         ModelAndView mv = new ModelAndView("view_forms");
         mv = authController.setupUser(mv);
         mv.addObject("lightTheme", true);
-        mv.addObject("forms", formServiceImpl.getAllByUsername(username));
+
+        List<Form> forms;
+        if (userServiceImpl.getUserByUsername(username).getRoles().contains(Role.ROLE_ADMIN))
+            forms = formServiceImpl.getAll();
+        else
+            forms = formServiceImpl.getAllByUsername(username);
+
+        mv.addObject("forms", forms);
         return mv;
     }
 
