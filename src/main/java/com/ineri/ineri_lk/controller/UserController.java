@@ -59,9 +59,11 @@ public class UserController {
     @GetMapping("/favorites")
     public ModelAndView getUserFavorites(@PathVariable("username") String username) {
         ModelAndView mv = new ModelAndView("test_view_favorites");
-        List<Favorite> favorites= favoriteServiceImpl.getUserFavorites(username);
+        List<Favorite> favorites = favoriteServiceImpl.getUserFavorites(username);
+
         mv = authController.setupUser(mv);
         mv.addObject("favorites", favorites);
+
         return mv;
     }
 

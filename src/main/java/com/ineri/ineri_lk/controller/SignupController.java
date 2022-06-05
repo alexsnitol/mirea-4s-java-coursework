@@ -34,7 +34,7 @@ public class SignupController {
             return "signup";
         } else {
             userServiceImpl.saveUser(user);
-            return "redirect:/catalog";
+            return "redirect:/login";
         }
     }
 }
