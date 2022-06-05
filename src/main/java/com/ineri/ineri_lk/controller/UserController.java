@@ -66,6 +66,7 @@ public class UserController {
         mv.addObject("lightTheme", true);
 
         mv.addObject("favorites", favorites);
+
         return mv;
     }
 

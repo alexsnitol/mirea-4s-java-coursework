@@ -89,9 +89,7 @@ public class FormServiceImpl {
         //временно
         advertised.setAdvertisedPhoto(null);
 
-
         //удалить анкету после публикации
-
     }
 
     private static EstateObject fillEstateObject(Form form) {
