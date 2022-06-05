@@ -1476,6 +1476,25 @@ a.button-simple-type-1:hover {
     padding-right: 10px;
 }
 
+.form-content > .row > .text {
+    flex: 1;
+    display: inline-block;
+}
+
+.form-content > .row > .avatar {
+    flex: 1;
+    text-align: center;
+}
+
+.form-content > .row > .avatar > img {
+    display: inline-block;
+    border-radius: 100%;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+}
+
 .form-content > .row > .input-el {
     flex: 1;
 
