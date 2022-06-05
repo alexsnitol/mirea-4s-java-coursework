@@ -194,18 +194,18 @@ CREATE TABLE advertised_photos (
 );
 
 INSERT INTO users(username, password, email, phone_number, surname, name, patronymic, photo_path, datetime_created)
-VALUES ('admin', '$2a$10$bcOFylacDUj0gLPhDDOeGuC8Kaq8kYQxm3dz4X5YPfG8g2esF.2tu', 'admin@ineri.ru', '900 000-00-00', 'admin_surname', 'admin_name', 'admin_patronymic', '', '2022-05-31 18:29:06'),
-       ('user', '$2a$10$PqbBaR/BlRoYQb2g4v9PJeyDPbOVBZhWktSwW4g/6G3bZnmxz20Da', 'ivan@gmail.com', '921 167-69-55', 'Иванов', 'Иван', 'Иванович', '', '2022-05-31 18:29:06'),
+VALUES ('admin', '$2a$10$bcOFylacDUj0gLPhDDOeGuC8Kaq8kYQxm3dz4X5YPfG8g2esF.2tu', 'admin@ineri.ru', '900 000-00-00', 'admin_surname', 'admin_name', 'admin_patronymic', null, '2022-05-31 18:29:06'),
+       ('user', '$2a$10$PqbBaR/BlRoYQb2g4v9PJeyDPbOVBZhWktSwW4g/6G3bZnmxz20Da', 'ivan@gmail.com', '921 167-69-55', 'Иванов', 'Иван', 'Иванович', null, '2022-05-31 18:29:06'),
        ('kozlov24', '$2a$10$XyqL5fTB3bncQJit3/H80u.ERacspN6p1fh3AoxrD.FsYt9aHPI4e', 'kozlov@mail.ru', '954 883-56-98', 'Козлов', 'Александр', 'Витальевич', '/upload/userdata/3.jpg', '2022-05-31 18:29:06'),
-       ('mila.naberejneva', '$2a$10$KC.wugq9cGhB6Q7bbI6MI.jwt.casZ1L.ObSZ7yDRtQ2Le0KalJVK', 'mila.naberejneva@hotmail.com', '973 762-51-24', 'Набережнева', 'Мила', 'Евгеньевна', '', '2022-05-31 18:29:06'),
-       ('maryamna09011968', '$2a$10$EXdBkFS3lgQU8L50dqigjer9xmCXDp8WqlsLuoYpJQd/18y0cesN2', 'maryamna09011968@gmail.com', '946 950-24-24', 'Мерзлякова', 'Марьямна', 'Егоровна', '', '2022-05-31 18:29:06'),
-       ('serafim1988', '$2a$10$lbBw2GyIZBEti2ZK9Ygm2OY.eJzk/D91Xe0GTcsYL08.7JFStiYpa', 'serafim1988@yandex.ru', '926 965-36-70', 'Баева', 'Серафим', 'Павлович', '', '2022-05-31 18:29:06'),
-       ('feliks94', '$2a$10$f5VkingkkjY4laywEGjbgOhlL12ngFFRdlBdSIsU4olmrKpAtQCuO', 'feliks94@ya.ru', '976 719-41-64', 'Ягунов', 'Феликс', 'Александрович', '', '2022-05-31 18:29:06'),
-       ('semen23', '$2a$10$H4gpIkD6OAXkieTu0J2ww..dL0pkXicXqv9ZZbLcrnflcf5ILVsxK', 'semen23@gmail.com', '971 602-76-38', 'Лобачёв', 'Семен', 'Евгениевич', '', '2022-05-31 18:29:06'),
-       ('marianna17121965', '$2a$10$8OmI7yVbeMf/GT0WWa9nsOrTnSBj2VJENf7Ip6eKoaZT/jcX2OHY.', 'marianna17121965@rambler.ru', '940 487-33-86', 'Юшакова', 'Марианна', 'Климентьевна', '', '2022-05-31 18:29:06'),
-       ('trofim5535', '$2a$10$SNyTPPFZd1FfcMRQ3XbXl.g.XtBQ/8cAZQMKNiWnQRDFByBeFCHn6', 'trofim5535@hotmail.com', '984 410-13-82', 'Волошин', 'Трофим', 'Федорович', '', '2022-05-31 18:29:06'),
-       ('tamara1977', '$2a$10$ES/DcvJb4bKpMK3GmCp4COz5uDni6VbOW8.tk.iQiySYejBUlna5a', 'tamara1977@hotmail.com', '971 769-76-16', 'Хитрово', 'Тамара', 'Кирилловна', '', '2022-05-31 18:29:06'),
-       ('viktoriya1996', '$2a$10$TUzQRv/PGl.46Q6vLdipju0MWLyGSUaIb8eQ0oXUh0ckyZr7NKHY2', 'viktoriya1996@hotmail.com', '975 654-14-87', 'Эйлер', 'Виктория', 'Константиновна', '', '2022-05-31 18:29:06');
+       ('mila.naberejneva', '$2a$10$KC.wugq9cGhB6Q7bbI6MI.jwt.casZ1L.ObSZ7yDRtQ2Le0KalJVK', 'mila.naberejneva@hotmail.com', '973 762-51-24', 'Набережнева', 'Мила', 'Евгеньевна', null, '2022-05-31 18:29:06'),
+       ('maryamna09011968', '$2a$10$EXdBkFS3lgQU8L50dqigjer9xmCXDp8WqlsLuoYpJQd/18y0cesN2', 'maryamna09011968@gmail.com', '946 950-24-24', 'Мерзлякова', 'Марьямна', 'Егоровна', null, '2022-05-31 18:29:06'),
+       ('serafim1988', '$2a$10$lbBw2GyIZBEti2ZK9Ygm2OY.eJzk/D91Xe0GTcsYL08.7JFStiYpa', 'serafim1988@yandex.ru', '926 965-36-70', 'Баева', 'Серафим', 'Павлович', null, '2022-05-31 18:29:06'),
+       ('feliks94', '$2a$10$f5VkingkkjY4laywEGjbgOhlL12ngFFRdlBdSIsU4olmrKpAtQCuO', 'feliks94@ya.ru', '976 719-41-64', 'Ягунов', 'Феликс', 'Александрович', null, '2022-05-31 18:29:06'),
+       ('semen23', '$2a$10$H4gpIkD6OAXkieTu0J2ww..dL0pkXicXqv9ZZbLcrnflcf5ILVsxK', 'semen23@gmail.com', '971 602-76-38', 'Лобачёв', 'Семен', 'Евгениевич', null, '2022-05-31 18:29:06'),
+       ('marianna17121965', '$2a$10$8OmI7yVbeMf/GT0WWa9nsOrTnSBj2VJENf7Ip6eKoaZT/jcX2OHY.', 'marianna17121965@rambler.ru', '940 487-33-86', 'Юшакова', 'Марианна', 'Климентьевна', null, '2022-05-31 18:29:06'),
+       ('trofim5535', '$2a$10$SNyTPPFZd1FfcMRQ3XbXl.g.XtBQ/8cAZQMKNiWnQRDFByBeFCHn6', 'trofim5535@hotmail.com', '984 410-13-82', 'Волошин', 'Трофим', 'Федорович', null, '2022-05-31 18:29:06'),
+       ('tamara1977', '$2a$10$ES/DcvJb4bKpMK3GmCp4COz5uDni6VbOW8.tk.iQiySYejBUlna5a', 'tamara1977@hotmail.com', '971 769-76-16', 'Хитрово', 'Тамара', 'Кирилловна', null, '2022-05-31 18:29:06'),
+       ('viktoriya1996', '$2a$10$TUzQRv/PGl.46Q6vLdipju0MWLyGSUaIb8eQ0oXUh0ckyZr7NKHY2', 'viktoriya1996@hotmail.com', '975 654-14-87', 'Эйлер', 'Виктория', 'Константиновна', null, '2022-05-31 18:29:06');
 
 
 INSERT INTO user_role(user_id, roles)

@@ -93,10 +93,11 @@ public class FormController {
 
     @GetMapping("/{form_id}")
     public ModelAndView showForm(@PathVariable("username") String username, @PathVariable("form_id") Long id) {
-        ModelAndView mv = new ModelAndView("test_view_form");
+        ModelAndView mv = new ModelAndView("view_form");
 
         mv = authController.setupUser(mv);
         mv.addObject("form", formServiceImpl.getById(id));
+        mv.addObject("lightTheme", true);
 
         return mv;
     }
