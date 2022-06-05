@@ -2,6 +2,7 @@ package com.ineri.ineri_lk.controller;
 
 import com.ineri.ineri_lk.model.*;
 import com.ineri.ineri_lk.service.impl.*;
+import com.ineri.ineri_lk.util.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -41,6 +42,8 @@ public class FormController {
     private CityServiceImpl cityService;
     @Autowired
     private UserServiceImpl userServiceImpl;
+    @Autowired
+    private AdvertisedPhotoServiceImpl advertisedPhotoService;
 
     @GetMapping
     public ModelAndView getAll(@PathVariable("username") String username) {
@@ -52,10 +55,9 @@ public class FormController {
 
     @GetMapping("/new")
     public ModelAndView newForm(@PathVariable("username") String username) {
-        ModelAndView mv = new ModelAndView("test_new_form");
+        ModelAndView mv = new ModelAndView("new_form");
 
         mv = authController.setupUser(mv);
-        mv.addObject("lightTheme", true);
 
         mv.addObject("houseTypes", houseTypeService.getAll());
         mv.addObject("propertyTypes", propertyTypeService.getAll());
@@ -69,7 +71,7 @@ public class FormController {
     }
 
     @PostMapping("/new")
-    public String createEstateObject(@PathVariable("username") String username, Form form) {
+    public String createEstateObject(@PathVariable("username") String username, Form form, @RequestParam("images") List<MultipartFile> multipartFileList) {
         User user = userServiceImpl.getUserByUsername(username);
         form.setUser(user);
         form.setState(EFormState.NOT_CHECK);
@@ -77,6 +79,7 @@ public class FormController {
 
         addressService.save(form.getAddress());
         formServiceImpl.save(form);
+        uploadPhotos(form, multipartFileList);
         return "redirect:/" + username + "/forms";
     }
 
@@ -111,5 +114,27 @@ public class FormController {
     public String delete(@PathVariable("username") String username, @PathVariable("form_id") Long id) {
         formServiceImpl.deleteById(id);
         return "redirect:/" + username + "/forms";
+    }
+
+    private void uploadPhotos(Form form, List<MultipartFile> multipartFileList) {
+        if (!multipartFileList.get(0).getResource().getFilename().equals("")) {
+            String fileName;
+            String uploadDir = "src/main/resources/upload/forms";
+
+            int i = 0;
+            if (form.getAdvertisedPhoto() != null) {
+                i = form.getAdvertisedPhoto().size();
+            }
+
+            try {
+                for (MultipartFile file : multipartFileList) {
+                    fileName = form.getId() + "-" + i++ + ".jpg";
+                    FileUploadUtil.saveFile(uploadDir, fileName, file);
+                    formServiceImpl.saveFormPhoto(form, "/upload/forms/" + fileName);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
