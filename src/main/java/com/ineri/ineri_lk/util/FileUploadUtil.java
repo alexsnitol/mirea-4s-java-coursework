@@ -10,6 +10,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
+import static java.lang.System.out;
 
 public class FileUploadUtil {
 
@@ -27,6 +32,15 @@ public class FileUploadUtil {
         } catch (IOException ioe) {
             throw new IOException("Could not save image file: " + fileName, ioe);
         }
+    }
+
+    public static void deleteFile(String pathToFile) {
+            Path absolutePathToFile = Paths.get(pathToFile).toAbsolutePath();
+            try {
+                Files.delete(absolutePathToFile);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
     }
 
 }

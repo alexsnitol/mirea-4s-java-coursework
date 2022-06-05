@@ -1472,6 +1472,38 @@ a.button-simple-type-1:hover {
     display: inline-block;
 }
 
+.form-content > .row > .objects {
+    flex: 1;
+}
+
+.form-content > .row > .objects > * {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    border-radius: 6px;
+    margin: 5px;
+}
+
+.image-with-tools-container {
+    width: 100%;
+    height: 100%;
+}
+
+.image-with-tools-container > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 6px;
+}
+
+.image-with-tools-container > .tools {
+    line-height: normal;
+    position: absolute;
+    width: inherit;
+    text-align: right;
+}
+
 .link-underline {
     position: relative;
 }
@@ -2350,6 +2382,10 @@ a.button-simple-type-1:hover {
 
 #sync2 .owl-stage-outer {
     margin-top: 10px;
+}
+
+#sync2 .owl-stage {
+    width: max-content!important;
 }
 
 #sync2 .owl-item {

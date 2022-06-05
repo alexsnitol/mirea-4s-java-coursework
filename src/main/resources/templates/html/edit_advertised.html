@@ -117,8 +117,17 @@
 
                     <div class="row column">
                         <div class="label">Фотографии</div>
+                        <div class="objects">
+                            <div class="image-with-tools-container" th:each="photo : ${advertised.advertisedPhoto}" th:id="@{'photo_' + ${photo.id}}">
+                                <div class="tools">
+                                    <a th:onclick="@{'$(photo_' + ${photo.id} + ').remove()'}" class="icon icon-exit filter-blue noselect" style="margin: 5px"></a>
+                                </div>
+                                <img th:value="${photo.id}" th:src="${photo.path}">
+                                <input type="number" hidden name="photoIdList" th:value="${photo.id}">
+                            </div>
+                        </div>
                         <div>
-                            <input type="file" name="image" accept="image/png, image/jpeg" />
+                            <input type="file" name="images" accept="image/png, image/jpeg" multiple/>
                         </div>
                     </div>
 
