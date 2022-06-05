@@ -3,11 +3,11 @@ package com.ineri.ineri_lk.controller;
 import com.ineri.ineri_lk.model.*;
 import com.ineri.ineri_lk.service.impl.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Arrays;
@@ -91,11 +91,11 @@ public class FormController {
     }
 
     @GetMapping("/{form_id}/publish")
-    public String publishForm(@PathVariable("username") String username, @PathVariable("form_id") Long id) {
+    public String publishForm(@PathVariable("username") String username, @PathVariable("form_id") Long id,  @RequestParam("images") List<MultipartFile> multipartFileList) {
         Form form = formServiceImpl.getById(id);
         form.setState(EFormState.ACCEPTED);
         formServiceImpl.save(form);
-        formServiceImpl.publish(form);
+        formServiceImpl.publish(multipartFileList, form, username);
         return "redirect:/" + username + "/forms";
     }
 
