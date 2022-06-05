@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="@{'Анкеты'}"></title>
+    <meta name="description" content="Анкеты. Агентство недвижимости в Москве ИНЕРИ. Инвестиции в недвижимость. Выкуп объектов. Торги по банкротству.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" th:href="@{/images/icon_INERI_1.svg}" type="image/x-icon">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <script th:src="@{/scripts/scrolling.js}"></script>
+    <script th:src="@{/scripts/jquery/jquery.min.js}"></script>
+</head>
+<body>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init({
+        // Global settings:
+        disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
+        startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
+        initClassName: 'aos-init', // class applied after initialization
+        animatedClassName: 'aos-animate', // class applied on animation
+        useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
+        disableMutationObserver: false, // disables automatic mutations' detections (advanced)
+        debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
+        throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
+
+
+        // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
+        offset: 0, // offset (in px) from the original trigger point
+        delay: 200, // values from 0 to 3000, with step 50ms
+        duration: 700, // values from 0 to 3000, with step 50ms
+        easing: 'ease', // default easing for AOS animations
+        once: true, // whether animation should happen only once - while scrolling down
+        mirror: true, // whether elements should animate out while scrolling past them
+        anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
+    });
+</script>
+
+<div th:replace="fragments/header :: header"></div>
+
+<div class="full-window-container bg-light">
+    <div class="header-block"></div>
+
+    <div class="bg-darkblue4" style="position: absolute; top: 0; width: 100%; height: 200px; form-position: center; form-fit: cover;"></div>
+
+    <div class="content">
+        <div class="sub-content" th:switch="${forms}" style="width: 90%; margin-top: 120px; text-align: center">
+            <div class="title-big" data-aos="fade-up" data-aos-delay="200" style="position: relative; text-align: left; top 15%; padding-bottom: 50px; position: sticky;">Анкеты</div>
+            <div th:case="null" class="comment" data-aos="fade-up" data-aos-delay="200">Ничего не найдено</div>
+            <div th:case="*" class="flex-table flex-table--11cols" data-aos="fade-up" data-aos-delay="200">
+                <div class="control-panel">
+                    <a class="button button-simple-type-1 button-color-add" th:href="@{'/'+${username}+'/forms/new'}">Создать новую анкету</a>
+                </div>
+                <div class="head">
+                    <div class="cell" style="flex-grow: 2">
+                        Адрес
+                    </div>
+                    <div class="cell" style="width: 100px">
+                        Площадь
+                    </div>
+                    <div class="cell" style="width: 100px">
+                        Этаж
+                    </div>
+                    <div class="cell" style="width: 100px">
+                        Кол-во
+                        комнат
+                    </div>
+                    <div class="cell" style="flex-grow: 1">
+                        Тип дома
+                    </div>
+                    <div class="cell" style="flex-grow: 1">
+                        Тип<br/>
+                        недвижимости
+                    </div>
+                    <div class="cell" style="flex-grow: 1">
+                        Тип<br/>
+                        ремонта
+                    </div>
+                    <div class="cell" style="flex-grow: 1">
+                        Тип объекта<br/>
+                        недвижимости
+                    </div>
+                    <div class="cell" style="width: 200px">
+                        Дата<br/>
+                        добавления
+                    </div>
+                    <div class="cell" style="width: 200px">
+                        Статус
+                    </div>
+                    <div class="cell" style="width: 200px">
+                        Стоимость
+                    </div>
+                    <div class="cell" style="width: 220px">
+                        Действия
+                    </div>
+                </div>
+                <div class="row" th:each="form : ${forms}">
+                    <div class="cell" th:text="@{'г. ' + ${form.address.city.name} + ' ' + ${form.address.fullAddress}}" style="flex-grow: 2"></div>
+                    <div class="cell center" th:text="@{${form.area} + ' м²'}" style="width: 100px"></div>
+                    <div class="cell center" th:text="@{${form.floor} + '/' + ${form.maxFloor}}" style="width: 100px"></div>
+                    <div class="cell center" th:text="${form.roomSize}" style="width: 100px"></div>
+                    <div class="cell center" th:text="${form.houseType.name}" style="flex-grow: 1"></div>
+                    <div class="cell center" th:text="${form.propertyType.name}" style="flex-grow: 1"></div>
+                    <div class="cell center" th:text="${form.renovationType.name}" style="flex-grow: 1"></div>
+                    <div class="cell center" th:text="${form.estateObjectType.name}" style="flex-grow: 1"></div>
+                    <div class="cell center" th:text="${#temporals.format(form.dateTimeCreated, 'dd.MM.yyy HH:mm')}" style="width: 200px"></div>
+                    <div class="cell center" th:text="${form.state}" style="width: 200px"></div>
+                    <div class="cell center" th:text="@{${#numbers.formatDecimal(form.price, 1, 'WHITESPACE', 0, 'COMMA')} + ' ₽'}" style="width: 220px"></div>
+
+                    <div class="cell actions" style="width: 220px">
+                        <a class="button button-simple-type-1 button-color-delete" th:href="@{'/'+${username}+'/forms/' + ${form.id} + '/delete'}">Удалить</a>
+
+                        <th:block th:if="${isAdmin}">
+                            <a class="button button-simple-type-1 button-color-add" th:href="@{'/'+${username}+'/forms/' + ${form.id} + '/publish'}">Опубликовать</a>
+                            <a class="button button-simple-type-1 button-color-delete" th:href="@{'/'+${username}+'/forms/' + ${form.id} + '/reject'}">Отклонить</a>
+                            <a class="button button-simple-type-1 button-color-default" th:href="@{'/'+${username}+'/forms/' + ${form.id}}">Предпросмотр</a>
+                        </th:block>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

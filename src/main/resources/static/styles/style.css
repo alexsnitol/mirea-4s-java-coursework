@@ -644,6 +644,11 @@ select {
 
 .flex-table > .row > .cell.actions {
     justify-content: center;
+    flex-wrap: wrap;
+}
+
+.flex-table > .row > .cell.actions > * {
+    margin: 5px;
 }
 
 .flex-table > .row > .cell.center {

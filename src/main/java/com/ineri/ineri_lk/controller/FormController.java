@@ -47,8 +47,9 @@ public class FormController {
 
     @GetMapping
     public ModelAndView getAll(@PathVariable("username") String username) {
-        ModelAndView mv = new ModelAndView("test_view_forms");
+        ModelAndView mv = new ModelAndView("view_forms");
         mv = authController.setupUser(mv);
+        mv.addObject("lightTheme", true);
         mv.addObject("forms", formServiceImpl.getAllByUsername(username));
         return mv;
     }

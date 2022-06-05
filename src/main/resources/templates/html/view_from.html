@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="@{'Предпросмотр анкеты - г. ' + ${form.address.city.name} + ', ' + ${form.address.fullAddress} + ' - Агентство недвижимости в Москве ИНЕРИ'}"></title>
+    <meta name="description" content="Объявление. Агентство недвижимости в Москве ИНЕРИ. Инвестиции в недвижимость. Выкуп объектов. Торги по банкротству.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" th:href="@{/images/icon_INERI_1.svg}" type="image/x-icon">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <link th:href="@{/styles/owl.carousel.css}" rel="stylesheet" />
+    <link th:href="@{/styles/owl.theme.css}" rel="stylesheet" />
+    <script th:src="@{/scripts/jquery/jquery.min.js}"></script>
+    <script th:src="@{/scripts/jquery/owl.carousel.js}"></script>
+
+</head>
+<body>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init({
+        // Global settings:
+        disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
+        startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
+        initClassName: 'aos-init', // class applied after initialization
+        animatedClassName: 'aos-animate', // class applied on animation
+        useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
+        disableMutationObserver: false, // disables automatic mutations' detections (advanced)
+        debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
+        throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
+
+
+        // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
+        offset: 0, // offset (in px) from the original trigger point
+        delay: 200, // values from 0 to 3000, with step 50ms
+        duration: 700, // values from 0 to 3000, with step 50ms
+        easing: 'ease', // default easing for AOS animations
+        once: true, // whether animation should happen only once - while scrolling down
+        mirror: true, // whether elements should animate out while scrolling past them
+        anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
+    });
+</script>
+
+<div th:replace="fragments/header :: header"></div>
+
+<div class="full-window-container bg-light">
+    <div class="header-block"></div>
+
+    <div th:switch="${form.advertisedPhoto.size}" th:remove="tag">
+        <div th:case="0" class="bg-darkblue4" style="position: absolute; top: 0; width: 100%; height: 200px; object-position: center; object-fit: cover;"></div>
+        <img th:case="*" class="noselect" th:src="${form.advertisedPhoto[0].path}" style="position: absolute; top: 0; width: 100%; height: 200px; object-position: center; object-fit: cover;">
+    </div>
+
+    <div class="content">
+        <div class="sub-content" style="width: 80%; margin-top: 120px">
+            <div class="subtitle" data-aos="fade-up" data-aos-delay="200" style="position: relative; text-align: left;">Предварительный просмотр объявления</div>
+            <div class="flex-blocks-container" style="margin-top: 30px; justify-content: flex-start;">
+                <div class="block-advertised-images" data-aos="fade-up" data-aos-delay="300">
+                    <div id="sync1" class="owl-carousel owl-theme" th:switch="${form.advertisedPhoto.size}" style="height: calc(100% - 100px)">
+                        <div th:case="0" th:remove="tag">
+                            <img class="item" th:src="@{/images/image_no_image_available.jpg}">
+                        </div>
+                        <div th:case="*" th:remove="tag">
+                            <img class="item" th:each="photo : ${form.advertisedPhoto}" th:src="${photo.path}">
+                        </div>
+                    </div>
+                    <div id="sync2" class="owl-carousel owl-theme" th:switch="${form.advertisedPhoto.size}" style="height: 100px">
+                        <div th:case="0" th:remove="tag">
+                            <img class="item" th:src="@{/images/image_no_image_available.jpg}">
+                        </div>
+                        <div th:case="*" th:remove="tag">
+                            <img class="item" th:each="photo : ${form.advertisedPhoto}" th:src="${photo.path}">
+                        </div>
+                    </div>
+                </div>
+                <div class="block-advertised-right-info" data-aos="fade-up" data-aos-delay="500">
+                    <div class="price" th:text="@{${#numbers.formatDecimal(form.price, 1, 'WHITESPACE', 0, 'COMMA')} + ' ₽'}"></div>
+                    <div class="price-for-area" th:text="@{${#numbers.formatDecimal(form.price/form.area, 1, 'WHITESPACE', 2, 'COMMA')} + ' ₽/м²'}"></div>
+                    <div class="button button-simple-type-1 button-color-add">Показать контакты</div>
+                    <div class="button button-simple-type-1 button-color-default" th:href="@{'/catalog/' + ${form.id} + '/add-to-favorites'}">Добавить в избранное</div>
+
+                    <div th:if="${isAdmin}">
+                        <a class="button button-simple-type-1 button-color-change" th:href="@{'/catalog/' + ${form.id} + '/edit'}" style="display: inline-block">Изменить</a>
+                        <a class="button button-simple-type-1 button-color-delete" th:href="@{'/catalog/' + ${form.id} + '/delete'}" style="display: inline-block">Удалить</a>
+                    </div>
+                </div>
+                <div class="block-advertised-bottom-info" data-aos="fade-up" data-aos-delay="400">
+                    <div class="attributes">
+                        <div class="item">
+                            <div class="value" th:text="@{${form.area} + ' м²'}"></div>
+                            <div class="label">Площадь</div>
+                        </div>
+                        <div class="item">
+                            <div class="value" th:text="@{${form.floor} + '/' + ${form.maxFloor}}"></div>
+                            <div class="label">Этаж</div>
+                        </div>
+                        <div class="item">
+                            <div class="value" th:text="${form.roomSize}"></div>
+                            <div class="label">Кол-во комн.</div>
+                        </div>
+                        <div class="item">
+                            <div class="value" th:text="${form.estateObjectType.name}"></div>
+                            <div class="label">Тип объекта</div>
+                        </div>
+                        <div class="item">
+                            <div class="value" th:text="${form.houseType.name}"></div>
+                            <div class="label">Тип дома</div>
+                        </div>
+                        <div class="item">
+                            <div class="value" th:text="${form.renovationType.name}"></div>
+                            <div class="label">Тип ремонта</div>
+                        </div>
+                    </div>
+                    <div class="description">
+                        <div class="label">Описание</div>
+                        <div class="text" th:text="${form.description}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+<script>
+        $(document).ready(function() {
+
+        var sync1 = $("#sync1");
+        var sync2 = $("#sync2");
+        var slidesPerPage = 6; //globaly define number of elements per page
+        var syncedSecondary = true;
+
+        sync1.owlCarousel({
+        items: 1,
+        slideSpeed: 2000,
+        nav: false,
+        autoplay: false,
+        dots: false,
+        loop: true,
+        responsiveRefreshRate: 200,
+        navText: ['<svg width="100%" height="100%" viewBox="0 0 11 20"><path style="fill:none;stroke-width: 1px;stroke: #000;" d="M9.554,1.001l-8.607,8.607l8.607,8.606"/></svg>', '<svg width="100%" height="100%" viewBox="0 0 11 20" version="1.1"><path style="fill:none;stroke-width: 1px;stroke: #000;" d="M1.054,18.214l8.606,-8.606l-8.606,-8.607"/></svg>'],
+    }).on('changed.owl.carousel', syncPosition);
+
+        sync2
+        .on('initialized.owl.carousel', function() {
+        sync2.find(".owl-item").eq(0).addClass("current");
+    })
+        .owlCarousel({
+        items: slidesPerPage,
+        dots: false,
+        nav: false,
+        // loop: true,
+        smartSpeed: 200,
+        slideSpeed: 500,
+        slideBy: slidesPerPage, //alternatively you can slide by 1, this way the active slide will stick to the first item in the second carousel
+        responsiveRefreshRate: 100
+    }).on('changed.owl.carousel', syncPosition2);
+
+        function syncPosition(el) {
+        //if you set loop to false, you have to restore this next line
+        //var current = el.item.index;
+
+        //if you disable loop you have to comment this block
+        var count = el.item.count - 1;
+        var current = Math.round(el.item.index - (el.item.count / 2) - .5);
+
+        if (current < 0) {
+        current = count;
+    }
+        if (current > count) {
+        current = 0;
+    }
+
+        //end block
+
+        sync2
+        .find(".owl-item")
+        .removeClass("current")
+        .eq(current)
+        .addClass("current");
+        var onscreen = sync2.find('.owl-item.active').length - 1;
+        var start = sync2.find('.owl-item.active').first().index();
+        var end = sync2.find('.owl-item.active').last().index();
+
+        if (current > end) {
+        sync2.data('owl.carousel').to(current, 100, true);
+    }
+        if (current < start) {
+        sync2.data('owl.carousel').to(current - onscreen, 100, true);
+    }
+    }
+
+        function syncPosition2(el) {
+        if (syncedSecondary) {
+        var number = el.item.index;
+        sync1.data('owl.carousel').to(number, 100, true);
+    }
+    }
+
+        sync2.on("click", ".owl-item", function(e) {
+        e.preventDefault();
+        var number = $(this).index();
+        sync1.data('owl.carousel').to(number, 300, true);
+    });
+    });
+</script>
+
+</body>
+</html>
