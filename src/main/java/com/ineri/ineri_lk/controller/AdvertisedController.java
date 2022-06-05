@@ -63,7 +63,6 @@ public class AdvertisedController {
 
         mv = authController.setupUser(mv);
         mv.addObject("lightTheme", true);
-        mv.addObject("isAdmin", true);
 
         mv.addObject("advertiseds", advertisedService.getAll());
 
@@ -74,10 +73,15 @@ public class AdvertisedController {
     public ModelAndView getById(@PathVariable Long id) {
         ModelAndView mv = new ModelAndView("view_advertised");
 
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        User user = userServiceImpl.getUserByUsername(username);
+
         mv = authController.setupUser(mv);
         mv.addObject("lightTheme", true);
 
         mv.addObject("advertised", advertisedService.getById(id));
+        mv.addObject("isFavorite", favoriteService.existByUserIdAndAdvertisedId(user, advertisedService.getById(id)));
 
         return mv;
     }
@@ -90,7 +94,6 @@ public class AdvertisedController {
         List<User> users = userServiceImpl.getAll().stream().filter(u -> u.getRoles().stream().noneMatch(r -> r.getAuthority().equals(Role.ROLE_ADMIN.getAuthority()))).collect(Collectors.toList());
 
         mv = authController.setupUser(mv);
-        mv.addObject("lightTheme", true);
 
         mv.addObject("houseTypes", houseTypeService.getAll());
         mv.addObject("propertyTypes", propertyTypeService.getAll());
@@ -106,13 +109,14 @@ public class AdvertisedController {
     }
 
     @PostMapping("/new")
-    public String createAdvertised(Advertised advertised) {
+    public String createAdvertised(Advertised advertised, @RequestParam("images") List<MultipartFile> multipartFileList) {
         advertised.setNowDateTime();
         advertisedService.save(advertised);
+        uploadPhotos(advertised, multipartFileList);
         return "redirect:/catalog/" + advertised.getId();
     }
 
-    @PostMapping("/{id}/add-to-favorites")
+    @GetMapping("/{id}/add-to-favorites")
     public String addToFavorites(@PathVariable Long id, HttpServletRequest request) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
@@ -139,8 +143,6 @@ public class AdvertisedController {
         List<User> users = userServiceImpl.getAll().stream().filter(u -> u.getRoles().stream().noneMatch(r -> r.getAuthority().equals(Role.ROLE_ADMIN.getAuthority()))).collect(Collectors.toList());
 
         mv = authController.setupUser(mv);
-        mv.addObject("lightTheme", true);
-        mv.addObject("isAdmin", true);
 
         mv.addObject("houseTypes", houseTypeService.getAll());
         mv.addObject("propertyTypes", propertyTypeService.getAll());
@@ -153,11 +155,6 @@ public class AdvertisedController {
         mv.addObject("advertisedStatuses", advertisedStatusService.getAll());
         mv.addObject("advertised", advertisedService.getById(id));
 
-//        List<Long> photoIdList = new ArrayList<>();
-//        advertisedService.getById(id).getAdvertisedPhoto().stream().forEach(e -> photoIdList.add(e.getId()));
-//
-//        mv.addObject("photoIdList", photoIdList);
-
         return mv;
     }
 
@@ -167,6 +164,7 @@ public class AdvertisedController {
         Advertised advertisedBeforeChanges = advertisedService.getById(advertised.getId());
         List<AdvertisedPhoto> advertisedPhotoListCurrent = advertisedBeforeChanges.getAdvertisedPhoto();
         advertised.setAdvertisedPhoto(advertisedPhotoListCurrent);
+        advertised.setDateTimeCreated(advertisedBeforeChanges.getDateTimeCreated());
 
         //Delete photos
 
@@ -179,12 +177,21 @@ public class AdvertisedController {
         List<AdvertisedPhoto> advertisedPhotoListAfterDelete = advertisedPhotoListCurrent.stream().filter(ph -> photoIdList.contains(ph.getId())).collect(Collectors.toList());
         advertised.setAdvertisedPhoto(advertisedPhotoListAfterDelete);
 
-        // Upload new photos
+        uploadPhotos(advertised, multipartFileList);
 
+        advertisedService.save(advertised);
+        return "redirect:/catalog/" + advertised.getId();
+    }
+
+    private void uploadPhotos(Advertised advertised, List<MultipartFile> multipartFileList) {
         if (!multipartFileList.get(0).getResource().getFilename().equals("")) {
             String fileName;
             String uploadDir = "src/main/resources/upload/catalog";
-            int i = advertised.getAdvertisedPhoto().size();
+
+            int i = 0;
+            if (advertised.getAdvertisedPhoto() != null) {
+                i = advertised.getAdvertisedPhoto().size();
+            }
 
             try {
                 for (MultipartFile file : multipartFileList) {
@@ -196,9 +203,6 @@ public class AdvertisedController {
                 e.printStackTrace();
             }
         }
-
-        advertisedService.save(advertised);
-        return "redirect:/catalog/" + advertised.getId();
     }
 
 }

@@ -38,8 +38,8 @@
             </a>
         </div>
         <div id="menu-account" class="menu-item">
-            <a th:href="@{'/login'}">
-                <div class="menu-item-button" th:attrappend="class=${#httpServletRequest.requestURI == '/' + username + '/'} ? ${' current'} : ${''}"><div class="icon icon-user filter-white" style="margin-right: 10px;"></div>Личный кабинет</div>
+            <a th:href="${username} ? @{'/' + ${username} + '/profile'} : ${'/login'}">
+                <div class="menu-item-button" th:attrappend="class=${#httpServletRequest.requestURI == '/' + username + '/profile'} ? ${' current'} : ${''}"><div class="icon icon-user filter-white" style="margin-right: 10px;"></div><div th:text="${username} ? ${FIO} : ${'Личный кабинет'}" style="display: inline-block">Личный кабинет</div></div>
             </a>
             <div class="menu-dropdown" th:if="${username}">
                 <a class="item" th:href="@{'/' + ${username} + '/profile'}">Мой профиль</a>
