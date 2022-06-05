@@ -49,7 +49,7 @@
         <div class="sub-content" style="width: 80%; margin-top: 120px">
             <div class="title-big" data-aos="fade-up" data-aos-delay="200" style="position: relative; text-align: left; top: 15%;">Каталог</div>
             <div class="control-panel" data-aos="fade-up" data-aos-delay="300" style="flex-grow: 1">
-                <a class="button button-simple-type-1 button-color-add" th:href="@{'/catalog/new'}">Добавить новую запись</a>
+                <a class="button button-simple-type-1 button-color-add" th:if="${isAdmin}" th:href="@{'/catalog/new'}">Добавить новую запись</a>
             </div>
             <div class="flex-blocks-container">
                 <div class="item" th:each="advertised : ${advertiseds}" data-aos="fade-up" data-aos-delay="300">
@@ -70,7 +70,10 @@
                         <div class="actions">
                             <a class="button button-simple-type-1 button-color-change" th:if="${isAdmin}" th:href="@{'/catalog/' + ${advertised.id} + '/edit'}" style="margin-bottom: 10px">Изменить</a>
                             <a class="button button-simple-type-1 button-color-delete" th:if="${isAdmin}" th:href="@{'/catalog/' + ${advertised.id} + '/delete'}" style="margin-bottom: 10px">Удалить</a>
-                            <a class="add-to-favorite button button-simple-type-1 button-color-default" th:href="@{'/catalog/' + ${advertised.id} + '/add-to-favotites'}">Добавить в избранное</a>
+                            <th:block th:if="${username}" th:switch="${isFavorite}">
+                                <a th:case="true" class="add-to-favorite button button-simple-type-1 button-color-change">В избранном</a>
+                                <a th:case="false" class="add-to-favorite button button-simple-type-1 button-color-default" th:href="@{'/catalog/' + ${advertised.id} + '/add-to-favotites'}">Добавить в избранное</a>
+                            </th:block>
                         </div>
                     </div>
                 </div>

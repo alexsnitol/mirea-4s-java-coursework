@@ -2,7 +2,7 @@
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title th:text="@{'Редактирование обьявления - г. ' + ${advertised.estateObject.address.city.name} + ', ' + ${advertised.estateObject.address.fullAddress}}"></title>
+    <title th:text="@{'Создание обьявления'}"></title>
     <meta name="description" content="Агентство недвижимости в Москве ИНЕРИ. Инвестиции в недвижимость. Выкуп объектов. Торги по банкротству.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css">
@@ -19,8 +19,8 @@
     <div th:replace="fragments/control_panel_header :: control-panel-header"></div>
     <div class="content">
         <div class="sub-content" style="width: 80%">
-            <div class="subtitle" th:text="@{'Редактирование обьявления - г. ' + ${advertised.estateObject.address.city.name} + ', ' + ${advertised.estateObject.address.fullAddress}}" style="padding-bottom: 50px"></div>
-            <form class="form" th:action="@{'/catalog/' + ${advertised.id} + '/edit'}" th:object="${advertised}" method="post" enctype="multipart/form-data">
+            <div class="subtitle" th:text="@{'Создание обьявления'}" style="padding-bottom: 50px"></div>
+            <form class="form" th:action="@{'/catalog/new'}" th:object="${advertised}" method="post" enctype="multipart/form-data">
                 <div class="form-content">
                     <div class="row">
                         <div class="label">Сумма:</div>
@@ -117,22 +117,13 @@
 
                     <div class="row column">
                         <div class="label">Фотографии</div>
-                        <div class="objects">
-                            <div class="image-with-tools-container" th:each="photo : ${advertised.advertisedPhoto}" th:id="@{'photo_' + ${photo.id}}">
-                                <div class="tools">
-                                    <a th:onclick="@{'$(photo_' + ${photo.id} + ').remove()'}" class="icon icon-exit filter-blue noselect" style="margin: 5px"></a>
-                                </div>
-                                <img th:value="${photo.id}" th:src="${photo.path}">
-                                <input type="number" hidden name="photoIdList" th:value="${photo.id}">
-                            </div>
-                        </div>
                         <div>
                             <input type="file" name="images" accept="image/jpeg" multiple/>
                         </div>
                     </div>
 
                     <div class="row">
-                        <button class="button button-simple-type-1 button-color-default" type="submit">Применить</button>
+                        <button class="button button-simple-type-1 button-color-add" type="submit">Добавить</button>
                     </div>
                 </div>
             </form>

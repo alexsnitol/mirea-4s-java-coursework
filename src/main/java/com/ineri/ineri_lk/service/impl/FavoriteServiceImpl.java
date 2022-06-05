@@ -1,8 +1,11 @@
 package com.ineri.ineri_lk.service.impl;
 
+import com.ineri.ineri_lk.model.Advertised;
 import com.ineri.ineri_lk.model.Favorite;
+import com.ineri.ineri_lk.model.User;
 import com.ineri.ineri_lk.repository.FavoriteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -35,4 +38,11 @@ public class FavoriteServiceImpl extends AbstractServiceImpl<Favorite, FavoriteR
         favoriteToDelete.ifPresent(favorite -> favoriteRepository.deleteById(favorite.getId()));
     }
 
+    public boolean existByUserIdAndAdvertisedId(User user, Advertised advertised) {
+        Favorite favorite = new Favorite();
+        favorite.setUser(user);
+        favorite.setAdvertised(advertised);
+
+        return favoriteRepository.exists(Example.of(favorite));
+    }
 }

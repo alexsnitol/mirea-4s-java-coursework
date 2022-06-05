@@ -98,8 +98,11 @@
                     <div class="price" th:text="@{${#numbers.formatDecimal(advertised.price, 1, 'WHITESPACE', 0, 'COMMA')} + ' ₽'}"></div>
                     <div class="price-for-area" th:text="@{${#numbers.formatDecimal(advertised.price/advertised.estateObject.area, 1, 'WHITESPACE', 2, 'COMMA')} + ' ₽/м²'}"></div>
                     <div class="button button-simple-type-1 button-color-add">Показать контакты</div>
-                    <div class="button button-simple-type-1 button-color-default" th:href="@{'/catalog/' + ${advertised.id} + '/add-to-favotites'}">Добавить в избранное</div>
-                    <div>
+                    <th:block th:if="${username}" th:switch="${isFavorite}">
+                        <a th:case="false" class="button button-simple-type-1 button-color-default" th:href="@{'/catalog/' + ${advertised.id} + '/add-to-favorites'}">Добавить в избранное</a>
+                        <a th:case="true" class="button button-simple-type-1 button-color-change">В избранном</a>
+                    </th:block>
+                    <div th:if="${isAdmin}">
                         <a class="button button-simple-type-1 button-color-change" th:href="@{'/catalog/' + ${advertised.id} + '/edit'}" style="display: inline-block">Изменить</a>
                         <a class="button button-simple-type-1 button-color-delete" th:href="@{'/catalog/' + ${advertised.id} + '/delete'}" style="display: inline-block">Удалить</a>
                     </div>
