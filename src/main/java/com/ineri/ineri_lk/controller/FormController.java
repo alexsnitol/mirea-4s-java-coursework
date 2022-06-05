@@ -65,7 +65,6 @@ public class FormController {
         mv.addObject("cities", cityService.getAll());
         mv.addObject("form", new Form());
 
-
         return mv;
     }
 
@@ -75,34 +74,36 @@ public class FormController {
         form.setUser(user);
         form.setState(EFormState.NOT_CHECK);
         form.setAdminComment("");
+
         addressService.save(form.getAddress());
         formServiceImpl.save(form);
         return "redirect:/" + username + "/forms";
     }
 
     @GetMapping("/{form_id}")
-    public ModelAndView showForm(@PathVariable("username") String username, Form form, @PathVariable("form_id") Long id) {
+    public ModelAndView showForm(@PathVariable("username") String username, @PathVariable("form_id") Long id) {
         ModelAndView mv = new ModelAndView("test_view_form");
 
         mv = authController.setupUser(mv);
-        mv.addObject("form", form);
+        mv.addObject("form", formServiceImpl.getById(id));
 
         return mv;
     }
 
     @GetMapping("/{form_id}/publish")
     public String publishForm(@PathVariable("username") String username, @PathVariable("form_id") Long id) {
-//        Form form = formServiceImpl.getById(id);
-//        form.setState(EFormState.ACCEPTED);
-//        formServiceImpl.save(form);
+        Form form = formServiceImpl.getById(id);
+        form.setState(EFormState.ACCEPTED);
+        formServiceImpl.save(form);
+        formServiceImpl.publish(form);
         return "redirect:/" + username + "/forms";
     }
 
     @GetMapping("/{form_id}/reject")
     public String rejectForm(@PathVariable("username") String username, @PathVariable("form_id") Long id) {
-//        Form form = formServiceImpl.getById(id);
-//        form.setState(EFormState.DENIED);
-//        formServiceImpl.save(form);
+        Form form = formServiceImpl.getById(id);
+        form.setState(EFormState.DENIED);
+        formServiceImpl.save(form);
         return "redirect:/" + username + "/forms";
     }
 

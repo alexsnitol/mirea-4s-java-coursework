@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @author Kozlov Alexander
@@ -27,7 +28,7 @@ public class Form {
     @Enumerated(EnumType.STRING)
     private EFormState state;
     private String adminComment;
-    private Double area;
+    private Float area;
     private Integer floor;
     private Integer maxFloor;
     private Integer roomSize;
@@ -35,6 +36,9 @@ public class Form {
     private float price;
     @Column(name = "datetime_created")
     private LocalDateTime dateTimeCreated = LocalDateTime.now();
+
+    @OneToMany(mappedBy = "form")
+    private List<AdvertisedPhoto> advertisedPhoto;
 
     @ManyToOne
     @JoinColumn(name = "admin_id")

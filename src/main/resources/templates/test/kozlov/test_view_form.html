@@ -52,14 +52,12 @@
 <br/><br/>
 
 <h3>price</h3>
-<div th:text="@{${#numbers.formatDecimal(advertised.price, 1, 'WHITESPACE', 0, 'COMMA')} + ' ₽'}"></div>
+<div th:text="@{${#numbers.formatDecimal(form.price, 1, 'WHITESPACE', 0, 'COMMA')} + ' ₽'}"></div>
 <br/><br/>
 
 <h3>fio</h3>
-<div th:text="@{${form.admin.surname} + ' ' + ${form.admin.name} + ' ' + ${form.admin.patronymic}}"></div>
-
-<h3>contact_phone</h3>
-<div th:text="@{'+7 ' + ${form.admin.phoneNumber}}"></div>
+<div th:if="${form.admin != null}" th:text="${form.admin.surname} + ' ' + ${form.admin.name} + ' ' + ${form.admin.patronymic}"></div>
+<div th:if="${form.admin == null}" th:text="Нет"></div>
 
 <h3>status</h3>
 <div th:text="${form.state}"></div>
