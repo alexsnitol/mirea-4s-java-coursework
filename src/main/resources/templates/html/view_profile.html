@@ -22,7 +22,7 @@
             <div class="form">
                 <div class="form-content">
                     <div class="row column">
-                        <div class="label">Фото:</div>
+                        <div class="label"></div>
                         <div class="avatar">
                             <th:block th:switch="${user.photoPath}">
                                 <img th:case="null" th:src="@{'/images/default_user_avatar.png'}">
@@ -30,21 +30,21 @@
                             </th:block>
                         </div>
                     </div>
-                    <div class="row column">
-                        <div class="label">Имя пользователя:</div>
-                        <div class="text" th:text="${user.username}"></div>
+                    <div class="row column" >
+                        <div class="label"></div>
+                        <div class="text" th:text="'Имя пользователя: ' + ${user.username}"></div>
                     </div>
                     <div class="row column">
-                        <div class="label">ФИО:</div>
-                        <div class="text" th:text="${user.surname} + ' ' + ${user.name} + ' ' + ${user.patronymic}"></div>
+                        <div class="label"></div>
+                        <div class="text" th:text="'ФИО: ' + ${user.surname} + ' ' + ${user.name} + ' ' + ${user.patronymic}"></div>
                     </div>
                     <div class="row column">
-                        <div class="label">Эл. почта:</div>
-                        <div class="text" th:text="${user.email}"></div>
+                        <div class="label"></div>
+                        <div class="text" th:text="'Эл. почта: ' + ${user.email}"></div>
                     </div>
                     <div class="row column">
-                        <div class="label">Телефон:</div>
-                        <div class="text" th:text="'+7' + ${user.phoneNumber}"></div>
+                        <div class="label"></div>
+                        <div class="text" th:text="'Телефон: +7 ' + ${user.phoneNumber}"></div>
                     </div>
                     <div class="row">
                         <a th:href="@{'/' + ${username} + '/profile/edit'}" class="button button-simple-type-1 button-color-change" style="line-height: normal;">Редактировать</a>
