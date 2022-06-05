@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="@{'Создание анкеты'}"></title>
+    <meta name="description" content="Агентство недвижимости в Москве ИНЕРИ. Инвестиции в недвижимость. Выкуп объектов. Торги по банкротству.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" th:href="@{/images/icon_INERI_1.svg}" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script th:src="@{/scripts/scrolling.js}"></script>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<div class="full-window-container bg-darkblue">
+    <div class="header-block"></div>
+    <div class="content">
+        <div class="sub-content" style="width: 80%">
+            <div class="subtitle" th:text="@{'Создание анкеты'}" style="padding-bottom: 50px"></div>
+            <form class="form" th:action="@{'/' + ${username} + '/forms/new'}" th:object="${form}" method="post" enctype="multipart/form-data">
+                <div class="form-content">
+                    <div class="row">
+                        <div class="label">Сумма:</div>
+                        <div class="input-el"><input type="number" id="price" th:field="*{price}" min="0" style="width: 175px;"> ₽</div>
+                    </div>
+                    <div class="row column">
+                        <div class="label">Описание:</div>
+                        <div class="input-el"><textarea id="description" th:field="*{description}" rows="5" style="width: 98%"></textarea></div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Город:</div>
+                        <div class="combobox">
+                            <select name="city" id="city" th:field="*{address.city}">
+                                <option th:each="city : ${cities}" th:value="${city.id}" th:text="${city.name}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row column">
+                        <div class="label">Адрес объекта:</div>
+                        <div class="input-el"><textarea name="fullAddress" id="fullAddress" th:field="*{address.fullAddress}" rows="5" style="width: 98%"></textarea></div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Площадь:</div>
+                        <div class="input-el"><input type="number" id="area" th:field="*{area}" min="0" style="width: 100px; text-align: center;"></div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Этаж:</div>
+                        <div class="input-el"><input type="number" id="floor" th:field="*{floor}" min="1" max="100" style="width: 50px; text-align: center;"></div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Кол-во этажей:</div>
+                        <div class="input-el"><input type="number" id="maxFloor" th:field="*{maxFloor}" min="1" max="100" style="width: 50px; text-align: center;"></div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Кол-во комнат:</div>
+                        <div class="input-el"><input type="number" id="roomSize" th:field="*{roomSize}" min="1" style="width: 50px; text-align: center;"></div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Тип дома:</div>
+                        <div class="combobox">
+                            <select name="houseType" id="houseType" th:field="*{houseType}">
+                                <option th:each="type : ${houseTypes}" th:value="${type.id}" th:text="${type.name}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Тип недвижимости:</div>
+                        <div class="combobox">
+                            <select name="propertyType" id="propertyType" th:field="*{propertyType}">
+                                <option th:each="type : ${propertyTypes}" th:value="${type.id}" th:text="${type.name}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Тип ремонта:</div>
+                        <div class="combobox">
+                            <select name="renovationType" id="renovationType" th:field="*{renovationType}">
+                                <option th:each="type : ${renovationTypes}" th:value="${type.id}" th:text="${type.name}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Тип объекта недвижимости:</div>
+                        <div class="combobox">
+                            <select name="estateObjectType" id="estateObjectType" th:field="*{estateObjectType}">
+                                <option th:each="type : ${estateObjectTypes}" th:value="${type.id}" th:text="${type.name}"></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row column">
+                        <div class="label">Фотографии</div>
+                        <div>
+                            <input type="file" name="images" accept="image/jpeg" multiple/>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <button class="button button-simple-type-1 button-color-add" type="submit">Отправить</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>
