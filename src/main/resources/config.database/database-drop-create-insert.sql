@@ -129,7 +129,7 @@ CREATE TABLE vacancies (
 -- Author: Slotin A.S.
 CREATE TABLE advertiseds (
                              id                   SERIAL PRIMARY KEY,
-                             description          VARCHAR(1023),
+                             description          VARCHAR(4023),
                              price                FLOAT(2) UNSIGNED NOT NULL,
                              datetime_created     TIMESTAMP NULL,
 
