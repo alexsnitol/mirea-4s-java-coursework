@@ -1,6 +1,7 @@
 package com.ineri.ineri_lk.service.impl;
 
 import com.ineri.ineri_lk.model.Address;
+import com.ineri.ineri_lk.model.Advertised;
 import com.ineri.ineri_lk.model.EstateObject;
 import com.ineri.ineri_lk.model.Form;
 import com.ineri.ineri_lk.repository.AddressRepository;

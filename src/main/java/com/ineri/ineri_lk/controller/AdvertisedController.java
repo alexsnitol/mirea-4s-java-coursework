@@ -58,13 +58,71 @@ public class AdvertisedController {
     private FavoriteServiceImpl favoriteService;
 
     @GetMapping
-    public ModelAndView getAll() {
+    public ModelAndView getAll(@RequestParam(defaultValue = "") String  city,
+                               @RequestParam(defaultValue = "") Float   areaMin,
+                               @RequestParam(defaultValue = "") Float   areaMax,
+                               @RequestParam(defaultValue = "") Integer floorMin,
+                               @RequestParam(defaultValue = "") Integer floorMax,
+                               @RequestParam(defaultValue = "") Integer houseFloorMin,
+                               @RequestParam(defaultValue = "") Integer houseFloorMax,
+                               @RequestParam(defaultValue = "") Integer roomSizeMin,
+                               @RequestParam(defaultValue = "") Integer roomSizeMax,
+                               @RequestParam(defaultValue = "") String  houseType,
+                               @RequestParam(defaultValue = "") String  propertyType,
+                               @RequestParam(defaultValue = "") String  renovationType,
+                               @RequestParam(defaultValue = "") String  estateObjectType) {
+
         ModelAndView mv = new ModelAndView("view_advertiseds");
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        User user = userServiceImpl.getUserByUsername(username);
 
         mv = authController.setupUser(mv);
         mv.addObject("lightTheme", true);
+        
+        city                 = advertisedService.checkFilterParam(city);
+        areaMin              = advertisedService.checkFilterParam(areaMin);
+        areaMax              = advertisedService.checkFilterParam(areaMax);
+        floorMin             = advertisedService.checkFilterParam(floorMin);
+        floorMax             = advertisedService.checkFilterParam(floorMax);
+        houseFloorMin        = advertisedService.checkFilterParam(houseFloorMin);
+        houseFloorMax        = advertisedService.checkFilterParam(houseFloorMax);
+        roomSizeMin          = advertisedService.checkFilterParam(roomSizeMin);
+        roomSizeMax          = advertisedService.checkFilterParam(roomSizeMax);
+        houseType            = advertisedService.checkFilterParam(houseType);
+        propertyType         = advertisedService.checkFilterParam(propertyType);
+        renovationType       = advertisedService.checkFilterParam(renovationType);
+        estateObjectType     = advertisedService.checkFilterParam(estateObjectType);
 
-        mv.addObject("advertiseds", advertisedService.getAll());
+        mv.addObject("selectedCity",             city != null ? city : "");
+        mv.addObject("selectedAreaMin",          areaMin != null ? areaMin : "");
+        mv.addObject("selectedAreaMax",          areaMax != null ? areaMax : "");
+        mv.addObject("selectedFloorMin",         floorMin != null ? floorMin : "");
+        mv.addObject("selectedFlootMax",         floorMax != null ? floorMax : "");
+        mv.addObject("selectedHouseMin",         houseFloorMin != null ? houseFloorMin : "");
+        mv.addObject("selectedHouseMax",         houseFloorMax != null ? houseFloorMax : "");
+        mv.addObject("selectedRoomSizeMin",      roomSizeMin != null ? roomSizeMin : "");
+        mv.addObject("selectedRoomSizeMax",      roomSizeMax != null ? roomSizeMax : "");
+        mv.addObject("selectedHouseType",        houseType != null ? houseType : "");
+        mv.addObject("selectedPropertyType",     propertyType != null ? propertyType : "");
+        mv.addObject("selectedRenovationType",   renovationType != null ? renovationType : "");
+        mv.addObject("selectedEstateObjectType", estateObjectType != null ? estateObjectType : "");
+        
+        List<Advertised> advertisedList = advertisedService.getAllFiltered(city, areaMin, areaMax, floorMin, floorMax, houseFloorMin, houseFloorMax, roomSizeMin, roomSizeMax, houseType, propertyType, renovationType, estateObjectType);
+
+        mv.addObject("advertiseds", advertisedList);
+        if (user != null) {
+            mv.addObject("favorites", user.getFavorites());
+        }
+
+        mv.addObject("houseTypes", houseTypeService.getAll());
+        mv.addObject("propertyTypes", propertyTypeService.getAll());
+        mv.addObject("renovationTypes", renovationTypeService.getAll());
+        mv.addObject("estateObjectTypes", estateObjectTypeService.getAll());
+        mv.addObject("cities", cityService.getAll());
+        mv.addObject("estateObjects", estateObjectService.getAll());
+        mv.addObject("advertisedStatuses", advertisedStatusService.getAll());
 
         return mv;
     }

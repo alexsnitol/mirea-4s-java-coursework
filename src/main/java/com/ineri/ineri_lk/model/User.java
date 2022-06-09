@@ -55,7 +55,9 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Set<Role> roles = new HashSet<>();
 
-    @OneToMany(mappedBy = "advertised", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @OneToMany(mappedBy = "advertised", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany
+    @JoinColumn(name = "user_id")
     private List<Favorite> favorites = new ArrayList<>();
 
     @Override

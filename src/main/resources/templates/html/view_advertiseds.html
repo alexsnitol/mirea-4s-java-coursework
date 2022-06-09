@@ -8,8 +8,12 @@
     <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css">
     <link rel="shortcut icon" th:href="@{/images/icon_INERI_1.svg}" type="image/x-icon">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale-subtle.css">
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/themes/light.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script th:src="@{/scripts/scrolling.js}"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
 </head>
 <body>
 
@@ -48,9 +52,95 @@
     <div class="content">
         <div class="sub-content" style="width: 80%; margin-top: 120px">
             <div class="title-big" data-aos="fade-up" data-aos-delay="200" style="position: relative; text-align: left; top: 15%;">Каталог</div>
-            <div class="control-panel" data-aos="fade-up" data-aos-delay="300" style="flex-grow: 1">
+            <form th:action="@{'/catalog'}" method="get">
+            <div id="advertised-control-panel" class="control-panel" data-aos="fade-up" data-aos-delay="300" style="flex-grow: 1; display: flex; flex-wrap: wrap; flex-direction: row; justify-content: flex-start; align-items: baseline;">
                 <a class="button button-simple-type-1 button-color-add" th:if="${isAdmin}" th:href="@{'/catalog/new'}">Добавить новую запись</a>
+                <select name="city" id="city" style="margin: 5px">
+                    <option>Не важно</option>
+                    <option th:each="city : ${cities}" th:value="${city.name}" th:text="${city.name}" th:attr="selected=${selectedCity == city.name} ? ${'selected'} : ${''}"></option>
+                </select>
+                <div id="area" style="margin: 5px; font-size: small">
+                    <input type="number" id="areaMin" style="width: 80px">
+                    <input type="number" id="areaMax" style="width: 80px">
+                </div>
+                <div id="floor" style="margin: 5px; font-size: small">
+                    <input type="number" id="floorMin" style="width: 50px">
+                    <input type="number" id="floorMax" style="width: 50px">
+                </div>
+                <div id="houseFloor" style="margin: 5px; font-size: small">
+                    <input type="number" id="houseFloorMin" style="width: 50px">
+                    <input type="number" id="houseFloorMax" style="width: 50px">
+                </div>
+                <div id="roomSize" style="margin: 5px; font-size: small">
+                    <input type="number" id="roomSizeMin" style="width: 50px">
+                    <input type="number" id="roomSizeMax" style="width: 50px">
+                </div>
+                <select name="houseType" id="houseType" style="margin: 5px">
+                    <option>Не важно</option>
+                    <option th:each="type : ${houseTypes}" th:value="${type.name}" th:text="${type.name}"></option>
+                </select>
+                <select name="propertyType" id="propertyType" style="margin: 5px">
+                    <option>Не важно</option>
+                    <option th:each="type : ${propertyTypes}" th:value="${type.name}" th:text="${type.name}"></option>
+                </select>
+                <select name="renovationType" id="renovationType" style="margin: 5px">
+                    <option>Не важно</option>
+                    <option th:each="type : ${renovationTypes}" th:value="${type.name}" th:text="${type.name}"></option>
+                </select>
+                <select name="estateObjectType" id="estateObjectType" style="margin: 5px">
+                    <option>Не важно</option>
+                    <option th:each="type : ${estateObjectTypes}" th:text="${type.name}"></option>
+                </select>
+                <button type="submit" class="button button-simple-type-1 button-color-default">Применить фильтр</button>
+                <script>
+                    tippy('#city', {
+                        content: 'Город',
+                        animation: 'scale-subtle',
+                        theme: 'light'
+                    });
+                    tippy('#area', {
+                        content: 'Площадь',
+                        animation: 'scale-subtle',
+                        theme: 'light'
+                    });
+                    tippy('#floor', {
+                        content: 'Этаж',
+                        animation: 'scale-subtle',
+                        theme: 'light'
+                    });
+                    tippy('#houseFloor', {
+                        content: 'Этажность дома',
+                        animation: 'scale-subtle',
+                        theme: 'light'
+                    });
+                    tippy('#roomSize', {
+                        content: 'Кол-во комнат',
+                        animation: 'scale-subtle',
+                        theme: 'light'
+                    });
+                    tippy('#houseType', {
+                        content: 'Тип дома',
+                        animation: 'scale-subtle',
+                        theme: 'light'
+                    });
+                    tippy('#propertyType', {
+                        content: 'Тип недвижимости',
+                        animation: 'scale-subtle',
+                        theme: 'light'
+                    });
+                    tippy('#renovationType', {
+                        content: 'Тип ремонта',
+                        animation: 'scale-subtle',
+                        theme: 'light'
+                    });
+                    tippy('#estateObjectType', {
+                        content: 'Тип объекта недвижимости',
+                        animation: 'scale-subtle',
+                        theme: 'light'
+                    });
+                </script>
             </div>
+            </form>
             <div class="flex-blocks-container">
                 <div class="item" th:each="advertised : ${advertiseds}" data-aos="fade-up" data-aos-delay="300">
                     <div class="block-catalog" th:switch="${advertised.advertisedPhoto.size}" th:attrappend="style=${isAdmin == true} ? ${' height: 350px'} : ${''}">
@@ -70,10 +160,6 @@
                         <div class="actions">
                             <a class="button button-simple-type-1 button-color-change" th:if="${isAdmin}" th:href="@{'/catalog/' + ${advertised.id} + '/edit'}" style="margin-bottom: 10px">Изменить</a>
                             <a class="button button-simple-type-1 button-color-delete" th:if="${isAdmin}" th:href="@{'/catalog/' + ${advertised.id} + '/delete'}" style="margin-bottom: 10px">Удалить</a>
-                            <th:block th:if="${username}" th:switch="${isFavorite}">
-                                <a th:case="true" class="add-to-favorite button button-simple-type-1 button-color-change">В избранном</a>
-                                <a th:case="false" class="add-to-favorite button button-simple-type-1 button-color-default" th:href="@{'/catalog/' + ${advertised.id} + '/add-to-favotites'}">Добавить в избранное</a>
-                            </th:block>
                         </div>
                     </div>
                 </div>

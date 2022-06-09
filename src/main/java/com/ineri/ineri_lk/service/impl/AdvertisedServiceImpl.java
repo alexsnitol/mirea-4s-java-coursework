@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Slotin Alexander (@alexsnitol)
@@ -35,6 +36,113 @@ public class AdvertisedServiceImpl extends AbstractServiceImpl<Advertised, Adver
     @PostConstruct
     public void init() {
         defaultRepository = advertisedRepository;
+    }
+
+    public List<Advertised> getAllFiltered(String cityName,
+                                           Float areaMin, Float areaMax,
+                                           Integer floorMin, Integer floorMax,
+                                           Integer houseFloorMin, Integer houseFloorMax,
+                                           Integer roomSizeMin, Integer roomSizeMax,
+                                           String houseTypeName,
+                                           String propertyTypeName,
+                                           String renovationTypeName,
+                                           String estateObjectTypeName) {
+
+        List<Advertised> advertisedList = getAll();
+
+        List<Advertised> filteredAdvertisedList = advertisedList;
+
+        if (cityName != null) {
+            filteredAdvertisedList = filteredAdvertisedList.stream().filter(
+                    a -> a.getEstateObject().getAddress().getCity().getName().equals(cityName)
+            ).collect(Collectors.toList());
+        }
+
+        if (areaMin != null && areaMax != null) {
+            filteredAdvertisedList = filteredAdvertisedList.stream().filter(
+                    a -> a.getEstateObject().getArea() >= areaMin && a.getEstateObject().getArea() <= areaMax
+            ).collect(Collectors.toList());
+        }
+
+        if (floorMin != null && floorMax != null) {
+            filteredAdvertisedList = filteredAdvertisedList.stream().filter(
+                    a -> a.getEstateObject().getFloor() >= floorMin && a.getEstateObject().getFloor() <= floorMax
+            ).collect(Collectors.toList());
+        }
+
+        if (houseFloorMin != null && houseFloorMax != null) {
+            filteredAdvertisedList = filteredAdvertisedList.stream().filter(
+                    a -> a.getEstateObject().getMaxFloor() >= houseFloorMin && a.getEstateObject().getMaxFloor() <= houseFloorMax
+            ).collect(Collectors.toList());
+        }
+
+        if (roomSizeMin != null && roomSizeMax != null) {
+            filteredAdvertisedList = filteredAdvertisedList.stream().filter(
+                    a -> a.getEstateObject().getRoomSize() >= roomSizeMin && a.getEstateObject().getRoomSize() <= roomSizeMax
+            ).collect(Collectors.toList());
+        }
+
+        if (houseTypeName != null) {
+            filteredAdvertisedList = filteredAdvertisedList.stream().filter(
+                    a -> a.getEstateObject().getHouseType().getName().equals(houseTypeName)
+            ).collect(Collectors.toList());
+        }
+
+        if (propertyTypeName != null) {
+            filteredAdvertisedList = filteredAdvertisedList.stream().filter(
+                    a -> a.getEstateObject().getPropertyType().getName().equals(propertyTypeName)
+            ).collect(Collectors.toList());
+        }
+
+        if (renovationTypeName != null) {
+            filteredAdvertisedList = filteredAdvertisedList.stream().filter(
+                    a -> a.getEstateObject().getRenovationType().getName().equals(renovationTypeName)
+            ).collect(Collectors.toList());
+        }
+
+        if (estateObjectTypeName != null) {
+            filteredAdvertisedList = filteredAdvertisedList.stream().filter(
+                    a -> a.getEstateObject().getEstateObjectType().getName().equals(estateObjectTypeName)
+            ).collect(Collectors.toList());
+        }
+
+        return filteredAdvertisedList;
+    }
+
+    public String checkFilterParam(String param) {
+        if (param == null) {
+            return null;
+        }
+
+        if (param.equals("Не важно") || param.equals("")) {
+            return null;
+        }
+
+        return param;
+    }
+
+    public Integer checkFilterParam(Integer param) {
+        if (param == null) {
+            return null;
+        }
+
+        if (param == 0) {
+            return null;
+        }
+
+        return param;
+    }
+
+    public Float checkFilterParam(Float param) {
+        if (param == null) {
+            return null;
+        }
+
+        if (param == 0) {
+            return null;
+        }
+
+        return param;
     }
 
     @Override
