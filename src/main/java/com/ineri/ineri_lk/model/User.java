@@ -23,30 +23,19 @@ import java.util.*;
 @Setter
 @Getter
 public class User implements UserDetails {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String username;
-
     private String password;
-
     private String surname;
-
     private String name;
-
     private String patronymic;
-
     private String email;
-
     private String phoneNumber;
-
     private String photoPath;
-
     @Column(name = "datetime_created")
     private LocalDateTime datetimeCreated;
-
     @Transient
     private String confirmPassword;
 
@@ -54,7 +43,6 @@ public class User implements UserDetails {
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles = new HashSet<>();
-
     @OneToMany(mappedBy = "advertised", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Favorite> favorites = new ArrayList<>();
 
