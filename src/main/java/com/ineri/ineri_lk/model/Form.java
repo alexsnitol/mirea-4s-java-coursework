@@ -36,14 +36,11 @@ public class Form {
     private float price;
     @Column(name = "datetime_created")
     private LocalDateTime dateTimeCreated = LocalDateTime.now();
-
     @OneToMany(mappedBy = "form")
     private List<AdvertisedPhoto> advertisedPhoto;
-
     @ManyToOne
     @JoinColumn(name = "admin_id")
     private User admin;
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

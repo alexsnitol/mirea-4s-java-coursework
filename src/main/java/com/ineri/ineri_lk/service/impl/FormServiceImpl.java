@@ -20,29 +20,21 @@ import java.util.Optional;
 
 @Service
 public class FormServiceImpl {
-
     @Autowired
     private FormRepository formRepository;
-
     @Autowired
     private UserRepository userRepository;
-
     @Autowired
     private AdvertisedRepository advertisedRepository;
-
     @Autowired
     private EstateObjectRepository estateObjectRepository;
-
     @Autowired
     private AdvertisedStatusRepository advertisedStatusRepository;
-
     @Autowired
     @Lazy
     private AdvertisedPhotoServiceImpl advertisedPhotoService;
-
     @Autowired
     private AdvertisedPhotoRepository advertisedPhotoRepository;
-
 
 
     public void save(Form form) {
@@ -62,7 +54,6 @@ public class FormServiceImpl {
     }
 
     public void deleteById(Long id) {
-
         List<AdvertisedPhoto> advertisedPhotoList = advertisedPhotoService.getAllByFormId(id);
 
         if (!advertisedPhotoList.isEmpty()) {
