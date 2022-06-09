@@ -48,7 +48,7 @@
     <div class="content">
         <div class="sub-content" style="width: 95%; margin-top: 120px; text-align: center">
             <div class="title-big" data-aos="fade-up" data-aos-delay="200" style="position: relative; text-align: left; top 15%; padding-bottom: 50px;">Анкеты</div>
-            <div th:if="${forms == null || forms.size == 0}" class="comment" data-aos="fade-up" data-aos-delay="200">Ничего не найдено</div>
+            <div th:if="${forms == null || forms.size == 0}" class="comment" data-aos="fade-up" data-aos-delay="200"><a class="button button-simple-type-1 button-color-add" th:href="@{'/'+${username}+'/forms/new'}">Создать новую анкету</a></div>
             <div th:unless="${forms == null || forms.size == 0}" class="flex-table flex-table--11cols" data-aos="fade-up" data-aos-delay="200">
                 <div class="control-panel">
                     <a class="button button-simple-type-1 button-color-add" th:href="@{'/'+${username}+'/forms/new'}">Создать новую анкету</a>
