@@ -8,8 +8,8 @@
     <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="shortcut icon" th:href="@{/images/icon_INERI_1.svg}" type="image/x-icon">
-    <script th:src="@{/scripts/jquery.mbYTPlayer.js}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script th:src="@{/scripts/jquery.mb.YTPlayer.js}"></script>
     <script th:src="@{/scripts/scrolling.js}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.1/dist/chart.min.js"></script>
 </head>
@@ -127,8 +127,8 @@
     </div>
 
     <!-- 1. Главный слайд -->
-        <div id="slide1" class="slide slide-main-video" style="background-image: url('/images/photo_moscow_darkblue_1080.jpg'); background-position: center; background-size: cover;">
-<!--    <div id="slide1" class="slide slide-main-video" style="background-position: center; background-size: cover;">-->
+<!--        <div id="slide1" class="slide slide-main-video" style="background-image: url('/images/photo_moscow_darkblue_1080.jpg'); background-position: center; background-size: cover;">-->
+    <div id="slide1" class="slide slide-main-video" style="background-position: center; background-size: cover;">
         <div class="header-block"></div>
         <div class="flex-container-center">
             <div id="content-slide1" class="content">
@@ -153,10 +153,10 @@
             </div>
         </div>
 
-<!--        <div class="player" data-property="{videoURL:'S_dfq9rFWAE', ratio:'auto', mask:'/images/photo_moscow_1080.jpg', abundance:.3, anchor:'center,center', startAt: 9, stopAt:145, containment:'#slide1', showControls:false, autoPlay:true, loop:true, mute:true, opacity:1, addRaster:true, playOnlyIfVisible:false, stopMovieOnBlur:false, quality:'default', addFilters:{grayscale: 0, sepia: 0, contrast: 0, saturate: 0, brightness: 0, blur: 1, opacity: 60}}"></div>-->
-<!--        <script>-->
-<!--            jQuery(".player").YTPlayer({useOnMobile:true, mobileFallbackImage:"/images/photo_moscow_1080.jpg"});-->
-<!--        </script>-->
+        <div class="player" data-property="{videoURL:'S_dfq9rFWAE', ratio:'auto', mask:'/images/photo_moscow_1080.jpg', abundance:.3, anchor:'center,center', startAt: 9, stopAt:145, containment:'#slide1', showControls:false, autoPlay:true, loop:true, mute:true, opacity:1, addRaster:true, playOnlyIfVisible:false, stopMovieOnBlur:false, quality:'default', addFilters:{grayscale: 0, sepia: 0, contrast: 0, saturate: 0, brightness: 0, blur: 1, opacity: 60}}"></div>
+        <script>
+            jQuery(".player").YTPlayer({useOnMobile:true, mobileFallbackImage:"/images/photo_moscow_1080.jpg"});
+        </script>
 
     </div>
 

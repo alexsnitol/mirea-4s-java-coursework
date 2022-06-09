@@ -1725,9 +1725,14 @@ a.button-simple-type-1:hover {
     padding-bottom: 150px;
 }
 
-#advertised-control-panel > div {
-    padding-bottom: 2px;
-    border-bottom: gray 2px solid;
+#advertised-control-panel > div > div {
+    padding-bottom: 3px;
+    border-bottom: var(--active) 2px solid;
+    border-radius: 6px;
+}
+
+#advertised-control-panel > div > div input {
+    text-align: center;
 }
 
 /* COLORS */

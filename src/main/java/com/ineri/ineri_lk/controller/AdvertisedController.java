@@ -99,9 +99,9 @@ public class AdvertisedController {
         mv.addObject("selectedAreaMin",          areaMin != null ? areaMin : "");
         mv.addObject("selectedAreaMax",          areaMax != null ? areaMax : "");
         mv.addObject("selectedFloorMin",         floorMin != null ? floorMin : "");
-        mv.addObject("selectedFlootMax",         floorMax != null ? floorMax : "");
-        mv.addObject("selectedHouseMin",         houseFloorMin != null ? houseFloorMin : "");
-        mv.addObject("selectedHouseMax",         houseFloorMax != null ? houseFloorMax : "");
+        mv.addObject("selectedFloorMax",         floorMax != null ? floorMax : "");
+        mv.addObject("selectedHouseFloorMin",         houseFloorMin != null ? houseFloorMin : "");
+        mv.addObject("selectedHouseFloorMax",         houseFloorMax != null ? houseFloorMax : "");
         mv.addObject("selectedRoomSizeMin",      roomSizeMin != null ? roomSizeMin : "");
         mv.addObject("selectedRoomSizeMax",      roomSizeMax != null ? roomSizeMax : "");
         mv.addObject("selectedHouseType",        houseType != null ? houseType : "");
