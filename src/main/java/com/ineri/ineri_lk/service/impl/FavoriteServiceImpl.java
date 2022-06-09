@@ -39,10 +39,11 @@ public class FavoriteServiceImpl extends AbstractServiceImpl<Favorite, FavoriteR
     }
 
     public boolean existByUserIdAndAdvertisedId(User user, Advertised advertised) {
-        Favorite favorite = new Favorite();
-        favorite.setUser(user);
-        favorite.setAdvertised(advertised);
+//        Favorite favorite = new Favorite();
+//        favorite.setUser(user);
+//        favorite.setAdvertised(advertised);
 
-        return favoriteRepository.exists(Example.of(favorite));
+//        return favoriteRepository.exists(Example.of(favorite));
+        return !favoriteRepository.findAllByUserIdAndAdvertisedId(user.getId(), advertised.getId()).isEmpty();
     }
 }

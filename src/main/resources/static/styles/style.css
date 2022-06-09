@@ -1726,8 +1726,8 @@ a.button-simple-type-1:hover {
 }
 
 #advertised-control-panel > div > div {
-    padding-bottom: 3px;
-    border-bottom: var(--active) 2px solid;
+    background-color: darkgray;
+    padding: 5px;
     border-radius: 6px;
 }
 

@@ -53,7 +53,7 @@
         <div class="sub-content" style="width: 80%; margin-top: 120px">
             <div class="title-big" data-aos="fade-up" data-aos-delay="200" style="position: relative; text-align: left; top: 15%;">Каталог</div>
             <form th:action="@{'/catalog'}" method="get">
-            <div id="advertised-control-panel" class="control-panel" data-aos="fade-up" data-aos-delay="300" style="margin-top: 25px; flex-grow: 1; display: flex; flex-direction: column; flex-wrap: wrap; justify-content: flex-start;">
+            <div id="advertised-control-panel" class="control-panel" data-aos="fade-up" data-aos-delay="300" style="margin-top: 25px; flex-grow: 1; display: flex; flex-direction: column; flex-wrap: wrap; justify-content: flex-start; background-color: lightgray; padding: 10px; border-radius: 6px">
                 <a class="button button-simple-type-1 button-color-add" th:if="${isAdmin}" th:href="@{'/catalog/new'}" style="width: fit-content; margin: 5px">Добавить новую запись</a>
                 <div style="display: flex; flex-wrap: wrap; flex-direction: row; justify-content: flex-start; align-items: baseline;">
                     <select name="city" id="city" style="margin: 5px">

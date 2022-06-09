@@ -138,8 +138,13 @@ public class AdvertisedController {
         mv = authController.setupUser(mv);
         mv.addObject("lightTheme", true);
 
+        boolean isFavorite = false;
+        if (user != null) {
+            isFavorite = favoriteService.existByUserIdAndAdvertisedId(user, advertisedService.getById(id));
+        }
+
         mv.addObject("advertised", advertisedService.getById(id));
-        mv.addObject("isFavorite", favoriteService.existByUserIdAndAdvertisedId(user, advertisedService.getById(id)));
+        mv.addObject("isFavorite", isFavorite);
 
         return mv;
     }

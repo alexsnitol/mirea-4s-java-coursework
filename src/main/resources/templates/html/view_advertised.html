@@ -97,7 +97,7 @@
                 <div class="block-advertised-right-info" data-aos="fade-up" data-aos-delay="500">
                     <div class="price" th:text="@{${#numbers.formatDecimal(advertised.price, 1, 'WHITESPACE', 0, 'COMMA')} + ' ₽'}"></div>
                     <div class="price-for-area" th:text="@{${#numbers.formatDecimal(advertised.price/advertised.estateObject.area, 1, 'WHITESPACE', 2, 'COMMA')} + ' ₽/м²'}"></div>
-                    <div class="button button-simple-type-1 button-color-add">Показать контакты</div>
+                    <a th:href="@{'/contacts'}" class="button button-simple-type-1 button-color-add">Показать контакты</a>
                     <th:block th:if="${username}" th:switch="${isFavorite}">
                         <a th:case="false" class="button button-simple-type-1 button-color-default" th:href="@{'/catalog/' + ${advertised.id} + '/add-to-favorites'}">Добавить в избранное</a>
                         <a th:case="true" class="button button-simple-type-1 button-color-change">В избранном</a>
